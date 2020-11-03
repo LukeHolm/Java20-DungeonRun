@@ -4,5 +4,5 @@ public class Creatures {
     public int initiative;
     public int toughness;
     public int attack;
-    public double agility;
+    public int agility;
 }
