@@ -1,5 +1,4 @@
-package DungeonRun;
-
+package dungeonrun;
 
 public class Creatures {
     public String creatureIsA;

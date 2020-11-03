@@ -1,4 +1,4 @@
-package DungeonRun;
+package dungeonrun;
 
 public class Main {
 

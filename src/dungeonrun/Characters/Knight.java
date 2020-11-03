@@ -1,5 +1,4 @@
-package DungeonRun;
-
+package dungeonrun;
 
 public class Knight extends Creatures {
     

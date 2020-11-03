@@ -1,5 +1,4 @@
-package DungeonRun;
-
+package dungeonrun;
 
 import java.util.Scanner;
 import java.util.InputMismatchException;
