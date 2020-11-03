@@ -1,3 +1,6 @@
+package DungeonRun;
+
+
 public class Wizard extends Creatures {
     
     public Wizard (){

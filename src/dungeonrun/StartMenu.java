@@ -1,3 +1,6 @@
+package DungeonRun;
+
+
 import java.util.Scanner;
 
 public class StartMenu {

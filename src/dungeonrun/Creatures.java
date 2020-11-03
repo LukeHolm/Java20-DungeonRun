@@ -1,3 +1,6 @@
+package DungeonRun;
+
+
 public class Creatures {
     public String creatureIsA;
 

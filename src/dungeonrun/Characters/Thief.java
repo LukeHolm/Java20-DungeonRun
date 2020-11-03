@@ -1,3 +1,6 @@
+package DungeonRun;
+
+
 public class Thief extends Creatures {
     
     public Thief(){

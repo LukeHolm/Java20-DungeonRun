@@ -1,3 +1,6 @@
+package DungeonRun;
+
+
 public class Skeleton extends Monsters{
     
     public Skeleton(){

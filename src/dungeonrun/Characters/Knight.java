@@ -1,3 +1,6 @@
+package DungeonRun;
+
+
 public class Knight extends Creatures {
     
     public Knight(){
