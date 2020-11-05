@@ -1,6 +1,6 @@
 package dungeonrun.Monsters;
 
-public class Monsters extends Creatures {
+public class Monster extends Creatures {
     public double frequency;
     
 }

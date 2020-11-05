@@ -1,8 +1,8 @@
 package dungeonrun.Monsters;
 
-import dungeonrun.Monsters.Monsters;
+import dungeonrun.Monsters.Monster;
 
-public class Orc extends Monsters {
+public class Orc extends Monster {
     
     public Orc() {
         creatureIsA = "Orc";
