@@ -13,7 +13,8 @@ public class Room {
     public Room() {
 
         GiantSpider spiderObj = new GiantSpider();
-        int freqPercent = 20; // TODO replace with the code line below
+        int freqPercent = 30; // TODO remove & replace with the code line below
+        
         // TODO: use int freqPe3rcent = monsterObj.getFrequencyPercent();
         if (Math.random() < freqPercent / 100.0) { 
             // add a monster to the list
@@ -47,8 +48,15 @@ public class Room {
         return treasures;
     }
      */
-
+    
+    
+    public Monster getNextMonster() {
+        return monsters.get(0);
+    }
+    
+    // Will be removed 
     public ArrayList<Monster> getMonsters() {
         return monsters;
     }
+
 }
