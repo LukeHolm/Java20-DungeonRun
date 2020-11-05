@@ -1,6 +1,6 @@
 package dungeonrun;
 
-import dungeonrun.Monsters.Monsters;
+import dungeonrun.Monsters.*;
 
 import java.lang.Math;
 import java.util.ArrayList;
