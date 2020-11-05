@@ -44,8 +44,7 @@ public class Strid {
                             simon.toughness--;
                             System.out.println("But now you have " + simon.toughness);
 
-                        }
-                        if (monsterAtk < simonDef) {
+                        } else if (monsterAtk < simonDef) {
                             System.out.println("You defended yourself from the attack!");
                         } else if (monsterAtk == simonDef) {
                             System.out.println("Draw!");
