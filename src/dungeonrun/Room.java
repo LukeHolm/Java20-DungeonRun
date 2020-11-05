@@ -51,7 +51,7 @@ public class Room {
     
     
     public Monster getNextMonster() {
-        return monsters.get(0);
+        return monsters.get(0); 
     }
     
     // Will be removed 
