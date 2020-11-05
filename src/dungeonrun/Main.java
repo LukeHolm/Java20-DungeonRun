@@ -6,9 +6,9 @@ public class Main {
       StartMenu start = new StartMenu();
         start.main();
         //maps
-        //mapMenu play = new mapMenu();
-        //play.chooseMap();
-        //end maps
+        MapMenu play = new MapMenu();
+        play.chooseMap();
+        //end map
 
     }
 

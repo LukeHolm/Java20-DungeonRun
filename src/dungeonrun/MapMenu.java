@@ -10,7 +10,7 @@ public class MapMenu {
         boolean runtime = true;
         while (runtime) {
             try {
-                System.out.println("Choose mapsize\n1: 4x4\n2: 5x5\n3: 8x8");
+                System.out.println("Choose mapsize\n1: Small\n2: Medium\n3: Big");
                 int size = input.nextInt();
                 Map1 c = new Map1();
                 switch (size) {
