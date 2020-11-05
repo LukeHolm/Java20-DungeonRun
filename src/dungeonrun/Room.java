@@ -16,7 +16,7 @@ public class Room {
         GiantSpider spiderObj = new GiantSpider();
         int freqPercent = 30; // TODO remove & replace with the code line below
 
-        // TODO: use int freqPe3rcent = monsterObj.getFrequencyPercent();
+        //  freqPercent = 3
         if (Math.random() < freqPercent / 100.0) {
             // add a monster to the list
             monsters.add(spiderObj);
@@ -51,10 +51,10 @@ public class Room {
         return treasures;
     }
      */
-    /* Calling getNextMonster several times implies that the earlier monsters are defeated, adn
+ /* Calling getNextMonster several times implies that the earlier monsters are defeated, adn
     *  the next monster is returned.
     *  Returns null when there are no more monsters.
-    */
+     */
     public Monster getNextMonster() {
         Monster monsterObj;
 
@@ -65,22 +65,20 @@ public class Room {
         }
         return monsterObj;
     }
-    
-       public Monster getNextMonsterTest() {
-        Monster monsterObj;
 
-        if (currentMonsterIndex < monsters.size()) {
-            monsterObj = monsters.get(currentMonsterIndex++);
-        } else {
-            monsterObj = null;
+    public void defeatedMonster(Monster deadMonster) {
+        
+        for (Monster monster : monsters) {
+            if (monster.equals(deadMonster)) {
+                monsters.remove(deadMonster);
+                break;
+            }
         }
-        return monsterObj;
     }
-    
 
     // Will be removed 
     public ArrayList<Monster> getMonsters() {
-        
+
         return monsters;
     }
 
