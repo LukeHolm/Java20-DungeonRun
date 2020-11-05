@@ -1,4 +1,4 @@
-package dungeonrun;
+package dungeonrun.Monsters;
 
 public class Creatures {
     public String creatureIsA;

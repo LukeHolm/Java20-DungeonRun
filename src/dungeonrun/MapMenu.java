@@ -31,8 +31,10 @@ public class MapMenu {
 
                     default:
                         System.out.println("Option not available");
+                        break;
 
                 }
+
 
             } catch (InputMismatchException s) {
                 System.out.println("incorrect input");
@@ -41,6 +43,6 @@ public class MapMenu {
             }
 
         }
-        System.out.println("\nTime to start your adventure!");
+        System.out.println("Time to start your adventure!");
     }
 }

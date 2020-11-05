@@ -1,5 +1,7 @@
 package dungeonrun;
 
+import dungeonrun.Monsters.Creatures;
+
 public class Knight extends Creatures {
     
     public Knight(){

@@ -1,6 +1,8 @@
 
 package dungeonrun;
 
+import dungeonrun.Monsters.Monsters;
+
 import java.lang.Math;
 
 public class Room {

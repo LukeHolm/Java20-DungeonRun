@@ -1,5 +1,7 @@
 package dungeonrun;
 
+import dungeonrun.Monsters.Creatures;
+
 public class Wizard extends Creatures {
     
     public Wizard (){

@@ -1,5 +1,7 @@
 package dungeonrun;
 
+import dungeonrun.Monsters.Monsters;
+
 public class Troll extends Monsters {
     
     public Troll (){

@@ -1,5 +1,7 @@
 package dungeonrun;
 
+import dungeonrun.Monsters.Monsters;
+
 public class Orc extends Monsters {
     
     public Orc() {

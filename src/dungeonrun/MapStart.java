@@ -37,6 +37,7 @@ public class MapStart{
                 System.out.println("Incorrect input");
                 input.next();
             }
+            runtime = false;
         }
         return 0;
     }
