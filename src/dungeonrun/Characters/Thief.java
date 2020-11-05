@@ -1,4 +1,4 @@
-package dungeonrun;
+package dungeonrun.Characters;
 
 import dungeonrun.Monsters.Creatures;
 

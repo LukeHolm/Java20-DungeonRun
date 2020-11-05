@@ -1,4 +1,4 @@
-package dungeonrun.Characters;
+package dungeonrun.Monsters;
 
 import java.util.InputMismatchException;
 
