@@ -1,13 +1,13 @@
-package dungeonrun.Monsters;
-
-import java.util.InputMismatchException;
+package dungeonrun;
+import dungeonrun.Monsters.*;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Strid extends Creatures {
+public class Strid extends Creatures{
     ArrayList<Integer> dice = new ArrayList<>();
     Scanner input = new Scanner(System.in);
+    Room randomMonster = new Room();
     public void stridDice() {
         boolean programRunner = true;
 
@@ -25,15 +25,10 @@ public class Strid extends Creatures {
 
                 //if input == 1, proceed with dice
                 if (mainInput == 1) {
-
-                    //test creature with fixed initiative and attack
-                    initiative=3;
-                    attack=4;
-
-                    diceRoll(initiative);
-                    diceRoll(attack);
-
-
+                    System.out.println(randomMonster.getNextMonster().creatureIsA);
+                    int monsterAttack = randomMonster.getNextMonster().attack;
+                    System.out.println("Attack: " + monsterAttack);
+                    System.out.println(diceRoll(monsterAttack));
 
 
 
