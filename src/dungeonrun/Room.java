@@ -7,8 +7,8 @@ import java.util.ArrayList;
 
 public class Room {
 
-    protected ArrayList<Monster> monsters = new ArrayList<>();
-    protected int currentMonsterIndex = 0; // Monsters with lower index are defeated
+    public ArrayList<Monster> monsters = new ArrayList<>();
+    // protected int currentMonsterIndex = 0; // Monsters with lower index are defeated
 
     // TODO:  protected ArrayList<Treasure> treasures = new ArrayList<>();
     public Room() {
@@ -47,34 +47,38 @@ public class Room {
     }
 
     /*
-    public <any> getTreasures() {
+    public <any> getNextTreasure() {
         return treasures;
     }
      */
- /* Calling getNextMonster several times implies that the earlier monsters are defeated, adn
-    *  the next monster is returned.
-    *  Returns null when there are no more monsters.
+    
+    /* Calling getNextMonster several times, returns the next monster, until there are no more and null is returned.
      */
     public Monster getNextMonster() {
         Monster monsterObj;
-
-        if (currentMonsterIndex < monsters.size()) {
-            monsterObj = monsters.get(currentMonsterIndex++);
+        if ( monsters.size() > 0) {
+            monsterObj = monsters.get(0);
         } else {
             monsterObj = null;
         }
         return monsterObj;
     }
+    
+      Monster monsterObj = getNextMonster();
 
     public void defeatedMonster(Monster deadMonster) {
-        
+        if (deadMonster == null) {
+            System.out.println("defeatedMonster called with null referense");
+            System.exit(0);
+        }
         for (Monster monster : monsters) {
             if (monster.equals(deadMonster)) {
-                monsters.remove(deadMonster);
+                monsters.remove(monster);
                 break;
             }
         }
     }
+    
 
     // Will be removed 
     public ArrayList<Monster> getMonsters() {
