@@ -1,42 +1,45 @@
-
 package dungeonrun;
 
 import java.lang.Math;
+import java.util.ArrayList;
 
 public class Room {
 
     protected ArrayList<Monsters> monsters = new ArrayList<>();
-    protected ArrayList<Treasure> treasures = new ArrayList<>();
+    //  protected ArrayList<Treasure> treasures = new ArrayList<>();
 
     public Room() {
 
         double d = Math.random();
 
-        GiantSpider monsterObj = new GiantSpider;
-        if (Math.random() > giantSpider.getFrequencyPercent() / 100.0) {
+        GiantSpider spiderObj = new GiantSpider();
+        int freqPercent = 20; // TODO replace with the code line below
+        // TODO: use int freqPercent = monsterObj.getFrequencyPercent();
+        if (Math.random() > freqPercent / 100.0) {
             // add a monster to the list
-            monsters.add(monsterObj);
+            monsters.add(spiderObj);
         }
 
-        Skeleton monsterObj = new Skeleton;
-        if (Math.random() > monsterObj.getFrequencyPercent() / 100.0) {
+        Skeleton monsterObj = new Skeleton();
+        // TODO: use int freqPercent = monsterObj.getFrequencyPercent();
+        if (Math.random() > freqPercent / 100.0) {
             // add a monster to the list
             monsters.add(monsterObj);
         }
-
-        Orc monsterObj = new Orc;
-        if (Math.random() > monsterObj.getFrequencyPercent() / 100.0) {
+        Orc orcObj = new Orc();;
+        // TODO: use int freqPercent = monsterObj.getFrequencyPercent();
+        if (Math.random() > freqPercent / 100.0) {
             // add a monster to the list
-            monsters.add(monsterObj);
+            monsters.add(orcObj);
         }
-        Troll monsterObj = new Troll;
-        if (Math.random() > monsterObj.getFrequencyPercent() / 100.0) {
+        Troll trollObj = new Troll();
+        // TODO: use int freqPercent = monsterObj.getFrequencyPercent();
+        if (Math.random() > freqPercent / 100.0) {
             // add a monster to the list
-            monsters.add(monsterObj);
+            monsters.add(trollObj);
         }
-
     }
-
+    /*
     public <any> getMonsters() {
         return monsters;
     }
@@ -44,5 +47,5 @@ public class Room {
     public <any> getTreasures() {
         return treasures;
     }
-
+     */
 }
