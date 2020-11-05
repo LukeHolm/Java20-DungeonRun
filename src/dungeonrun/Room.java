@@ -8,15 +8,16 @@ import java.util.ArrayList;
 public class Room {
 
     protected ArrayList<Monster> monsters = new ArrayList<>();
-    // TODO:  protected ArrayList<Treasure> treasures = new ArrayList<>();
+    protected int currentMonsterIndex = 0; // Monsters with lower index are defeated
 
+    // TODO:  protected ArrayList<Treasure> treasures = new ArrayList<>();
     public Room() {
 
         GiantSpider spiderObj = new GiantSpider();
         int freqPercent = 30; // TODO remove & replace with the code line below
-        
+
         // TODO: use int freqPe3rcent = monsterObj.getFrequencyPercent();
-        if (Math.random() < freqPercent / 100.0) { 
+        if (Math.random() < freqPercent / 100.0) {
             // add a monster to the list
             monsters.add(spiderObj);
         }
@@ -27,15 +28,17 @@ public class Room {
             // add a monster to the list
             monsters.add(monsterObj);
         }
-        
+
         Orc orcObj = new Orc();
         // TODO: use int freqPercent = monsterObj.getFrequencyPercent();
+        freqPercent = 20;
         if (Math.random() < freqPercent / 100.0) {
             // add a monster to the list
             monsters.add(orcObj);
         }
-        
+
         Troll trollObj = new Troll();
+        freqPercent = 100;
         // TODO: use int freqPercent = monsterObj.getFrequencyPercent();
         if (Math.random() < freqPercent / 100.0) {
             // add a monster to the list
@@ -48,14 +51,36 @@ public class Room {
         return treasures;
     }
      */
-    
-    
+    /* Calling getNextMonster several times implies that the earlier monsters are defeated, adn
+    *  the next monster is returned.
+    *  Returns null when there are no more monsters.
+    */
     public Monster getNextMonster() {
-        return monsters.get(0); 
+        Monster monsterObj;
+
+        if (currentMonsterIndex < monsters.size()) {
+            monsterObj = monsters.get(currentMonsterIndex++);
+        } else {
+            monsterObj = null;
+        }
+        return monsterObj;
     }
     
+       public Monster getNextMonsterTest() {
+        Monster monsterObj;
+
+        if (currentMonsterIndex < monsters.size()) {
+            monsterObj = monsters.get(currentMonsterIndex++);
+        } else {
+            monsterObj = null;
+        }
+        return monsterObj;
+    }
+    
+
     // Will be removed 
     public ArrayList<Monster> getMonsters() {
+        
         return monsters;
     }
 
