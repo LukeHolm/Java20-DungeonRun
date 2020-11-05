@@ -23,7 +23,7 @@ public class Strid {
 
             try {
                 //Main input of program, dictates programRunner
-                System.out.print("\nTo attack press '1' to to run away press '0': ");
+                System.out.print("\nTo attack press '1' or to run away press '0': ");
                 int mainInput = input.nextInt();
 
 
