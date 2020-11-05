@@ -18,7 +18,6 @@ public class Strid {
     public void stridDice() {
         boolean programRunner = true;
 
-
         while (programRunner) {
 
             try {
@@ -26,15 +25,60 @@ public class Strid {
                 System.out.print("\nTo attack press '1' or to run away press '0': ");
                 int mainInput = input.nextInt();
 
-
-                //if input == 1, proceed with dice
+                //if input == 1, the player attacks, proceed with dice
                 if (mainInput == 1) {
-                    System.out.println("You encounter a vicious " + monsterObj.creatureIsA + "!");
+                    System.out.println("You encounter a vicious " + monsterObj.creatureIsA + " and you attack it!");
+                    boolean fight = true;
+                    while (fight) {
+                        int simonAtk = diceRoll(simon.attack);
+                        int monsterDef = diceRoll(monsterObj.agility);                       
+                       
+                        System.out.println("You attack for " + simonAtk  + " damage!");
+                        System.out.println("The " + monsterObj.creatureIsA + " defends for " + monsterDef);
+                        
+                        if (simonAtk > monsterDef) {
+                            System.out.println("The monster tooks damage! The monster had " + monsterObj.toughness + " toughness");
+                            monsterObj.toughness--;
+                            System.out.println("But now the monster has " + monsterObj.toughness);
+                        } else if (simonAtk < monsterDef) {
+                            System.out.println("The monster defended from the attack!");
+                        } else if (simonAtk == monsterDef) {
+                            System.out.println("Draw!");
+                        }
+                        
+                        if (monsterObj.toughness == 0 ) {
+                            System.out.println("----------------------------");
+                            System.out.println("The monster has been killed!");
+                            System.out.println("----------------------------");
+                            fight = false;
+                            break;
+                        }
+                        
+                        simon.initiative--;
+                        if (simon.initiative==0){
+                            System.out.println("------------");
+                            System.out.println("Simon the brave knight died!");
+                            System.out.println("------------");
+                            fight = false;
+                         }                         
+                    }
+
+//felhantering och exit
+
+                } else if (mainInput == 0) {
+                    //if input == 0, exit program only when player's chance of escape ... 
+                    int chanceEscape = simon.agility * 10;
+                    // what to do with chanceEscape? compare it with what? when the player escapes?
+                    if (chanceEscape)
+                    {
+                        programRunner = false;
+                    } else {
+                    // monster attacks                         
+                    System.out.println("You faild to escape. The " + monsterObj.creatureIsA + " attacks!");
                     boolean fight = true;
                     while (fight) {
                         int monsterAtk = diceRoll(monsterObj.attack);
                         int simonDef = diceRoll(simon.agility);
-
 
                         System.out.println("The " + monsterObj.creatureIsA + " attacks you for " + monsterAtk + " damage!");
                         System.out.println("You defend yourself for " + simonDef);
@@ -54,22 +98,18 @@ public class Strid {
                             System.out.println("Simon the brave knight died!");
                             System.out.println("----------------------------");
                             fight = false;
+                            break;
                         }
-                        monsterObj.initiative--;
+                        
+                        monsterObj.initiative--;                        
                         if (monsterObj.initiative==0){
                             System.out.println("------------");
                             System.out.println("You made it!");
                             System.out.println("------------");
                             fight = false;
-                        }
-
+                        }                       
+                                                
                     }
-
-//felhantering och exit
-
-                } else if (mainInput == 0) {
-                    //if input == 0, exit program
-                    programRunner = false;
                 }
 
                 //if input is neither 1 or 0, inform user of invalid format
