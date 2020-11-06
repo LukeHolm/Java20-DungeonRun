@@ -9,6 +9,8 @@ public class StartMenu {
     static int test;
 
     MapMenu play = new MapMenu();
+    
+    Map1 startMenuMap = null;
 
     public void main() {
         System.out.println("\n *** Welcome to Dungeon Run! *** \n");
@@ -20,7 +22,7 @@ public class StartMenu {
         switch (choice) {
             case 1:
                 characters();
-                play.chooseMap();
+                startMenuMap = play.chooseMap();
                 break;
             case 2:
                 System.out.println("This function is still in development");

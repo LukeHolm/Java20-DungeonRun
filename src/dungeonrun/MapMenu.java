@@ -5,27 +5,28 @@ import java.util.Scanner;
 
 
 public class MapMenu {
-    public void chooseMap() {
+    public Map1 chooseMap() {
         Scanner input = new Scanner(System.in);
         boolean runtime = true;
+        Map1 theMap = null;
         while (runtime) {
             try {
                 System.out.println("Choose mapsize\n1: Small\n2: Medium\n3: Big");
                 int size = input.nextInt();
-                Map1 c = new Map1();
+         
                 switch (size) {
                     case 1:
-                        c.choice1();
+                        theMap = new Map1(4,4);
                         runtime = false;
                         break;
 
                     case 2:
-                        c.choice2();
+                        theMap = new Map1(5,5);
                         runtime = false;
                         break;
 
                     case 3:
-                        c.choice3();
+                        theMap = new Map1(8,8);
                         runtime = false;
                         break;
 
@@ -44,5 +45,6 @@ public class MapMenu {
 
         }
         System.out.println("Time to start your adventure!");
+        return theMap;
     }
 }
