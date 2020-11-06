@@ -7,7 +7,6 @@ public class Monster extends Creatures {
     public Monster() {
         super();
         alive = true;
-        System.out.println("Created a monster.");
     }
 
 }
