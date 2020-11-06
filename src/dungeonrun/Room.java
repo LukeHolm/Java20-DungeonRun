@@ -13,36 +13,32 @@ public class Room {
     // TODO:  protected ArrayList<Treasure> treasures = new ArrayList<>();
     public Room() {
 
-        GiantSpider spiderObj = new GiantSpider();
-        int freqPercent = 30; // TODO remove & replace with the code line below
+        GiantSpider spider = new GiantSpider();
 
-        //  freqPercent = 3
-        if (Math.random() < freqPercent / 100.0) {
+        if (Math.random() < spider.frequency) {
             // add a monster to the list
-            monsters.add(spiderObj);
+            monsters.add(spider);
         }
 
-        Skeleton monsterObj = new Skeleton();
-        // TODO: use int freqPercent = monsterObj.getFrequencyPercent();
-        if (Math.random() < freqPercent / 100.0) {
+        Skeleton monster = new Skeleton();
+       
+        if (Math.random() < monster.frequency) {
             // add a monster to the list
-            monsters.add(monsterObj);
+            monsters.add(monster);
         }
 
-        Orc orcObj = new Orc();
-        // TODO: use int freqPercent = monsterObj.getFrequencyPercent();
-        freqPercent = 20;
-        if (Math.random() < freqPercent / 100.0) {
+        Orc orc = new Orc();
+       
+        if (Math.random() < orc.frequency) {
             // add a monster to the list
-            monsters.add(orcObj);
+            monsters.add(orc);
         }
 
-        Troll trollObj = new Troll();
-        freqPercent = 100;
-        // TODO: use int freqPercent = monsterObj.getFrequencyPercent();
-        if (Math.random() < freqPercent / 100.0) {
-            // add a monster to the list
-            monsters.add(trollObj);
+        Troll troll = new Troll();
+    
+        if (Math.random() < troll.frequency) {
+            // add the monster to the list
+            monsters.add(troll);
         }
     }
 
@@ -55,35 +51,38 @@ public class Room {
     /* Calling getNextMonster several times, returns the next monster, until there are no more and null is returned.
      */
     public Monster getNextMonster() {
-        Monster monsterObj;
-        if ( monsters.size() > 0) {
-            monsterObj = monsters.get(0);
-        } else {
-            monsterObj = null;
+        Monster firstAliveMonster = null;
+        
+        for (Monster monster : monsters) {
+            if (monster.alive) {
+                firstAliveMonster = monster;
+                break;
+            }
         }
-        return monsterObj;
+        return firstAliveMonster;
     }
     
-      Monster monsterObj = getNextMonster();
-
     public void defeatedMonster(Monster deadMonster) {
         if (deadMonster == null) {
             System.out.println("defeatedMonster called with null referense");
             System.exit(0);
+        } else {
+            deadMonster.alive = false;
         }
-        for (Monster monster : monsters) {
-            if (monster.equals(deadMonster)) {
-                monsters.remove(monster);
-                break;
-            }
-        }
-    }
-    
+    } 
 
+    public void draw() {
+        
+        
+        
+        
+    }
     // Will be removed 
     public ArrayList<Monster> getMonsters() {
 
         return monsters;
     }
+    
+    
 
 }

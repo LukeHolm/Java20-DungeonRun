@@ -4,11 +4,12 @@ import java.util.Scanner;
 import java.util.InputMismatchException;
 
 public class Map1 extends MapStart {
-    int value = 1;
-    int i;
-    int j;
+
     Scanner input = new Scanner(System.in);
 
+    int value = 1;
+    int i;
+    int j;    
 
     public void choice1() {
         int[][] map1 = new int[4][4];
