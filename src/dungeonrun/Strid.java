@@ -10,7 +10,7 @@ public class Strid {
     ArrayList<Integer> dice = new ArrayList<>();
     Scanner input = new Scanner(System.in);
     Room randomRoom = new Room();
-    Monster monsterObj = randomRoom.getNextMonster();
+
     //temp adventurer
     Knight simon = new Knight();
 
@@ -22,12 +22,14 @@ public class Strid {
 
             try {
                 //Main input of program, dictates programRunner
+
+                Monster monsterObj = randomRoom.getNextMonster();
+                System.out.println("You encounter a vicious " + monsterObj.creatureIsA + " and you attack it!");
+                //if input == 1, the player attacks, proceed with dice
                 System.out.print("\nTo attack press '1' or to run away press '0': ");
                 int mainInput = input.nextInt();
-
-                //if input == 1, the player attacks, proceed with dice
                 if (mainInput == 1) {
-                    System.out.println("You encounter a vicious " + monsterObj.creatureIsA + " and you attack it!");
+
                     boolean fight = true;
                     while (fight) {
                         int simonAtk = diceRoll(simon.attack);
@@ -37,11 +39,11 @@ public class Strid {
                         System.out.println("The " + monsterObj.creatureIsA + " defends for " + monsterDef);
 
                         if (simonAtk > monsterDef) {
-                            System.out.println("The monster tooks damage! The monster had " + monsterObj.toughness + " toughness");
+                            System.out.println("The monster took damage! The monster had " + monsterObj.toughness + " toughness");
                             monsterObj.toughness--;
                             System.out.println("But now the monster has " + monsterObj.toughness);
                         } else if (simonAtk < monsterDef) {
-                            System.out.println("The monster defended from the attack!");
+                            System.out.println("The monster defended the attack!");
                         } else if (simonAtk == monsterDef) {
                             System.out.println("Draw!");
                         }
@@ -51,16 +53,10 @@ public class Strid {
                             System.out.println("The monster has been killed!");
                             System.out.println("----------------------------");
                             fight = false;
-                            break;
+
                         }
 
-                        simon.initiative--;
-                        if (simon.initiative == 0) {
-                            System.out.println("------------");
-                            System.out.println("Simon the brave knight died!");
-                            System.out.println("------------");
-                            fight = false;
-                        }
+
                     }
 
 //felhantering och exit
@@ -100,7 +96,7 @@ public class Strid {
                                 System.out.println("Simon the brave knight died!");
                                 System.out.println("----------------------------");
                                 fight = false;
-                                break;
+
                             }
 
                             monsterObj.initiative--;
