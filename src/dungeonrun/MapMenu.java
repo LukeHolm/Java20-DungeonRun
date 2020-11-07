@@ -44,6 +44,9 @@ public class MapMenu {
             }
 
         }
+        System.out.println("The created map looks like this:");
+        theMap.draw();
+        
         System.out.println("Time to start your adventure!");
         return theMap;
     }
