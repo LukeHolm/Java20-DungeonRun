@@ -16,4 +16,8 @@ public class Knight extends Heroes {
     public void specialAbility() {
         //"Shield block". Blocks first attack of every encounter
     }
+    @Override
+     public String toString(){
+        return "Knight name is " + playersName + "\n";
+    }
 }

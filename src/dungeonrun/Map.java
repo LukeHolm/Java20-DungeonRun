@@ -68,10 +68,8 @@ public class Map extends MapStart {
     public static final String UNDERLINED = "\u001b[4m";
 
     Scanner input = new Scanner(System.in);
-    Room[][] map;
-
-    public Map() {
-    }
+    public Room[][] map;
+    
 
     public Map(int sizeX, int sizeY) {
 
