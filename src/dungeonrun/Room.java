@@ -9,10 +9,22 @@ public class Room {
 
     public ArrayList<Monster> monsters = new ArrayList<>();
     // protected int currentMonsterIndex = 0; // Monsters with lower index are defeated
+    // TODO:  public ArrayList<Treasure> treasures = new ArrayList<>();
+    
+    protected boolean visited; // True when the player has visited this room
 
-    // TODO:  protected ArrayList<Treasure> treasures = new ArrayList<>();
+    public boolean isVisited() {
+        return visited;
+    }
+
+    public void setVisited(boolean visited) {
+        this.visited = visited;
+    }
+    
     public Room() {
 
+        visited = false;
+        
         GiantSpider spider = new GiantSpider();
 
         if (Math.random() < spider.frequency) {

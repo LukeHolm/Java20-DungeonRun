@@ -31,7 +31,6 @@ public class Strid {
 
                     System.out.println("\nYou encounter a vicious " + monsterObj.creatureIsA);
 
-
                     System.out.print("\nTo attack press '1' or to run away press '0': ");
                     int mainInput = input.nextInt();
 
@@ -64,6 +63,9 @@ public class Strid {
                             System.out.println("You failed to escape!");
                             monsterAtk();
                         }
+
+
+                        //FELHANTERING
                     } else {
                         System.out.print("Incorrect input, enter '1' or '0'. You wrote: " + mainInput + "\n");
                     }
@@ -76,6 +78,9 @@ public class Strid {
                     input.next();
 
                 }
+                //SLUT FELHANTERING
+
+
             }
             insideRoom = false;
         }
@@ -106,11 +111,11 @@ public class Strid {
     }
 
     public void monsterAtk() {
+        int monsterAtk = diceRoll(monsterObj.attack);
+        int simonDef = diceRoll(simon.agility);
         System.out.println("..............");
         System.out.println("Monster attack");
         System.out.println("..............");
-        int monsterAtk = diceRoll(monsterObj.attack);
-        int simonDef = diceRoll(simon.agility);
         System.out.println("The " + monsterObj.creatureIsA + " attacks you for " + monsterAtk + " damage!");
         System.out.println("You defend yourself for " + simonDef);
         if (monsterAtk > simonDef) {
@@ -138,11 +143,11 @@ public class Strid {
     public void playerAtk() {
 
         while (monsterObj.toughness > 0) {
+            int playerAtk = diceRoll(simon.attack);
+            int monsterDef = diceRoll(monsterObj.agility);
             System.out.println("..............");
             System.out.println("Player attack");
             System.out.println("..............");
-            int playerAtk = diceRoll(simon.attack);
-            int monsterDef = diceRoll(monsterObj.agility);
             System.out.println("You attack for " + playerAtk + " damage!");
             System.out.println("The " + monsterObj.creatureIsA + " defends for " + monsterDef);
 
