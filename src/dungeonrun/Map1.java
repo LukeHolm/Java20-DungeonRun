@@ -107,9 +107,9 @@ public class Map1 extends MapStart {
                 }
 
                 if (map[x][y].isVisited() || map[x][alsoCheckY].isVisited()) {
-                    System.out.print(BG_BLACK + "+······");
+                    System.out.print("+······");
                 } else {
-                    System.out.print(BG_BLACK + "+······");
+                    System.out.print("+······");
                 }
             }
             System.out.println("+");
