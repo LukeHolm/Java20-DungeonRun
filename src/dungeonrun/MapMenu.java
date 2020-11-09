@@ -5,10 +5,10 @@ import java.util.Scanner;
 //This is a test
 
 public class MapMenu {
-    public Map1 chooseMap() {
+    public Map chooseMap() {
         Scanner input = new Scanner(System.in);
         boolean runtime = true;
-        Map1 theMap = null;
+        Map theMap = null;
         while (runtime) {
             try {
                 System.out.println("Choose mapsize\n1: Small\n2: Medium\n3: Big");
@@ -16,17 +16,17 @@ public class MapMenu {
          
                 switch (size) {
                     case 1:
-                        theMap = new Map1(4,4);
+                        theMap = new Map(4,4);
                         runtime = false;
                         break;
 
                     case 2:
-                        theMap = new Map1(5,5);
+                        theMap = new Map(5,5);
                         runtime = false;
                         break;
 
                     case 3:
-                        theMap = new Map1(8,8);
+                        theMap = new Map(8,8);
                         runtime = false;
                         break;
 

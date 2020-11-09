@@ -10,7 +10,7 @@ public class StartMenu {
 
     MapMenu play = new MapMenu();
     
-    Map1 startMenuMap = null;
+    Map startMenuMap = null;
 
     public void main() {
         System.out.println("\n *** Welcome to Dungeon Run! *** \n");
