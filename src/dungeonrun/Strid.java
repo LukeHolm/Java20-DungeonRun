@@ -106,6 +106,9 @@ public class Strid {
     }
 
     public void monsterAtk() {
+        System.out.println("..............");
+        System.out.println("Monster attack");
+        System.out.println("..............");
         int monsterAtk = diceRoll(monsterObj.attack);
         int simonDef = diceRoll(simon.agility);
         System.out.println("The " + monsterObj.creatureIsA + " attacks you for " + monsterAtk + " damage!");
@@ -129,17 +132,15 @@ public class Strid {
 
         }
 
-        monsterObj.initiative--;
-        if (monsterObj.initiative == 0) {
-            System.out.println("------------");
-            System.out.println("You made it!");
-            System.out.println("------------");
 
-        }
     }
 
     public void playerAtk() {
+
         while (monsterObj.toughness > 0) {
+            System.out.println("..............");
+            System.out.println("Player attack");
+            System.out.println("..............");
             int playerAtk = diceRoll(simon.attack);
             int monsterDef = diceRoll(monsterObj.agility);
             System.out.println("You attack for " + playerAtk + " damage!");
