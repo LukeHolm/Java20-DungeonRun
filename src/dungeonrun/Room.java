@@ -40,6 +40,8 @@ public class Room {
             // add the monster to the list
             monsters.add(troll);
         }
+        
+        Treasure.treasureRoll();
     }
 
     /*
@@ -72,17 +74,10 @@ public class Room {
     } 
 
     public void draw() {
-        
-        
-        
-        
     }
     // Will be removed 
     public ArrayList<Monster> getMonsters() {
 
         return monsters;
     }
-    
-    
-
 }
