@@ -52,9 +52,9 @@ public class Room {
             // add the monster to the list
             monsters.add(troll);
         }
-        
-        Treasure.treasureRoll();
-    }
+            //Treasure.treasureRoll();
+        }
+    
 
     
     /* Calling getNextMonster several times, returns the next monster, until there are no more and null is returned.
