@@ -11,10 +11,11 @@ public class Strid {
     Scanner input = new Scanner(System.in);
     int y = 0;
     Monster monsterObj = new Monster();
-    Monster monsterDead = new Monster();
+
+    Room randomEndRoom = new Room();
 
     //temp adventurer
-    Knight simon = new Knight();
+    Knight simon = new Knight("simon");
 
 
     public void stridDice() {
@@ -43,7 +44,7 @@ public class Strid {
                         System.out.println("----------------------------");
                         System.out.println("The monster has been killed!");
                         System.out.println("----------------------------");
-
+                        randomEndRoom.defeatedMonster(monsterObj);
                         y++;
                         System.out.println("|||||||||||||||||||||||");
                         System.out.println((i - y) + " monsters left");
