@@ -3,9 +3,13 @@ package dungeonrun;
 public class Main {
 
     public static void main(String[] args) {
-        StartMenu start = new StartMenu();
-        start.main();
         Strid stridigt = new Strid();
-        stridigt.stridDice();
+        StartMenu start = new StartMenu();
+        while(true){
+            start.main();
+         //   stridigt.stridDice();
+        }
+        
+       
     }
 }
