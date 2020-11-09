@@ -19,7 +19,7 @@ public class Strid {
     public void stridDice() {
         boolean insideRoom = true;
         int i = (int) (Math.random() * 6) + 1;
-        System.out.println(i + " amount of monsters");
+        System.out.println("You encounter " + i + " monsters!");
         while (insideRoom) {
             for (y = 0; i > y; ) {
                 try {
@@ -154,7 +154,7 @@ public class Strid {
             } else {
                 System.out.println("Draw!");
             }
-            if (monsterObj.toughness>0) {
+            if (monsterObj.toughness > 0) {
                 monsterAtk();
             }
         }
