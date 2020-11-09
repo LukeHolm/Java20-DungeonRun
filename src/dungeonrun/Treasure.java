@@ -5,6 +5,13 @@ import java.util.Scanner;
 public class Treasure {
 
     static Scanner sc = new Scanner(System.in);
+    public int valuePoints;
+    public String Name;
+
+    public Treasure(int valuePoints, String Name) {
+        this.valuePoints = valuePoints;
+        this.Name = Name;
+    }
 
     static int findCeil(int arr[], int r, int l, int h) {
         int mid;
@@ -33,49 +40,49 @@ public class Treasure {
         return arr[indexc];
     }
 
-        static int pouch = 0;
-        static int arr[] = {0, 1, 2, 3, 4, 5};
-        static int freq[] = {20, 40, 20, 15, 10, 5};
-        static int n = arr.length;
-        static boolean loop = true;
-        
-        static void treasureRoll() {
+    static int pouch = 0;
+    static int arr[] = {0, 1, 2, 3, 4, 5};
+    static int freq[] = {20, 40, 20, 15, 10, 5};
+    static int n = arr.length;
+    static boolean loop = true;
 
-            int treasure = (myRand(arr, freq, n));
+    static void treasureRoll() {
 
-            switch (treasure) {
+        int treasure = (myRand(arr, freq, n));
 
-                case 0:
-                    System.out.println("There is no treasure in this room");
-                    break;
-                case 1:
-                    System.out.println("You found some coins");
-                    System.out.println("2 gold was added to your pouch");
-                    pouch += 2;
-                    break;
-                case 2:
-                    System.out.println("You found a small coin purse");
-                    System.out.println("6 gold was added to your pouch");
-                    pouch += 6;
-                    break;
-                case 3:
-                    System.out.println("You found some golden jewlery");
-                    System.out.println("10 gold was added to your pouch");
-                    pouch += 10;
-                    break;
-                case 4:
-                    System.out.println("You found a gemstone");
-                    System.out.println("It's worth 14 gold. It was added to your pouch");
-                    pouch += 14;
-                    break;
-                case 5:
-                    System.out.println("You found a small treasure chest");
-                    System.out.println("It's content is worth 20 gold. It was added to your pouch");
-                    pouch += 20;
-                default:
-                    break;
-            }
+        switch (treasure) {
 
-            System.out.println("You have " + pouch + " gold");
+            case 0:
+                System.out.println("There is no treasure in this room");
+                break;
+            case 1:
+                System.out.println("You found some coins");
+                System.out.println("2 gold was added to your pouch");
+                pouch += 2;
+                break;
+            case 2:
+                System.out.println("You found a small coin purse");
+                System.out.println("6 gold was added to your pouch");
+                pouch += 6;
+                break;
+            case 3:
+                System.out.println("You found some golden jewlery");
+                System.out.println("10 gold was added to your pouch");
+                pouch += 10;
+                break;
+            case 4:
+                System.out.println("You found a gemstone");
+                System.out.println("It's worth 14 gold. It was added to your pouch");
+                pouch += 14;
+                break;
+            case 5:
+                System.out.println("You found a small treasure chest");
+                System.out.println("It's content is worth 20 gold. It was added to your pouch");
+                pouch += 20;
+            default:
+                break;
         }
+
+        System.out.println("You have " + pouch + " gold");
     }
+}
