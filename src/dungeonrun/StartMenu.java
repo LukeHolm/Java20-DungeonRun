@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 public class StartMenu {
 
+        
     ArrayList<Heroes> player = new ArrayList<>();
     static Scanner scanner = new Scanner(System.in);
     static int choice;
@@ -32,7 +33,9 @@ public class StartMenu {
                 startMenuMap = play.chooseMap();
                 break;
             case 2:
-                System.out.println("This function is still in development");
+                for (Heroes character : player) {
+                    System.out.println(character);
+                }
                 break;
 
             case 3:
@@ -65,6 +68,9 @@ public class StartMenu {
                 System.out.println("\nYou have chosen the brave knight" + " " + characterName);
                 Heroes playerHero = new Knight(characterName);
                 player.add(playerHero);
+                System.out.println("\nYou have chosen the brave knight" + " " + characterName);
+                
+           
                 break;
             case 2:
                 System.out.println("\nEnter the name of your character");
@@ -73,6 +79,7 @@ public class StartMenu {
                 System.out.println("\nYou have chosen the intelligent wizard" + " " + characterName);
                 Heroes playerHeroWizard = new Wizard(characterName);
                 player.add(playerHeroWizard);
+                
                 break;
             case 3:
                 System.out.println("Enter the name of your character");
@@ -81,6 +88,7 @@ public class StartMenu {
                 System.out.println("\nYou have chosen the cunning thief" + " " + characterName);
                 Heroes playerHeroThief = new Thief(characterName);
                 player.add(playerHeroThief);
+                
                 break;
             default:
                 System.out.println("Invalid input, please try again.");
