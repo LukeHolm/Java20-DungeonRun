@@ -13,4 +13,9 @@ public class GiantSpider extends Monster {
         agility = 3;
         frequency = 0.2;        //frequency = 20%
     }
+
+    @Override
+    public String toString() {
+        return "GiantSpider";
+    }
 }
