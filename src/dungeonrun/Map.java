@@ -1,12 +1,13 @@
 package dungeonrun;
 
 import dungeonrun.Monsters.GiantSpider;
+import dungeonrun.Characters.Heroes;
 import dungeonrun.Monsters.Monster;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
-public class Map extends MapStart {
+public class Map {
 
     // Some codes for changing color of the console text
     /*   public static final String RESET = "\033[0;30m";  // RESET the text color
@@ -69,21 +70,24 @@ public class Map extends MapStart {
 
     Scanner input = new Scanner(System.in);
     public Room[][] map;
-    
 
-    public Map(int sizeX, int sizeY) {
+    public Map(int sizeX, int sizeY, Heroes hero) {
 
         map = new Room[sizeX][sizeY];
 
-        for (int k = 0; k < map.length; k++) {
-            for (int l = 0; l < map[k].length; l++) {
-                map[k][l] = new Room();
+        for (int x = 0; x < map.length; x++) {
+            for (int y = 0; y < map[x].length; y++) {
+                map[x][y] = new Room();
+                // If the hero is standing in tis room -> remove the Monsters & Trteasures
+                if (x == hero.mapPosX && y == hero.mapPosY) {
+                    map[x][y].monsters.clear();  // Remove all monsters
+                }
             }
         }
     }
 
     //  public void draw(Character character) {
-    public void draw() {
+    public void draw(Heroes hero) {
         Room currentRoom;
         ArrayList<Monster> monsters;
         boolean firstRoom = true;
@@ -95,19 +99,24 @@ public class Map extends MapStart {
                 + "J" + RESET + " = Gold Jewlry, " + BR_YELLOW + "G" + RESET + " = Gemstone, " + BR_YELLOW + "C" + RESET + " = Small Chest:");
 
         for (int y = 0; y < map[0].length; y++) {
+            if (y > 0) {
+                alsoCheckY = (y - 1);
+            } else {
+                alsoCheckY = 0;
+            }
             for (int x = 0; x < map.length; x++) {
 
                 // Row 1:
-                if (y > 0) {
-                    alsoCheckY = (y - 1);
+                if (x > 0) {
+                    alsoCheckX = (x - 1);
                 } else {
-                    alsoCheckY = 0;
+                    alsoCheckX = 0;
                 }
 
                 if (map[x][y].isVisited() || map[x][alsoCheckY].isVisited()) {
-                    System.out.print("+······");
+                    System.out.print("+------");
                 } else {
-                    System.out.print("+······");
+                    System.out.print(CYAN + "+······" + RESET);
                 }
             }
             System.out.println("+");
@@ -119,11 +128,10 @@ public class Map extends MapStart {
                     System.out.print("¦" + GREEN + "Knight" + RESET); // TODO: change
                     firstRoom = false;
                 } else {
-                    System.out.print("¦      ");
+                    System.out.print((map[x][y].isVisited() || map[x][alsoCheckY].isVisited()) ? "|      " : CYAN + ":      " + RESET);
                 }
-
             }
-            System.out.println("¦");
+            System.out.println(map[map.length - 1][y].isVisited() ? "¦" : CYAN + ":" + RESET);
 
             // Row 3:
             for (int x = 0; x < map.length; x++) {
@@ -139,8 +147,13 @@ public class Map extends MapStart {
                     monsterStr += (monster.getClass() == dungeonrun.Monsters.Orc.class) ? "O" : "";
                     monsterStr += (monster.getClass() == dungeonrun.Monsters.Troll.class) ? "T" : "";
                 }
-                System.out.printf("¦%s%.3s%s", BR_RED, monsterStr, RESET);
-                
+                if (map[x][y].isVisited() || map[x][y].isVisited()) {
+                    System.out.print("¦");
+                } else {
+                    System.out.print(CYAN + ":" + RESET);
+                }
+                System.out.printf("%s%.3s%s", BR_RED, monsterStr, RESET);
+
                 treasureStr = "";
                 // TODO: repalce these fake treasures below with real ones, like The Monsters above
                 treasureStr += (Math.random() < 0.4) ? "L" : "";
@@ -150,7 +163,7 @@ public class Map extends MapStart {
                 treasureStr += (Math.random() < 0.05) ? "C" : "";
 
                 String format = BR_YELLOW + " %" + (5 - monsterStr.length()) + "." + (5 - monsterStr.length()) + "s" + RESET;
-                System.out.printf(format,  treasureStr);
+                System.out.printf(format, treasureStr);
             }
             System.out.println("¦");
         } // for x

@@ -12,7 +12,12 @@ public class Treasure {
         this.valuePoints = valuePoints;
         this.Name = Name;
     }
-
+    // TODO: Treasure() without parameters will be removed...
+    public Treasure() {
+        this.valuePoints = 1;
+        this.Name = "";
+    }
+    
     static int findCeil(int arr[], int r, int l, int h) {
         int mid;
         while (l < h) {
