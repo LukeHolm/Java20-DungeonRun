@@ -1,8 +1,10 @@
 
 package dungeonrun.Characters;
 
+import dungeonrun.Monsters.Creatures;
 
-public class Heroes {
+
+public class Heroes extends Creatures {
     public String playersName;
 
     public Heroes(String playersName) {
@@ -16,11 +18,7 @@ public class Heroes {
     public void setPlayersName(String playersName) {
         this.playersName = playersName;
     }
-    
-    public int initiative;
-    public int toughness;
-    public int attack;
-    public int agility;
+
     
     public void Display(){
         
