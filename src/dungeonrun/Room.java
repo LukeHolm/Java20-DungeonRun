@@ -44,11 +44,6 @@ public class Room {
         Treasure.treasureRoll();
     }
 
-    /*
-    public <any> getNextTreasure() {
-        return treasures;
-    }
-     */
     
     /* Calling getNextMonster several times, returns the next monster, until there are no more and null is returned.
      */

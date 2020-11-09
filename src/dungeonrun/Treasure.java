@@ -33,13 +33,11 @@ public class Treasure {
         return arr[indexc];
     }
 
-        
         static int pouch = 0;
         static int arr[] = {0, 1, 2, 3, 4, 5};
         static int freq[] = {20, 40, 20, 15, 10, 5};
         static int n = arr.length;
         static boolean loop = true;
-        
         
         static void treasureRoll() {
 
