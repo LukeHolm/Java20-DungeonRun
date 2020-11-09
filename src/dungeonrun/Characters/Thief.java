@@ -16,4 +16,8 @@ public class Thief extends Heroes {
     public void specialAbility(){
         //"Critical hit". Theif has 25% chance to do double damage every time Thief attacks.
     }
+    @Override
+     public String toString(){
+        return "Thief name is " + playersName + "\n";
+    }
 }

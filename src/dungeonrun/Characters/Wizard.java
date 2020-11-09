@@ -16,4 +16,8 @@ public class Wizard extends Heroes {
     public void specialAbility(){
         //"Ljussken". Wizard blinds monsters, therefore Wizard always has 80% chance to escape
     }
+    @Override
+     public String toString(){
+        return "Wizard name is " + playersName + "\n";
+    }
 }
