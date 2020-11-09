@@ -11,6 +11,7 @@ public class Strid {
     Scanner input = new Scanner(System.in);
     int y = 0;
     Monster monsterObj = new Monster();
+    Monster monsterDead = new Monster();
 
     //temp adventurer
     Knight simon = new Knight();
@@ -27,6 +28,7 @@ public class Strid {
                         Room randomRoom = new Room();
                         monsterObj = randomRoom.getNextMonster();
 
+
                     } while (monsterObj == null);
 
                     System.out.println("\nYou encounter a vicious " + monsterObj.creatureIsA);
@@ -41,6 +43,7 @@ public class Strid {
                         System.out.println("----------------------------");
                         System.out.println("The monster has been killed!");
                         System.out.println("----------------------------");
+
                         y++;
                         System.out.println("|||||||||||||||||||||||");
                         System.out.println((i - y) + " monsters left");
