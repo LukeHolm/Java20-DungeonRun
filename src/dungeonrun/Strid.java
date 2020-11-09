@@ -18,7 +18,7 @@ public class Strid {
 
     public void stridDice() {
         boolean insideRoom = true;
-        int i = (int) (Math.random() * 10) + 1;
+        int i = (int) (Math.random() * 6) + 1;
         System.out.println(i + " amount of monsters");
         while (insideRoom) {
             for (y = 0; i > y; ) {
@@ -27,11 +27,9 @@ public class Strid {
                         Room randomRoom = new Room();
                         monsterObj = randomRoom.getNextMonster();
 
-                    }while(monsterObj==null);
+                    } while (monsterObj == null);
 
                     System.out.println("\nYou encounter a vicious " + monsterObj.creatureIsA);
-                    //Main input of program, dictates programRunner
-                    //if input == 1, the player attacks, proceed with dice
 
 
                     System.out.print("\nTo attack press '1' or to run away press '0': ");
@@ -39,31 +37,14 @@ public class Strid {
 
                     if (mainInput == 1) {
 
-                        while (monsterObj.toughness > 0) {
-                            int simonAtk = diceRoll(simon.attack);
-                            int monsterDef = diceRoll(monsterObj.agility);
+                        playerAtk();
 
-                            System.out.println("You attack for " + simonAtk + " damage!");
-                            System.out.println("The " + monsterObj.creatureIsA + " defends for " + monsterDef);
-
-                            if (simonAtk > monsterDef) {
-                                System.out.println("The monster took damage! The monster had " + monsterObj.toughness + " toughness");
-                                monsterObj.toughness--;
-                                System.out.println("But now the monster has " + monsterObj.toughness);
-                            } else if (simonAtk < monsterDef) {
-                                System.out.println("The monster defended the attack!");
-                            } else {
-                                System.out.println("Draw!");
-                            }
-
-
-                        }
                         System.out.println("----------------------------");
                         System.out.println("The monster has been killed!");
                         System.out.println("----------------------------");
                         y++;
                         System.out.println("|||||||||||||||||||||||");
-                        System.out.println((i-y) + " monsters left");
+                        System.out.println((i - y) + " monsters left");
                         System.out.println("|||||||||||||||||||||||");
 
 
@@ -75,46 +56,13 @@ public class Strid {
 
                         if (chanceEscape > escChance) {
                             System.out.println("You escaped!");
-                            insideRoom = false;
+                            break;
 
 
                         }
                         if (chanceEscape <= escChance) {
-                            // monster attacks
-                            System.out.println("You failed to escape. The " + monsterObj.creatureIsA + " attacks!");
-
-                            int monsterAtk = diceRoll(monsterObj.attack);
-                            int simonDef = diceRoll(simon.agility);
-
-                            System.out.println("The " + monsterObj.creatureIsA + " attacks you for " + monsterAtk + " damage!");
-                            System.out.println("You defend yourself for " + simonDef);
-                            if (monsterAtk > simonDef) {
-
-                                System.out.println("You took damage! You had " + simon.toughness + " toughness");
-                                simon.toughness--;
-                                System.out.println("But now you have " + simon.toughness);
-
-                            } else if (monsterAtk < simonDef) {
-                                System.out.println("You defended yourself from the attack!");
-                            } else {
-                                System.out.println("Draw!");
-                            }
-                            if (simon.toughness == 0) {
-                                System.out.println("----------------------------");
-                                System.out.println("Simon the brave knight died!");
-                                System.out.println("----------------------------");
-                                insideRoom = false;
-
-
-                            }
-
-                            monsterObj.initiative--;
-                            if (monsterObj.initiative == 0) {
-                                System.out.println("------------");
-                                System.out.println("You made it!");
-                                System.out.println("------------");
-
-                            }
+                            System.out.println("You failed to escape!");
+                            monsterAtk();
                         }
                     } else {
                         System.out.print("Incorrect input, enter '1' or '0'. You wrote: " + mainInput + "\n");
@@ -129,7 +77,7 @@ public class Strid {
 
                 }
             }
-            insideRoom=false;
+            insideRoom = false;
         }
 //outside room
         System.exit(1);
@@ -157,4 +105,62 @@ public class Strid {
 
     }
 
+    public void monsterAtk() {
+        int monsterAtk = diceRoll(monsterObj.attack);
+        int simonDef = diceRoll(simon.agility);
+        System.out.println("The " + monsterObj.creatureIsA + " attacks you for " + monsterAtk + " damage!");
+        System.out.println("You defend yourself for " + simonDef);
+        if (monsterAtk > simonDef) {
+
+            System.out.println("You took damage! You had " + simon.toughness + " toughness");
+            simon.toughness--;
+            System.out.println("But now you have " + simon.toughness);
+
+        } else if (monsterAtk < simonDef) {
+            System.out.println("You defended yourself from the attack!");
+        } else {
+            System.out.println("Draw!");
+        }
+        if (simon.toughness == 0) {
+            System.out.println("----------------------------");
+            System.out.println("Simon the brave knight died!");
+            System.out.println("----------------------------");
+            System.exit(0);
+
+        }
+
+        monsterObj.initiative--;
+        if (monsterObj.initiative == 0) {
+            System.out.println("------------");
+            System.out.println("You made it!");
+            System.out.println("------------");
+
+        }
+    }
+
+    public void playerAtk() {
+        while (monsterObj.toughness > 0) {
+            int playerAtk = diceRoll(simon.attack);
+            int monsterDef = diceRoll(monsterObj.agility);
+            System.out.println("You attack for " + playerAtk + " damage!");
+            System.out.println("The " + monsterObj.creatureIsA + " defends for " + monsterDef);
+
+            if (playerAtk > monsterDef) {
+                System.out.println("The monster took damage! The monster had " + monsterObj.toughness + " toughness");
+                monsterObj.toughness--;
+                System.out.println("The monster now has " + monsterObj.toughness);
+            } else if (playerAtk < monsterDef) {
+                System.out.println("The monster avoided the attack!");
+            } else {
+                System.out.println("Draw!");
+            }
+            if (monsterObj.toughness>0) {
+                monsterAtk();
+            }
+        }
+
+    }
+
 }
+
+
