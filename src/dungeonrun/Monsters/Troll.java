@@ -13,4 +13,9 @@ public class Troll extends Monster {
         agility = 2;
         frequency = 0.05;         //frequency = 5%
     }
+
+    @Override
+    public String toString() {
+        return "Troll";
+    }
 }

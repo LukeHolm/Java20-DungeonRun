@@ -8,10 +8,11 @@ import java.util.Scanner;
 
 public class Strid {
     ArrayList<Integer> dice = new ArrayList<>();
+    ArrayList<Monster> monsterList = new ArrayList<>();
     Scanner input = new Scanner(System.in);
-    int y = 0;
+
     Monster monsterObj;
-    Room randomRoom;
+
     boolean insideRoom = true;
     //temp adventurer
     Knight simon = new Knight("simon");
@@ -19,66 +20,77 @@ public class Strid {
 
     public void stridDice(/*Map map, Character character*/) {
 
-        int i = (int) (Math.random() * 5) + 1;
+        int i = (int) (Math.random() * 4) + 1;
         System.out.println("You encounter " + i + " monsters!");
-        Map map = new Map(4, 4);
-        GiantSpider spider = new GiantSpider();
-        Orc orc = new Orc();
-        //randomRoom.monsters.add(spider);
-        //randomRoom.monsters.add(orc);
 
 
-        while (insideRoom) {
-            while (i>y) {
+        //temp random list of monsters
+        for (int m = 0; m < i; m++) {
             do {
                 Room randomRoom = new Room();
                 monsterObj = randomRoom.getNextMonster();
 
 
             } while (monsterObj == null);
-
-                try {
-                    System.out.println("\nYou encounter a vicious " + monsterObj.creatureIsA);
-
-                    System.out.print("\nTo attack press '1' or to run away press '0': ");
-                    int mainInput = input.nextInt();
-
-                    if (mainInput == 1) {
-
-                        playerAtk();
-
-                        System.out.println("----------------------------");
-                        System.out.println("The monster has been killed!");
-                        System.out.println("----------------------------");
-                        //randomRoom.defeatedMonster(monsterObj);
-                        y++;
-                        System.out.println("|||||||||||||||||||||||");
-                        System.out.println((i - y) + " monsters left");
-                        System.out.println("|||||||||||||||||||||||");
-                        System.out.println("Your current toughness: " + simon.toughness);
+            monsterList.add(monsterObj);
+        }
+        //END temp random list of monsters
 
 
-                    } else if (mainInput == 0) {
-                        tryEscape();
+        while (insideRoom) {
 
 
-                        //FELHANTERING
-                    } else {
-                        System.out.print("Incorrect input, enter '1' or '0'. You wrote: " + mainInput + "\n");
+            try {
+
+                monsterObj = monsterList.get(monsterList.size() - 1);
+                System.out.println("Monsters left in room: " + monsterList.toString());
+                System.out.println("\nYou encounter a vicious " + monsterObj.creatureIsA);
+
+                System.out.print("\nTo attack press '1' or to run away press '0': ");
+                int mainInput = input.nextInt();
+
+                if (mainInput == 1) {
+
+                    playerAtk();
+
+                    System.out.println("----------------------------");
+                    System.out.println("The monster has been killed!");
+                    System.out.println("----------------------------");
+
+
+                    monsterList.remove(monsterList.size() - 1);
+
+                    System.out.println("|||||||||||||||||||||||");
+                    System.out.println(monsterList.size() + " monsters left");
+                    System.out.println("|||||||||||||||||||||||");
+                    if (monsterList.size() == 0) {
+                        Treasure.treasureRoll();
+                        System.out.println("All monsters are defeated. Leaving room...");
+                        break;
                     }
+                    System.out.println("Your current toughness: " + simon.toughness);
 
 
-                } catch (Exception e) {
-                    //Any corrupted or invalid input results in a exception. Inform user that the input is invalid
-                    System.out.print("Invalid input. Must be integers...\n");
+                } else if (mainInput == 0) {
 
-                    input.next();
+                    insideRoom = tryEscape();
 
+
+                    //FELHANTERING
+                } else {
+                    System.out.print("Incorrect input, enter '1' or '0'. You wrote: " + mainInput + "\n");
                 }
-                //SLUT FELHANTERING
+
+
+            } catch (Exception e) {
+                //Any corrupted or invalid input results in a exception. Inform user that the input is invalid
+                System.out.print("Invalid input. Must be integers...\n");
+
+                input.next();
+
             }
-            System.out.println("You defeated all the monsters in this room!");
-            insideRoom=false;
+            //SLUT FELHANTERING
+
 
         }
 //outside room
@@ -164,7 +176,7 @@ public class Strid {
 
     }
 
-    public void tryEscape() {
+    public boolean tryEscape() {
 
         double chanceEscape = simon.agility * 0.1;
         double escChance = Math.random();
@@ -172,16 +184,16 @@ public class Strid {
 
         if (chanceEscape > escChance) {
             System.out.println("You escaped!");
-            System.exit(0);
-            insideRoom=false;
+            //TODO return amount of monsters left in room
 
+            return false;
 
         }
         if (chanceEscape <= escChance) {
             System.out.println("You failed to escape!");
             monsterAtk();
         }
-
+        return true;
     }
 
 }
