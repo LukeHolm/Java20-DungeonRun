@@ -97,14 +97,14 @@ public class Map {
 
                 // Row 1:
                 // Corner +
-                System.out.print((rooms[x][y].isVisited() || rooms[x][alsoCheckY(y - 1, rooms)].isVisited()) ? "+------" : CYAN + "+······" + RESET);
+                System.out.print((rooms[x][y].isVisited() || rooms[x][alsoCheckY(y - 1, rooms)].isVisited()) ? "+------" : BLUE + "+······" + RESET);
             }
-            System.out.println((rooms[rooms.length - 1][y].isVisited()) ? "+" : CYAN + "+" + RESET);
+            System.out.println((rooms[rooms.length - 1][y].isVisited()) ? "+" : BLUE + "+" + RESET);
 
             // Row 2:
             for (int x = 0; x < rooms.length; x++) {
 
-                System.out.print((rooms[x][y].isVisited() || rooms[alsoCheckX(x - 1, rooms)][y].isVisited()) ? "|" : CYAN + ":" + RESET);
+                System.out.print((rooms[x][y].isVisited() || rooms[alsoCheckX(x - 1, rooms)][y].isVisited()) ? "|" : BLUE + ":" + RESET);
 
                 if (x == hero.mapPosX && y == hero.mapPosY) {
                     System.out.printf("%s%-6.6s%s", BR_GREEN, hero.getClass().getSimpleName(), RESET);
@@ -122,12 +122,12 @@ public class Map {
                     System.out.printf("%s %-5.5s%s", BR_RED, monsterStr, RESET);
                 }
             }
-            System.out.println(rooms[rooms.length - 1][y].isVisited() ? "|" : CYAN + ":" + RESET);
+            System.out.println(rooms[rooms.length - 1][y].isVisited() ? "|" : BLUE + ":" + RESET);
 
             // Row 3:
             for (int x = 0; x < rooms.length; x++) {
 
-                System.out.print((rooms[x][y].isVisited() || rooms[alsoCheckX(x - 1, rooms)][y].isVisited()) ? "|" : CYAN + ":" + RESET);
+                System.out.print((rooms[x][y].isVisited() || rooms[alsoCheckX(x - 1, rooms)][y].isVisited()) ? "|" : BLUE + ":" + RESET);
 
                 if (x == hero.mapPosX && y == hero.mapPosY) {
                     System.out.printf("%s%-6.6s%s", BR_GREEN, hero.playersName, RESET);
@@ -146,18 +146,18 @@ public class Map {
                     System.out.printf("%s %-5.5s%s", BR_YELLOW, treasureStr, RESET);
                 }
             }
-            System.out.println(rooms[rooms.length - 1][y].isVisited() ? "|" : CYAN + ":" + RESET);
+            System.out.println(rooms[rooms.length - 1][y].isVisited() ? "|" : BLUE + ":" + RESET);
         } // for x
 
         // Final row, underneith    
-        for (int y = 0; y < rooms[0].length; y++) {
-            if (rooms[rooms.length - 1][y].isVisited()) {
+        for (int x = 0; x < rooms[0].length; x++) {
+            if (rooms[x][rooms[0].length - 1].isVisited()) {
                 System.out.print("+------");
             } else {
-                System.out.print(CYAN + "+······" + RESET);
+                System.out.print(BLUE + "+······" + RESET);
             }
         }
-        System.out.println((rooms[rooms.length - 1][rooms[0].length - 1].isVisited()) ? "+" : CYAN + "+" + RESET);
+        System.out.println((rooms[rooms.length - 1][rooms[0].length - 1].isVisited()) ? "+" : BLUE + "+" + RESET);
     }
 
     int alsoCheckX(int index, Room[][] map) {
