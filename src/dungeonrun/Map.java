@@ -29,6 +29,7 @@ public class Map {
     public static final String BG_CYAN = "\u001B[96m";
     public static final String BG_WHITE = "\u001B[97m";
      */
+    public static final String RESET = "\u001b[0m";
     public static final String HIGH_INTENSITY = "\u001B[1m";
     public static final String LOW_INTENSITY = "\u001B[2m";
 
@@ -56,31 +57,23 @@ public class Map {
     public static final String BR_MAGENTA = "\u001b[35;1m";
     public static final String BR_CYAN = "\u001b[36;1m";
     public static final String BR_WHITE = "\u001b[37;1m";
-    // Background
-    public static final String BG_BLACK = "\u001b[40m";
-    public static final String BG_RED = "\u001b[41m";
-    public static final String BG_GREEN = "\u001b[42m";
-    public static final String BG_YELLOW = "\u001b[43m";
-    public static final String BG_BLUE = "\u001b[44m";
-    public static final String BG_MAGENTA = "\u001b[45m";
-    public static final String BG_CYAN = "\u001b[46m";
-    public static final String BG_WHITE = "\u001b[47m";
-    public static final String RESET = "\u001b[0m";
-    public static final String UNDERLINED = "\u001b[4m";
 
     Scanner input = new Scanner(System.in);
-    public Room[][] map;
+    public Room[][] rooms;
 
     public Map(int sizeX, int sizeY, Heroes hero) {
 
-        map = new Room[sizeX][sizeY];
+        rooms = new Room[sizeX][sizeY];
 
-        for (int x = 0; x < map.length; x++) {
-            for (int y = 0; y < map[x].length; y++) {
-                map[x][y] = new Room();
-                // If the hero is standing in tis room -> remove the Monsters & Trteasures
+        for (int x = 0; x < rooms.length; x++) {
+            for (int y = 0; y < rooms[x].length; y++) {
+                rooms[x][y] = new Room();
+
+                // If the hero is standing in tis room -> remove the Monsters & Treasures
                 if (x == hero.mapPosX && y == hero.mapPosY) {
-                    map[x][y].monsters.clear();  // Remove all monsters
+                    rooms[x][y].visited = true;
+                    rooms[x][y].monsters.clear();   // Remove all monsters
+                    rooms[x][y].treasures.clear();  // Remove all treasuress
                 }
             }
         }
@@ -90,7 +83,7 @@ public class Map {
     public void draw(Heroes hero) {
         Room currentRoom;
         ArrayList<Monster> monsters;
-        boolean firstRoom = true;
+        ArrayList<Treasure> treasures;
         String monsterStr, treasureStr;
         int alsoCheckX, alsoCheckY;
 
@@ -98,79 +91,95 @@ public class Map {
         System.out.println("Treasures: " + BR_YELLOW + "L" + RESET + " = Loose coins, " + BR_YELLOW + "M" + RESET + " = Money pouch, " + BR_YELLOW
                 + "J" + RESET + " = Gold Jewlry, " + BR_YELLOW + "G" + RESET + " = Gemstone, " + BR_YELLOW + "C" + RESET + " = Small Chest:");
 
-        for (int y = 0; y < map[0].length; y++) {
-            if (y > 0) {
-                alsoCheckY = (y - 1);
-            } else {
-                alsoCheckY = 0;
-            }
-            for (int x = 0; x < map.length; x++) {
+        for (int y = 0; y < rooms[0].length; y++) {
+
+            for (int x = 0; x < rooms.length; x++) {
 
                 // Row 1:
-                if (x > 0) {
-                    alsoCheckX = (x - 1);
-                } else {
-                    alsoCheckX = 0;
-                }
-
-                if (map[x][y].isVisited() || map[x][alsoCheckY].isVisited()) {
-                    System.out.print("+------");
-                } else {
-                    System.out.print(CYAN + "+······" + RESET);
-                }
+                // Corner +
+                System.out.print((rooms[x][y].isVisited() || rooms[x][alsoCheckY(y - 1, rooms)].isVisited()) ? "+------" : CYAN + "+······" + RESET);
             }
-            System.out.println("+");
+            System.out.println((rooms[rooms.length - 1][y].isVisited()) ? "+" : CYAN + "+" + RESET);
 
             // Row 2:
-            for (int x = 0; x < map.length; x++) {
-                // TODO: Handle choosen start corner, now upper left
-                if (firstRoom == true) {
-                    System.out.print("¦" + GREEN + "Knight" + RESET); // TODO: change
-                    firstRoom = false;
+            for (int x = 0; x < rooms.length; x++) {
+
+                System.out.print((rooms[x][y].isVisited() || rooms[alsoCheckX(x - 1, rooms)][y].isVisited()) ? "¦" : CYAN + ":" + RESET);
+
+                if (x == hero.mapPosX && y == hero.mapPosY) {
+                    System.out.printf("%s%-6.6s%s", BR_GREEN, hero.getClass().getSimpleName(), RESET);
+
                 } else {
-                    System.out.print((map[x][y].isVisited() || map[x][alsoCheckY].isVisited()) ? "|      " : CYAN + ":      " + RESET);
+                    monsters = rooms[x][y].getMonsters();
+                    monsterStr = "";
+                    for (Monster monster : monsters) {
+
+                        monsterStr += (monster.getClass() == dungeonrun.Monsters.GiantSpider.class) ? "G" : "";
+                        monsterStr += (monster.getClass() == dungeonrun.Monsters.Skeleton.class) ? "S" : "";
+                        monsterStr += (monster.getClass() == dungeonrun.Monsters.Orc.class) ? "O" : "";
+                        monsterStr += (monster.getClass() == dungeonrun.Monsters.Troll.class) ? "T" : "";
+                    }
+                    System.out.printf("%s %-5.5s%s", BR_RED, monsterStr, RESET);
                 }
             }
-            System.out.println(map[map.length - 1][y].isVisited() ? "¦" : CYAN + ":" + RESET);
+            System.out.println(rooms[rooms.length - 1][y].isVisited() ? "¦" : CYAN + ":" + RESET);
 
             // Row 3:
-            for (int x = 0; x < map.length; x++) {
+            for (int x = 0; x < rooms.length; x++) {
 
-                currentRoom = map[x][y];
+                System.out.print((rooms[x][y].isVisited() || rooms[alsoCheckX(x - 1, rooms)][y].isVisited()) ? "¦" : CYAN + ":" + RESET);
 
-                monsters = currentRoom.getMonsters();
-                monsterStr = "";
-                for (Monster monster : monsters) {
+                if (x == hero.mapPosX && y == hero.mapPosY) {
+                    System.out.printf("%s%-6.6s%s", BR_GREEN, hero.playersName, RESET);
 
-                    monsterStr += (monster.getClass() == dungeonrun.Monsters.GiantSpider.class) ? "G" : "";
-                    monsterStr += (monster.getClass() == dungeonrun.Monsters.Skeleton.class) ? "S" : "";
-                    monsterStr += (monster.getClass() == dungeonrun.Monsters.Orc.class) ? "O" : "";
-                    monsterStr += (monster.getClass() == dungeonrun.Monsters.Troll.class) ? "T" : "";
-                }
-                if (map[x][y].isVisited() || map[x][y].isVisited()) {
-                    System.out.print("¦");
                 } else {
-                    System.out.print(CYAN + ":" + RESET);
+
+                    treasures = rooms[x][y].treasures;
+                    treasureStr = "";
+                    for (Treasure treasure : treasures) {
+                        treasureStr += treasure.name.contains("oins") ? "L" : "";
+                        treasureStr += treasure.name.contains("oney") ? "M" : "";
+                        treasureStr += treasure.name.contains("ewel") ? "J" : "";
+                        treasureStr += treasure.name.contains("ston") ? "G" : "";
+                        treasureStr += treasure.name.contains("hest") ? "C" : "";
+                    }
+                    System.out.printf("%s %-5.5s%s", BR_YELLOW, treasureStr, RESET);
                 }
-                System.out.printf("%s%.3s%s", BR_RED, monsterStr, RESET);
-
-                treasureStr = "";
-                // TODO: repalce these fake treasures below with real ones, like The Monsters above
-                treasureStr += (Math.random() < 0.4) ? "L" : "";
-                treasureStr += (Math.random() < 0.2) ? "M" : "";
-                treasureStr += (Math.random() < 0.15) ? "J" : "";
-                treasureStr += (Math.random() < 0.1) ? "G" : "";
-                treasureStr += (Math.random() < 0.05) ? "C" : "";
-
-                String format = BR_YELLOW + " %" + (5 - monsterStr.length()) + "." + (5 - monsterStr.length()) + "s" + RESET;
-                System.out.printf(format, treasureStr);
             }
-            System.out.println("¦");
+            System.out.println(rooms[rooms.length - 1][y].isVisited() ? "¦" : CYAN + ":" + RESET);
         } // for x
-        // Final row            
-        for (int y = 0; y < map[0].length; y++) {
-            System.out.print("+------");
+
+        // Final row, underneith    
+        for (int y = 0; y < rooms[0].length; y++) {
+            if (rooms[rooms.length - 1][y].isVisited()) {
+                System.out.print("+------");
+            } else {
+                System.out.print(CYAN + "+······" + RESET);
+            }
         }
-        System.out.println("+");
+        System.out.println((rooms[rooms.length - 1][rooms[0].length - 1].isVisited()) ? "+" : CYAN + "+" + RESET);
     }
+
+    int alsoCheckX(int index, Room[][] map) {
+
+        if (index == -1) {
+            return 0;
+        } else if (index == map.length) {
+            return map.length - 1;
+        } else {
+            return index;
+        }
+    }
+
+    int alsoCheckY(int index, Room[][] map) {
+
+        if (index == -1) {
+            return 0;
+        } else if (index == map[0].length) {
+            return map[0].length - 1;
+        } else {
+            return index;
+        }
+    }
+
 }

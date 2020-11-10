@@ -6,16 +6,24 @@ public class Treasure {
 
     static Scanner sc = new Scanner(System.in);
     public int valuePoints;
-    public String Name;
+    public String name;
+
+    public int getValuePoints() {
+        return valuePoints;
+    }
+
+    public String getName() {
+        return name;
+    }
 
     public Treasure(int valuePoints, String Name) {
         this.valuePoints = valuePoints;
-        this.Name = Name;
+        this.name = Name;
     }
     // TODO: Treasure() without parameters will be removed...
     public Treasure() {
         this.valuePoints = 1;
-        this.Name = "";
+        this.name = "";
     }
     
     static int findCeil(int arr[], int r, int l, int h) {

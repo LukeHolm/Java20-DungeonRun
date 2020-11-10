@@ -1,6 +1,8 @@
 package dungeonrun.Characters;
 
+import dungeonrun.Map;
 import dungeonrun.Monsters.Creatures;
+import dungeonrun.Monsters.Monster;
 
 public class Heroes extends Creatures {
 
@@ -17,6 +19,16 @@ public class Heroes extends Creatures {
 
     public Heroes(String playersName) {
         this.playersName = playersName;
+        // Initialise variables
+        highScore = 0;
+        mapPosX = 0;
+        mapPosY = 0;
+        playedGames = 0;
+        totalValuePointsEver = 0;
+        killedGiantSpidersEver = 0;
+        killedSkeletonsEver = 0;
+        killedOrcsEver = 0;
+        killedTrollsEver = 0;
     }
 
     public String getPlayersName() {
@@ -99,8 +111,19 @@ public class Heroes extends Creatures {
         this.killedTrollsEver = killedTrollsEver;
     }
 
+    public void fightMonsters(Map map) {
+        
+        // TODO: overide this nethod in the three Hero classes
+        // System.out.println("Code for Fighting monsters is not quite linked in yet, pretending a bit now...");
+        for (Monster monster : map.rooms[mapPosX][mapPosY].monsters) {
+            System.out.println("Fighting " + monster.getClass().getSimpleName() + "... and you won!");
+            // System.out.println("Press <enter> to continue");
+        }
+        System.out.println("Congratulations, you have defeated all monsters in this room!");
+        map.rooms[mapPosX][mapPosY].monsters.clear();
+    }
+
     public void Display() {
 
     }
-
 }

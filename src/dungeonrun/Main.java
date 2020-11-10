@@ -29,7 +29,6 @@ public class Main {
         int test;
         String characterName;
         int Hero;
-        MapMenu play = new MapMenu();
 
         System.out.println("\n *** Welcome to Dungeon Run! *** \n");
         System.out.println("1. New game");
@@ -42,6 +41,8 @@ public class Main {
                 theHero = getPlayer();
                 theMap = chooseMap(theHero);
                 // TODO: choose starting point
+                // Start the main gaming loop:
+                GameLoop.playTheGame(theMap, theHero);
                 break;
             case 2:
   /*              for (Heroes character : players) {
