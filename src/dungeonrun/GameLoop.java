@@ -190,7 +190,7 @@ public class GameLoop {
         System.out.println("Navigation menu:");
 
         // Loop over all meny choices from choice 1, and print all meny choice texts
-        for (int i = 1; i < NavigMenuItem.values().length; i++) {
+        for (int i = 0; i < NavigMenuItem.values().length; i++) {
 
             System.out.println(NavigMenuItem.values()[i].getMenyChoiceChar() + ": " + NavigMenuItem.values()[i].getMenuChoiceText());
         }
