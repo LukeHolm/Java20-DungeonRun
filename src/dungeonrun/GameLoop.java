@@ -141,7 +141,7 @@ public class GameLoop {
 
         String monsterStr = "";
         String treasureStr = "";
-        
+
         Strid strid = new Strid();
 
         map.rooms[hero.mapPosX][hero.mapPosY].setVisited(true);
@@ -165,9 +165,8 @@ public class GameLoop {
             if (treasureStr.length() != 0) {
                 System.out.println("Behind the monster(s) you see: " + treasureStr);
             }
-            hero.fightMonsters(map);
-            
             strid.stridDice(map, hero);
+            hero.fightMonsters(map);
 
         } else {
             System.out.println("Excellent, you see: " + treasureStr);
