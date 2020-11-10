@@ -2,6 +2,7 @@ package dungeonrun;
 
 import dungeonrun.Characters.Heroes;
 import dungeonrun.Monsters.Monster;
+
 import java.awt.MenuItem;
 import java.util.HashSet;
 import java.util.Scanner;
@@ -140,6 +141,8 @@ public class GameLoop {
 
         String monsterStr = "";
         String treasureStr = "";
+        
+        Strid strid = new Strid();
 
         map.rooms[hero.mapPosX][hero.mapPosY].setVisited(true);
 
@@ -163,6 +166,8 @@ public class GameLoop {
                 System.out.println("Behind the monster(s) you see: " + treasureStr);
             }
             hero.fightMonsters(map);
+            
+            strid.stridDice(map, hero);
 
         } else {
             System.out.println("Excellent, you see: " + treasureStr);
@@ -183,7 +188,7 @@ public class GameLoop {
         String choiceStr;
         NavigMenuItem goMenuChoice = null;
 
-        System.out.println("Main manu:");
+        System.out.println("Navigation menu:");
 
         // Loop over all meny choices from choice 1, and print all meny choice texts
         for (int i = 1; i < NavigMenuItem.values().length; i++) {

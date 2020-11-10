@@ -1,6 +1,7 @@
 package dungeonrun.Characters;
 
 import dungeonrun.Map;
+import dungeonrun.Strid; 
 import dungeonrun.Monsters.Creatures;
 import dungeonrun.Monsters.Monster;
 

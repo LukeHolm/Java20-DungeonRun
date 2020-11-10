@@ -104,7 +104,7 @@ public class Map {
             // Row 2:
             for (int x = 0; x < rooms.length; x++) {
 
-                System.out.print((rooms[x][y].isVisited() || rooms[alsoCheckX(x - 1, rooms)][y].isVisited()) ? "¦" : CYAN + ":" + RESET);
+                System.out.print((rooms[x][y].isVisited() || rooms[alsoCheckX(x - 1, rooms)][y].isVisited()) ? "|" : CYAN + ":" + RESET);
 
                 if (x == hero.mapPosX && y == hero.mapPosY) {
                     System.out.printf("%s%-6.6s%s", BR_GREEN, hero.getClass().getSimpleName(), RESET);
@@ -122,12 +122,12 @@ public class Map {
                     System.out.printf("%s %-5.5s%s", BR_RED, monsterStr, RESET);
                 }
             }
-            System.out.println(rooms[rooms.length - 1][y].isVisited() ? "¦" : CYAN + ":" + RESET);
+            System.out.println(rooms[rooms.length - 1][y].isVisited() ? "|" : CYAN + ":" + RESET);
 
             // Row 3:
             for (int x = 0; x < rooms.length; x++) {
 
-                System.out.print((rooms[x][y].isVisited() || rooms[alsoCheckX(x - 1, rooms)][y].isVisited()) ? "¦" : CYAN + ":" + RESET);
+                System.out.print((rooms[x][y].isVisited() || rooms[alsoCheckX(x - 1, rooms)][y].isVisited()) ? "|" : CYAN + ":" + RESET);
 
                 if (x == hero.mapPosX && y == hero.mapPosY) {
                     System.out.printf("%s%-6.6s%s", BR_GREEN, hero.playersName, RESET);
@@ -146,7 +146,7 @@ public class Map {
                     System.out.printf("%s %-5.5s%s", BR_YELLOW, treasureStr, RESET);
                 }
             }
-            System.out.println(rooms[rooms.length - 1][y].isVisited() ? "¦" : CYAN + ":" + RESET);
+            System.out.println(rooms[rooms.length - 1][y].isVisited() ? "|" : CYAN + ":" + RESET);
         } // for x
 
         // Final row, underneith    

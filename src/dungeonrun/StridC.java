@@ -6,7 +6,7 @@ import dungeonrun.Monsters.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Strid {
+public class StridC {
     ArrayList<Integer> dice = new ArrayList<>();
     // monsterList contains the remaining number of monster existed in the rum, when player is killed
     ArrayList<Monster> monsterList = new ArrayList<>(); 

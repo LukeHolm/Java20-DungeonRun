@@ -1,10 +1,12 @@
 package dungeonrun;
 
+import dungeonrun.Characters.Heroes;
 import dungeonrun.Characters.Knight;
 import dungeonrun.Monsters.*;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import jdk.nashorn.internal.ir.BreakNode;
 
 public class Strid {
     ArrayList<Integer> dice = new ArrayList<>();
@@ -18,9 +20,12 @@ public class Strid {
     Knight simon = new Knight("simon");
 
 
-    public void stridDice(/*Map map, Character character*/) {
-
+    public void stridDice(Map map, Heroes hero) {
+        System.out.println("Running stridDice");
+    }
+/*
         int i = (int) (Math.random() * 4) + 1;
+        
         System.out.println("You encounter " + i + " monsters!");
 
 
@@ -95,7 +100,7 @@ public class Strid {
         }
 //outside room
 
-    }
+    } */
 
     public static int rollthedice() {
         return (int) (Math.random() * 6) + 1;
