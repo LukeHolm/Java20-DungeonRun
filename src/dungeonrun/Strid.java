@@ -5,29 +5,36 @@ import dungeonrun.Characters.Heroes;
 import dungeonrun.Monsters.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 
 public class Strid {
+    public static final String BR_RED = "\u001b[31;1m";
+    public static final String RESET = "\u001b[0m";
+    public static final String BR_GREEN = "\u001b[32;1m";
+    public static final String GREEN = "\u001b[32m";
     ArrayList<Integer> dice = new ArrayList<>();
     ArrayList<Monster> monsterList = new ArrayList<>();
+
     Scanner input = new Scanner(System.in);
-Heroes hero;
+    Heroes hero;
     Monster monsterObj;
+    Map map;
+
 
     boolean insideRoom = true;
 
-
-
-
     public void stridDice(Map map, Heroes hero) {
-this.hero=hero;
-
-
+        this.hero = hero;
+        this.map = map;
+        System.out.println(map.toString());
         int i = (int) (Math.random() * 4) + 1;
 
         System.out.println("You encounter " + i + " monsters!");
 
+        /*Turordningen avgörs genom att alla stridsdeltagare slår lika antal tärningar som sitt Initiativ.
+                Högst börjar och resten ordnas i fallande skala. Denna turordning gäller tills striden är slut.*/
 
         //temp random list of monsters
         for (int m = 0; m < i; m++) {
@@ -41,6 +48,14 @@ this.hero=hero;
         }
         //END temp random list of monsters
 
+      /*  ArrayList<Integer> iniList = new ArrayList<>();
+        for(int j=0; j<i; j++ ) {
+            monsterObj = monsterList.get(j);
+            diceRoll(monsterObj.initiative);
+
+        }*/
+        int heroTurn = diceRoll(hero.initiative);
+
 
         while (insideRoom) {
 
@@ -48,6 +63,7 @@ this.hero=hero;
             try {
 
                 monsterObj = monsterList.get(monsterList.size() - 1);
+
                 System.out.println("Monsters left in room: " + monsterList.toString());
                 System.out.println("\nYou encounter a vicious " + monsterObj.creatureIsA);
 
@@ -55,22 +71,25 @@ this.hero=hero;
                 int mainInput = input.nextInt();
 
                 if (mainInput == 1) {
-
+                    //if (diceRoll(monsterObj.initiative) > heroTurn) {
+                      //  monsterAtk();
+                    //}
                     playerAtk();
+                   if (monsterObj.toughness == 0) {
+                       System.out.println("----------------------------");
+                       System.out.println("The monster has been killed!");
+                       System.out.println("----------------------------");
 
-                    System.out.println("----------------------------");
-                    System.out.println("The monster has been killed!");
-                    System.out.println("----------------------------");
 
+                       monsterList.remove(monsterList.size() - 1);
 
-                    monsterList.remove(monsterList.size() - 1);
-
-                    System.out.println("|||||||||||||||||||||||");
-                    System.out.println(monsterList.size() + " monsters left");
-                    System.out.println("|||||||||||||||||||||||");
+                       System.out.println("|||||||||||||||||||||||");
+                       System.out.println(monsterList.size() + " monsters left");
+                       System.out.println("|||||||||||||||||||||||");
+                   }
                     if (monsterList.size() == 0) {
 
-                        System.out.println("All monsters are defeated. Leaving room...");
+                        System.out.println(GREEN + "All monsters are defeated. Leaving room..." + RESET);
                         break;
                     }
                     System.out.println("Your current toughness: " + hero.toughness);
@@ -135,9 +154,9 @@ this.hero=hero;
         System.out.println("You defend yourself for " + simonDef);
         if (monsterAtk > simonDef) {
 
-            System.out.println("You took damage! You had " + hero.toughness + " toughness");
+            System.out.println(BR_RED + "You took damage! You had " + hero.toughness + " toughness");
             hero.toughness--;
-            System.out.println("But now you have " + hero.toughness);
+            System.out.println("But now you have " + hero.toughness + RESET);
 
         } else if (monsterAtk < simonDef) {
             System.out.println("You defended yourself from the attack!");
@@ -146,18 +165,18 @@ this.hero=hero;
         }
         if (hero.toughness == 0) {
             System.out.println("----------------------------");
-            System.out.println("Simon the brave knight died!");
+            System.out.println("You died!");
             System.out.println("----------------------------");
             System.exit(0);
 
         }
-
+        System.out.println("Your current toughness: " + hero.toughness);
 
     }
 
     public void playerAtk() {
 
-        while (monsterObj.toughness > 0) {
+        //while (monsterObj.toughness > 0) {
             int playerAtk = diceRoll(hero.attack);
             int monsterDef = diceRoll(monsterObj.agility);
             System.out.println("..............");
@@ -167,9 +186,9 @@ this.hero=hero;
             System.out.println("The " + monsterObj.creatureIsA + " defends for " + monsterDef);
 
             if (playerAtk > monsterDef) {
-                System.out.println("The monster took damage! The monster had " + monsterObj.toughness + " toughness");
+                System.out.println(BR_GREEN + "The monster took damage! The monster had " + monsterObj.toughness + " toughness");
                 monsterObj.toughness--;
-                System.out.println("The monster now has " + monsterObj.toughness);
+                System.out.println("The monster now has " + monsterObj.toughness + RESET);
             } else if (playerAtk < monsterDef) {
                 System.out.println("The monster avoided the attack!");
             } else {
@@ -178,7 +197,7 @@ this.hero=hero;
             if (monsterObj.toughness > 0) {
                 monsterAtk();
             }
-        }
+        //}
 
     }
 
