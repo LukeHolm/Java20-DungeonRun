@@ -30,7 +30,7 @@ public class GameLoop {
         NAVIG_MENU_EXIT('x', "Exit game loop");
 
         private String menyText;
-        private char menyChar;
+        private char menyChar; 
 
         NavigMenuItem(char menuCh, String menuChoiceText) {
             this.menyChar = menuCh;
@@ -65,8 +65,9 @@ public class GameLoop {
         String str;
         boolean found;
 
-        System.out.println("Playing the game...");
-
+        //System.out.println("Playing the game...");
+        System.out.println("");
+        
         do {
             map.draw(hero);
 
@@ -187,18 +188,18 @@ public class GameLoop {
         String choiceStr;
         NavigMenuItem goMenuChoice = null;
 
-        System.out.println("Navigation menu:");
+        System.out.println("Navigation menu:" +  BR_YELLOW);
 
         // Loop over all meny choices from choice 1, and print all meny choice texts
         for (int i = 0; i < NavigMenuItem.values().length; i++) {
 
-            System.out.println(NavigMenuItem.values()[i].getMenyChoiceChar() + ": " + NavigMenuItem.values()[i].getMenuChoiceText());
+            System.out.println( BR_YELLOW + NavigMenuItem.values()[i].getMenyChoiceChar() + ": " + NavigMenuItem.values()[i].getMenuChoiceText());
         }
 
         do {  // loop until a valid choice has been read
             // Add choice 0 last, if not "Unused"
 
-            System.out.print(prompt);
+            System.out.print(RESET + prompt);
 
             // Try to read an meny choice integer from the console
             choiceStr = SCANNER.nextLine();
