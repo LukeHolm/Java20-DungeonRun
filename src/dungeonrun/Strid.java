@@ -1,31 +1,31 @@
 package dungeonrun;
 
 import dungeonrun.Characters.Heroes;
-import dungeonrun.Characters.Knight;
+
 import dungeonrun.Monsters.*;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-import jdk.nashorn.internal.ir.BreakNode;
+
 
 public class Strid {
     ArrayList<Integer> dice = new ArrayList<>();
     ArrayList<Monster> monsterList = new ArrayList<>();
     Scanner input = new Scanner(System.in);
-
+Heroes hero;
     Monster monsterObj;
 
     boolean insideRoom = true;
-    //temp adventurer
-    Knight simon = new Knight("simon");
+
+
 
 
     public void stridDice(Map map, Heroes hero) {
-        System.out.println("Running stridDice");
-    }
-/*
+this.hero=hero;
+
+
         int i = (int) (Math.random() * 4) + 1;
-        
+
         System.out.println("You encounter " + i + " monsters!");
 
 
@@ -69,11 +69,11 @@ public class Strid {
                     System.out.println(monsterList.size() + " monsters left");
                     System.out.println("|||||||||||||||||||||||");
                     if (monsterList.size() == 0) {
-                        Treasure.treasureRoll();
+
                         System.out.println("All monsters are defeated. Leaving room...");
                         break;
                     }
-                    System.out.println("Your current toughness: " + simon.toughness);
+                    System.out.println("Your current toughness: " + hero.toughness);
 
 
                 } else if (mainInput == 0) {
@@ -100,7 +100,8 @@ public class Strid {
         }
 //outside room
 
-    } */
+    }
+
 
     public static int rollthedice() {
         return (int) (Math.random() * 6) + 1;
@@ -126,7 +127,7 @@ public class Strid {
 
     public void monsterAtk() {
         int monsterAtk = diceRoll(monsterObj.attack);
-        int simonDef = diceRoll(simon.agility);
+        int simonDef = diceRoll(hero.agility);
         System.out.println("..............");
         System.out.println("Monster attack");
         System.out.println("..............");
@@ -134,16 +135,16 @@ public class Strid {
         System.out.println("You defend yourself for " + simonDef);
         if (monsterAtk > simonDef) {
 
-            System.out.println("You took damage! You had " + simon.toughness + " toughness");
-            simon.toughness--;
-            System.out.println("But now you have " + simon.toughness);
+            System.out.println("You took damage! You had " + hero.toughness + " toughness");
+            hero.toughness--;
+            System.out.println("But now you have " + hero.toughness);
 
         } else if (monsterAtk < simonDef) {
             System.out.println("You defended yourself from the attack!");
         } else {
             System.out.println("Draw!");
         }
-        if (simon.toughness == 0) {
+        if (hero.toughness == 0) {
             System.out.println("----------------------------");
             System.out.println("Simon the brave knight died!");
             System.out.println("----------------------------");
@@ -157,7 +158,7 @@ public class Strid {
     public void playerAtk() {
 
         while (monsterObj.toughness > 0) {
-            int playerAtk = diceRoll(simon.attack);
+            int playerAtk = diceRoll(hero.attack);
             int monsterDef = diceRoll(monsterObj.agility);
             System.out.println("..............");
             System.out.println("Player attack");
@@ -183,7 +184,7 @@ public class Strid {
 
     public boolean tryEscape() {
 
-        double chanceEscape = simon.agility * 0.1;
+        double chanceEscape = hero.agility * 0.1;
         double escChance = Math.random();
 
 
