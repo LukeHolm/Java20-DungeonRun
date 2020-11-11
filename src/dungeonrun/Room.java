@@ -1,6 +1,7 @@
 package dungeonrun;
 
 import dungeonrun.Monsters.*;
+import dungeonrun.Treasures.*;
 
 import java.lang.Math;
 import java.util.ArrayList;
@@ -51,23 +52,30 @@ public class Room {
             // add the monster to the list
             monsters.add(troll);
         }
-        //Treasure.treasureRoll();
 
-        // TODO: Do this propoperly...
-        if (Math.random() < 0.4) {
-            treasures.add(new Treasure(2, "Loose coins"));
+        LooseCoins looseCoins = new LooseCoins();
+        if (Math.random() < looseCoins.frequency) {
+            treasures.add(looseCoins);
         }
-        if (Math.random() < 0.2) {
-            treasures.add(new Treasure(6, "Money Pouch"));
+        
+        MoneyPouch moneyPouch = new MoneyPouch();
+        if (Math.random() < moneyPouch.frequency) {
+            treasures.add(moneyPouch);
         }
-        if (Math.random() < 0.15) {
-            treasures.add(new Treasure(10, "Gold Jewelry"));
+        
+        Jewlery jewlery = new Jewlery();
+        if (Math.random() < jewlery.frequency) {
+            treasures.add(jewlery);
         }
-        if (Math.random() < 0.1) {
-            treasures.add(new Treasure(14, "Gemstone"));
+        
+        Gemstone gemstone = new Gemstone();
+        if (Math.random() < gemstone.frequency) {
+            treasures.add(gemstone);
         }
-        if (Math.random() < 0.05) {
-            treasures.add(new Treasure(20, "Small Chest"));
+        
+        Chest chest = new Chest();
+        if (Math.random() < chest.frequency) {
+            treasures.add(chest);
         }
     }
 

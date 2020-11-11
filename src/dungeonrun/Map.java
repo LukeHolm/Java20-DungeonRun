@@ -1,8 +1,9 @@
 package dungeonrun;
 
-import dungeonrun.Monsters.GiantSpider;
+
 import dungeonrun.Characters.Heroes;
 import dungeonrun.Monsters.Monster;
+import dungeonrun.Treasures.Treasure;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.InputMismatchException;
@@ -88,7 +89,7 @@ public class Map {
         int alsoCheckX, alsoCheckY;
 
         System.out.println("The map with " + BR_RED + "G" + RESET + " = Giant Spider, " + BR_RED + "S" + RESET + " = Skeleton, " + BR_RED + "O" + RESET + " = Orc, " + BR_RED + "T" + RESET + " = Troll:");
-        System.out.println("Treasures: " + BR_YELLOW + "L" + RESET + " = Loose coins, " + BR_YELLOW + "M" + RESET + " = Money pouch, " + BR_YELLOW
+        System.out.println("Treasures: " + BR_YELLOW + "L" + RESET + " = Loose coins, " + BR_YELLOW + "M" + RESET + " = Money Pouch, " + BR_YELLOW
                 + "J" + RESET + " = Gold Jewlry, " + BR_YELLOW + "G" + RESET + " = Gemstone, " + BR_YELLOW + "C" + RESET + " = Small Chest:");
 
         for (int y = 0; y < rooms[0].length; y++) {
@@ -137,11 +138,11 @@ public class Map {
                     treasures = rooms[x][y].treasures;
                     treasureStr = "";
                     for (Treasure treasure : treasures) {
-                        treasureStr += treasure.name.contains("oins") ? "L" : "";
-                        treasureStr += treasure.name.contains("oney") ? "M" : "";
-                        treasureStr += treasure.name.contains("ewel") ? "J" : "";
-                        treasureStr += treasure.name.contains("ston") ? "G" : "";
-                        treasureStr += treasure.name.contains("hest") ? "C" : "";
+                        treasureStr += treasure.getClass() == dungeonrun.Treasures.LooseCoins.class ? "L" : "";
+                        treasureStr += treasure.getClass() == dungeonrun.Treasures.MoneyPouch.class ? "M" : "";
+                        treasureStr += treasure.getClass() == dungeonrun.Treasures.Jewlery.class ? "J" : "";
+                        treasureStr += treasure.getClass() == dungeonrun.Treasures.Gemstone.class ? "G" : "";
+                        treasureStr += treasure.getClass() == dungeonrun.Treasures.Chest.class ? "C" : "";
                     }
                     System.out.printf("%s %-5.5s%s", BR_YELLOW, treasureStr, RESET);
                 }

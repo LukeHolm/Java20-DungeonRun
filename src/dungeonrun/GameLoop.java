@@ -2,6 +2,7 @@ package dungeonrun;
 
 import dungeonrun.Characters.Heroes;
 import dungeonrun.Monsters.Monster;
+import dungeonrun.Treasures.Treasure;
 
 import java.awt.MenuItem;
 import java.util.HashSet;
@@ -130,7 +131,7 @@ public class GameLoop {
 
                 enteringRoom(map, hero);
 
-                System.out.println("You have a total of " + hero.highScore + " value points");
+
                 getStringFromUser(BR_GREEN + "Press <enter> to continue" + RESET);
             }
             System.out.println("");
@@ -153,7 +154,7 @@ public class GameLoop {
         monsterStr = monsterStr.length() > 2 ? monsterStr.substring(0, monsterStr.length() - 2) : monsterStr; //Remove last comma.
 
         for (Treasure treasure : map.rooms[hero.mapPosX][hero.mapPosY].treasures) {
-            treasureStr += treasure.name + ", ";
+            treasureStr += treasure.treasureIsA + ", ";
         }
         treasureStr = treasureStr.length() > 2 ? treasureStr.substring(0, treasureStr.length() - 2) : treasureStr; //Remove last comma.
 
@@ -177,10 +178,12 @@ public class GameLoop {
             // Picking up the Treasures
             for (Treasure treasure : map.rooms[hero.mapPosX][hero.mapPosY].treasures) {
 
-                System.out.println("Picking up the " + treasure.name + " worth " + treasure.valuePoints + " value points");
-                hero.highScore += treasure.valuePoints;
+                System.out.println("Picking up the " + treasure.treasureIsA + " worth " + treasure.value + " gold");
+                hero.highScore += treasure.value;
+
             }
             map.rooms[hero.mapPosX][hero.mapPosY].treasures.clear(); // Removing all the Treasures
+            System.out.println("You have a total of " + hero.highScore + " gold");
         }
     }
 

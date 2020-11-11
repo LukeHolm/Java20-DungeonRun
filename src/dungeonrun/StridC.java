@@ -59,7 +59,6 @@ public class StridC {
 	                    System.out.println(monsterList.size() + " monsters left");
 	                    System.out.println("|||||||||||||||||||||||");
 	                    if (monsterList.size() == 0) {
-	                        Treasure.treasureRoll();
 	                        System.out.println("All monsters are defeated. Leaving room...");
 	                        break;
 	                    }
