@@ -112,7 +112,7 @@ public class Heroes extends Creatures {
         this.killedTrollsEver = killedTrollsEver;
     }
 
-    public void fightMonsters(Map map) {
+   /* public void fightMonsters(Map map) {
         
         // TODO: overide this nethod in the three Hero classes
         // System.out.println("Code for Fighting monsters is not quite linked in yet, pretending a bit now...");
@@ -121,8 +121,8 @@ public class Heroes extends Creatures {
             // System.out.println("Press <enter> to continue");
         }
         System.out.println("Congratulations, you have defeated all monsters in this room!");
-        map.rooms[mapPosX][mapPosY].monsters.clear();
-    }
+        //map.rooms[mapPosX][mapPosY].monsters.clear();
+    }*/
 
     public void Display() {
 
