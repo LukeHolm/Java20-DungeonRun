@@ -1,9 +1,9 @@
-
 package dungeonrun;
 
 import dungeonrun.Monsters.GiantSpider;
 import dungeonrun.Characters.Heroes;
 import dungeonrun.Monsters.Monster;
+import dungeonrun.Treasures.Treasure;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.InputMismatchException;
@@ -128,7 +128,7 @@ public class Map {
                     System.out.print((rooms[x][y].isVisited() || rooms[x][alsoCheckY(y - 1, rooms)].isVisited()) ? "------" : BLUE + "······" + RESET);
                 }
             }
-            System.out.println((rooms[x-1][y].isVisited() || rooms[x-1][alsoCheckY(y - 1, rooms)].isVisited() || rooms[alsoCheckX(x, rooms)][y].isVisited()
+            System.out.println((rooms[x - 1][y].isVisited() || rooms[x - 1][alsoCheckY(y - 1, rooms)].isVisited() || rooms[alsoCheckX(x, rooms)][y].isVisited()
                     || rooms[alsoCheckX(x, rooms)][alsoCheckY(y - 1, rooms)].isVisited()) ? "+" : BLUE + "+" + RESET);
 
             // Row 2: Example: |Knight|      : S    :      :
@@ -167,11 +167,11 @@ public class Map {
                     treasures = rooms[x][y].treasures;
                     treasureStr = "";
                     for (Treasure treasure : treasures) {
-                        treasureStr += treasure.name.contains("oins") ? "L" : "";
-                        treasureStr += treasure.name.contains("oney") ? "M" : "";
-                        treasureStr += treasure.name.contains("ewel") ? "J" : "";
-                        treasureStr += treasure.name.contains("ston") ? "G" : "";
-                        treasureStr += treasure.name.contains("hest") ? "C" : "";
+                        treasureStr += treasure.getClass() == dungeonrun.Treasures.LooseCoins.class ? "L" : "";
+                        treasureStr += treasure.getClass() == dungeonrun.Treasures.MoneyPouch.class ? "M" : "";
+                        treasureStr += treasure.getClass() == dungeonrun.Treasures.Jewlery.class ? "J" : "";
+                        treasureStr += treasure.getClass() == dungeonrun.Treasures.Gemstone.class ? "G" : "";
+                        treasureStr += treasure.getClass() == dungeonrun.Treasures.Chest.class ? "C" : "";
                     }
                     System.out.printf("%s %-5.5s%s", BR_YELLOW, treasureStr, RESET);
                 }
@@ -180,7 +180,7 @@ public class Map {
         } // for x
 
         // Final row, underneith, example: Example: +-Exit-+······+······+·Exit·+     
-        for ( x = 0; x < rooms.length; x++) {
+        for (x = 0; x < rooms.length; x++) {
             if (isCornerRoom(x, rooms[0].length - 1)) {
                 System.out.print((rooms[x][rooms[0].length - 1].isVisited()) ? "+-Exit-" : BLUE + "+·Exit·" + RESET);
 
