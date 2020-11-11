@@ -23,66 +23,38 @@ public class Strid {
     Map map;
 
 
-
     boolean insideRoom = true;
 
     public void stridDice(Map map, Heroes hero) {
         this.hero = hero;
         this.map = map;
 
-
-        //int i = (int) (Math.random() * 4) + 1;
-
+        monsterList.addAll(map.rooms[hero.mapPosX][hero.mapPosY].monsters);
 
 
-        /*Turordningen avgörs genom att alla stridsdeltagare slår lika antal tärningar som sitt Initiativ.
-                Högst börjar och resten ordnas i fallande skala. Denna turordning gäller tills striden är slut.*/
 
-        /*temp random list of monsters
-        for (int m = 0; m < i; m++) {
-            do {
-                Room randomRoom = new Room();
-                monsterObj = randomRoom.getNextMonster();
-
-
-            } while (monsterObj == null);
-            monsterList.add(monsterObj);
-        }
-        /END temp random list of monsters*/
-
-        String monsterStr = "";
-        for (Monster monster : map.rooms[hero.mapPosX][hero.mapPosY].monsters) {
-            monsterStr += "one " + monster.getClass().getSimpleName() + ", ";
-            monsterList.add(monster);
-
-        }
-
-        monsterStr = monsterStr.length() > 2 ? monsterStr.substring(0, monsterStr.length() - 2) : monsterStr;
-
-        System.out.println("You encounter "+monsterStr);
-        System.out.println(monsterList.toString());
-
-        //TODO turordning
         int x = 0;
         int heroTurn = diceRoll(hero.initiative);
         ArrayList<Monster> iniList = new ArrayList<>();
+        ArrayList<Integer> orderList = new ArrayList<>();
         for (Monster monster : monsterList) {
             monsterObj = monster;
 
             int y = diceRoll(monsterObj.initiative);
             if (y > x) {
                 iniList.add(0, monsterObj);
-
+                orderList.add(0, y);
             } else {
                 iniList.add(monsterObj);
+                orderList.add(y);
             }
-           // System.out.println(monsterObj.creatureIsA + " " + y);
+
+
             x = y;
 
         }
-        //TODO turordning
 
-
+        //TODO save monsters in rooms that are abandoned
 
         while (insideRoom) {
 
@@ -93,15 +65,18 @@ public class Strid {
 
                 System.out.println("Monsters left in room: " + iniList.toString());
                 System.out.println("\nEncounter against " + monsterObj.creatureIsA + " started");
+                if (heroTurn < orderList.get(0)) {
+                    System.out.println("The monster threw " + orderList.get(0) + " while you threw " + heroTurn + ". The monster attacks first!");
+                    monsterAtk();
+                    orderList.set(0,0);
+                }
 
 
                 System.out.print("\nTo attack press '1' or to run away press '0': ");
                 int mainInput = input.nextInt();
 
                 if (mainInput == 1) {
-                    //if (diceRoll(monsterObj.initiative) > heroTurn) {
-                    //  monsterAtk();
-                    //}
+
                     playerAtk();
                     if (monsterObj.toughness == 0) {
                         System.out.println("----------------------------");
