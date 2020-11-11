@@ -4,6 +4,7 @@ import dungeonrun.Characters.Heroes;
 import dungeonrun.Characters.Knight;
 import dungeonrun.Characters.Thief;
 import dungeonrun.Characters.Wizard;
+import static dungeonrun.PlayMusic.playMusic;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -13,6 +14,7 @@ public class Main {
     public static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
+        //playMusic("Music\\\\raincd.wav"); //Fungerade test ljud
         Strid stridigt = new Strid();
         while (true) {
             mainGame();
