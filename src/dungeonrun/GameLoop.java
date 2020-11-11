@@ -1,3 +1,4 @@
+
 package dungeonrun;
 
 import dungeonrun.Characters.Heroes;
@@ -23,19 +24,21 @@ public class GameLoop {
     private final static Scanner SCANNER = new Scanner(System.in);
 
     public enum NavigMenuItem {
-        NAVIG_MENU_NORTH('n', "Go north"),
-        NAVIG_MENU_EAST('e', "Go east"),
-        NAVIG_MENU_SOUTH('s', "Go south"),
-        NAVIG_MENU_WEST('w', "Go west"),
-        NAVIG_MENU_BACK('b', "Go back"),
-        NAVIG_MENU_EXIT('x', "Exit game loop");
+        NAVIG_MENU_NORTH('n', "Go north", true), // parameters menuChar, menyChoiceText, enabledMenyChoice 
+        NAVIG_MENU_EAST('e', "Go east", true),
+        NAVIG_MENU_SOUTH('s', "Go south", true),
+        NAVIG_MENU_WEST('w', "Go west", true),
+        // NAVIG_MENU_BACK('b', "Go back", true),  // Removed, only exists in the fight-choice when entereing a room, a different menu
+        NAVIG_MENU_EXIT('x', "Exit map", false);
 
         private String menyText;
-        private char menyChar; 
+        private char menyChar;
+        private boolean enabledMenyChoice;
 
-        NavigMenuItem(char menuCh, String menuChoiceText) {
+        NavigMenuItem(char menuCh, String menuChoiceText, boolean enabledMenyChoice) {
             this.menyChar = menuCh;
             this.menyText = menuChoiceText;
+            this.enabledMenyChoice = enabledMenyChoice;
         }
 
         public char getMenyChoiceChar() {
@@ -46,20 +49,35 @@ public class GameLoop {
             return menyText;
         }
 
+        public void setEnabledMenyChoice(boolean enabledMenyChoice) {
+            this.enabledMenyChoice = enabledMenyChoice;
+        }
+
+        public boolean isEnabledMenyChoice() {
+            return enabledMenyChoice;
+        }
+
+        // Resets the manu choices for a normal room away from walls
+        public void resetMenyChoices() {
+            for (NavigMenuItem value : NavigMenuItem.values()) {
+                // Enable all menu choices except the EXIT one
+                value.setEnabledMenyChoice(value != NAVIG_MENU_EXIT);
+            }
+        }
+
         public NavigMenuItem getNavigMenuItem(char menuCh) {
             NavigMenuItem menuItem = null;
-            for (int i = 0; i < NavigMenuItem.values().length; i++) {
-
-                if (menuCh == NavigMenuItem.values()[i].getMenyChoiceChar()) {
-                    menuItem = NavigMenuItem.values()[i];
+            
+            // Loop over all the meny choises, and return the right (first) item that is enabled and has the matching character
+            for (NavigMenuItem value : NavigMenuItem.values()) {
+                if (value.isEnabledMenyChoice() && menuCh == value.getMenyChoiceChar()) {
+                    menuItem = value;
                     return menuItem;
                 }
-
             }
             return menuItem;
         }
     }
-
     public static void playTheGame(Map map, Heroes hero) {
         NavigMenuItem navigMenuChoice = null;
 
@@ -68,11 +86,11 @@ public class GameLoop {
 
         //System.out.println("Playing the game...");
         System.out.println("");
-        
+
         do {
             map.draw(hero);
 
-            navigMenuChoice = getNavigMenuChoice("What do you want to do: ");
+            navigMenuChoice = getNavigMenuChoice("What do you want to do: ", map, hero);
             found = false;
 
             switch (navigMenuChoice) {
@@ -111,14 +129,6 @@ public class GameLoop {
                     }
                     break;
 
-                case NAVIG_MENU_BACK:
-                    if (hero.mapPosY < map.rooms.length - 1) {
-                        hero.mapPosY++;
-                    } else {
-                        System.out.println("There's no door in that direction, you are staying put");
-                    }
-                    break;
-
                 case NAVIG_MENU_EXIT:
                     // handled below
                     break;
@@ -131,8 +141,8 @@ public class GameLoop {
 
                 enteringRoom(map, hero);
 
-                //Unnecessary step, removed by Lucas to add flow to game. 
-                //getStringFromUser(BR_GREEN + "Press <enter> to continue" + RESET);
+                System.out.println("You have a total of " + hero.highScore + " value points");
+                getStringFromUser(BR_GREEN + "Press <enter> to continue" + RESET);
             }
             System.out.println("");
 
@@ -147,80 +157,90 @@ public class GameLoop {
         Strid strid = new Strid();
 
         map.rooms[hero.mapPosX][hero.mapPosY].setVisited(true);
+        // Same as map.rooms[hero.mapPosX][hero.mapPosY].visited = true;
 
+        // Prepare some strings for infrmative output to the console
         for (Monster monster : map.rooms[hero.mapPosX][hero.mapPosY].monsters) {
             monsterStr += "one " + monster.getClass().getSimpleName() + ", ";
         }
         monsterStr = monsterStr.length() > 2 ? monsterStr.substring(0, monsterStr.length() - 2) : monsterStr; //Remove last comma.
 
         for (Treasure treasure : map.rooms[hero.mapPosX][hero.mapPosY].treasures) {
-            treasureStr += treasure.treasureDescription + ", ";
+            treasureStr += treasure.name + ", ";
         }
         treasureStr = treasureStr.length() > 2 ? treasureStr.substring(0, treasureStr.length() - 2) : treasureStr; //Remove last comma.
 
+        // Write informative info to the console, depending on what there is in the room
         if (monsterStr.length() == 0 && treasureStr.length() == 0) {
             System.out.println("You have entered an empty room");
-            // getStringFromUser(BR_GREEN + "Press <enter> to continue" + RESET);
 
         } else if (monsterStr.length() != 0) {
             System.out.println("Auch, when you enter the room you see: " + monsterStr);
             if (treasureStr.length() != 0) {
-                System.out.println("Behind the monster(s) you see " + treasureStr);
+                System.out.println("Behind the monster(s) you see: " + treasureStr);
             }
             strid.stridDice(map, hero);
             hero.fightMonsters(map);
 
         } else {
-            System.out.println("In the room you find " + treasureStr);
+            System.out.println("Excellent, no monsters and you see: " + treasureStr);
         }
 
         if (treasureStr.length() >= 0) {
             // Picking up the Treasures
             for (Treasure treasure : map.rooms[hero.mapPosX][hero.mapPosY].treasures) {
 
-                System.out.println("You pick up the " + treasure.name + ". It's worth " + treasure.value + " gold");
+                System.out.println("Picking up the " + treasure.name + " worth " + treasure.value + " value points");
                 hero.highScore += treasure.value;
-
             }
-            map.rooms[hero.mapPosX][hero.mapPosY].treasures.clear(); // Removing all the Treasures
-            System.out.println("You have a total of " + hero.highScore + " gold");
+            map.rooms[hero.mapPosX][hero.mapPosY].treasures.clear(); // Removing all the Treasures from the room
         }
     }
 
-    private static NavigMenuItem getNavigMenuChoice(String prompt) {
+    private static NavigMenuItem getNavigMenuChoice(String prompt, Map map, Heroes hero) {
         String choiceStr;
         NavigMenuItem goMenuChoice = null;
 
-        System.out.println("Navigation menu:" +  BR_YELLOW);
+        System.out.println("Navigation menu:" + BR_YELLOW);
 
-        // Loop over all meny choices from choice 1, and print all meny choice texts
-        for (int i = 0; i < NavigMenuItem.values().length; i++) {
+        // Enable EXIT menu choice when it's a Corner room
+        NavigMenuItem.NAVIG_MENU_EXIT.setEnabledMenyChoice(map.isCornerRoom(hero.mapPosX, hero.mapPosY));
 
-            System.out.println( BR_YELLOW + NavigMenuItem.values()[i].getMenyChoiceChar() + ": " + NavigMenuItem.values()[i].getMenuChoiceText());
+        // Disable navigation choice when there is a wall in that direction
+        NavigMenuItem.NAVIG_MENU_NORTH.setEnabledMenyChoice( !map.hasNorthWall(hero.mapPosX, hero.mapPosY) );
+        NavigMenuItem.NAVIG_MENU_SOUTH.setEnabledMenyChoice( !map.hasSouthWall(hero.mapPosX, hero.mapPosY) );
+        NavigMenuItem.NAVIG_MENU_WEST.setEnabledMenyChoice( !map.hasWestWall(hero.mapPosX, hero.mapPosY) );
+        NavigMenuItem.NAVIG_MENU_EAST.setEnabledMenyChoice( !map.hasEastWall(hero.mapPosX, hero.mapPosY) );
+
+        // Loop over all meny choices in the enum, and print the "meny choice texts" for the enabled ones
+        for (NavigMenuItem value : NavigMenuItem.values()) {
+            if (value.isEnabledMenyChoice()) {
+                System.out.println(BR_YELLOW + value.getMenyChoiceChar() + ": " + value.getMenuChoiceText());
+            }
         }
-
+    
         do {  // loop until a valid choice has been read
-            // Add choice 0 last, if not "Unused"
 
             System.out.print(RESET + prompt);
 
-            // Try to read an meny choice integer from the console
-            choiceStr = SCANNER.nextLine();
+        // Try to read an meny choice integer from the console
+        choiceStr = SCANNER.nextLine();
+        // Using the first character as the user input
+        goMenuChoice = (choiceStr.length() > 0) ? NavigMenuItem.values()[0].getNavigMenuItem(choiceStr.charAt(0)) : null;
 
-            goMenuChoice = (choiceStr.length() > 0) ? NavigMenuItem.values()[0].getNavigMenuItem(choiceStr.charAt(0)) : null;
+        if (goMenuChoice == null) {
+            System.out.println("Not a valid choice. " + "Try again!");
 
-            if (goMenuChoice == null) {
-                System.out.println("Not a valid choice. " + "Try again!");
+        }
 
-            }
-
-        } while (goMenuChoice == null); // Loop as long as we haven't got a valid choice
-
-        System.out.println("");
-        return goMenuChoice;
     }
+    while (goMenuChoice == null); // Loop as long as we haven't got a valid choice
 
-    private static String getStringFromUser(String promptText) {
+    System.out.println ("");
+    return goMenuChoice ;
+}
+
+private static String getStringFromUser(String promptText) {
 
         System.out.print(promptText);
 

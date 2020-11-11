@@ -1,35 +1,15 @@
+
 package dungeonrun;
 
-
+import dungeonrun.Monsters.GiantSpider;
 import dungeonrun.Characters.Heroes;
 import dungeonrun.Monsters.Monster;
-import dungeonrun.Treasures.Treasure;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
 public class Map {
 
-    // Some codes for changing color of the console text
-    /*   public static final String RESET = "\033[0;30m";  // RESET the text color
-    
-    public static final String RED = "\033[0;31m";          // RED
-    public static final String GREEN = "\033[0;32m";        // GREEN
-    public static final String YELLOW = "\033[0;33m";       // YELLOW
-    public static final String BLUE = "\033[0;34m";         // BLUE
-    public static final String PURPLE = "\033[0;35m";       // PURPLE
-    public static final String CYAN = "\033[0;36m";         // CYAN
-    public static final String WHITE = "\033[0;37m";        // WHITE
-    
-    public static final String BG_BLACK = "\u001b[30;1m";     // BRIGHT BLACK
-    public static final String BG_RED = "\u001b[31;1m";
-    public static final String BG_GREEN = "\u001B[92m";
-    public static final String BG_YELLOW = "\u001B[93m";
-    public static final String BG_BLUE = "\u001B[94m";
-    public static final String BG_PURPLE = "\u001B[95m";
-    public static final String BG_CYAN = "\u001B[96m";
-    public static final String BG_WHITE = "\u001B[97m";
-     */
     public static final String RESET = "\u001b[0m";
     public static final String HIGH_INTENSITY = "\u001B[1m";
     public static final String LOW_INTENSITY = "\u001B[2m";
@@ -70,9 +50,13 @@ public class Map {
             for (int y = 0; y < rooms[x].length; y++) {
                 rooms[x][y] = new Room();
 
-                // If the hero is standing in tis room -> remove the Monsters & Treasures
+                // If the hero is standing in tis room, it's a "visited" room
                 if (x == hero.mapPosX && y == hero.mapPosY) {
                     rooms[x][y].visited = true;
+                }
+
+                // Remove Monsters T& Treasures if it's a corner room
+                if (isCornerRoom(x, y)) {
                     rooms[x][y].monsters.clear();   // Remove all monsters
                     rooms[x][y].treasures.clear();  // Remove all treasuress
                 }
@@ -80,30 +64,75 @@ public class Map {
         }
     }
 
+    public boolean hasWestWall(int x, int y) {
+        return (x == 0);
+    }
+
+    public boolean hasEastWall(int x, int y) {
+        return (x == (rooms.length - 1));
+    }
+
+    public boolean hasNorthWall(int x, int y) {
+        return (y == 0);
+    }
+
+    public boolean hasSouthWall(int x, int y) {
+        return (y == (rooms[0].length - 1));
+    }
+
+    public boolean isCornerRoom(int x, int y) {
+        return ((hasWestWall(x, y) && hasNorthWall(x, y)) || (hasNorthWall(x, y) && hasEastWall(x, y))
+                || (hasEastWall(x, y) && hasSouthWall(x, y)) || (hasSouthWall(x, y) && hasWestWall(x, y)));
+    }
+
     //  public void draw(Character character) {
     public void draw(Heroes hero) {
+        /* Example of map output: 
++-Exit-+······+······+·Exit·+
+|Knight|      : S    :      :
+|Kalle | L    :      : J    :
++------+······+······+······+
+:      :      : G    :      :
+: L    : L    : L    : LJ   :
++······+······+······+······+
+:      : G    :      :      :
+: M    : M    : M    : LJ   :
++······+······+······+······+
+:      : S    :      : SO   :
+:      : L    : L    :      :
++·Exit·+······+······+·Exit·+
+         */
         Room currentRoom;
         ArrayList<Monster> monsters;
         ArrayList<Treasure> treasures;
         String monsterStr, treasureStr;
         int alsoCheckX, alsoCheckY;
+        int x, y;
 
         System.out.println("The map with " + BR_RED + "G" + RESET + " = Giant Spider, " + BR_RED + "S" + RESET + " = Skeleton, " + BR_RED + "O" + RESET + " = Orc, " + BR_RED + "T" + RESET + " = Troll:");
-        System.out.println("Treasures: " + BR_YELLOW + "L" + RESET + " = Loose coins, " + BR_YELLOW + "M" + RESET + " = Money Pouch, " + BR_YELLOW
+        System.out.println("Treasures: " + BR_YELLOW + "L" + RESET + " = Loose coins, " + BR_YELLOW + "M" + RESET + " = Money pouch, " + BR_YELLOW
                 + "J" + RESET + " = Gold Jewlry, " + BR_YELLOW + "G" + RESET + " = Gemstone, " + BR_YELLOW + "C" + RESET + " = Small Chest:");
 
-        for (int y = 0; y < rooms[0].length; y++) {
+        for (y = 0; y < rooms[0].length; y++) {
 
-            for (int x = 0; x < rooms.length; x++) {
+            // Row 1: Example: +-Exit-+······+······+·Exit·+ 
+            for (x = 0; x < rooms.length; x++) {
 
-                // Row 1:
-                // Corner +
-                System.out.print((rooms[x][y].isVisited() || rooms[x][alsoCheckY(y - 1, rooms)].isVisited()) ? "+------" : BLUE + "+······" + RESET);
+                System.out.print((rooms[x][y].isVisited() || rooms[x][alsoCheckY(y - 1, rooms)].isVisited() || rooms[alsoCheckX(x - 1, rooms)][y].isVisited()
+                        || rooms[alsoCheckX(x - 1, rooms)][alsoCheckY(y - 1, rooms)].isVisited()) ? "+" : BLUE + "+" + RESET);
+
+                if (isCornerRoom(x, y) && hasNorthWall(x, y)) {
+                    System.out.print((rooms[x][y].isVisited() || rooms[x][alsoCheckY(y - 1, rooms)].isVisited()) ? "-Exit-" : BLUE + "·Exit·" + RESET);
+
+                } else {
+                    System.out.print((rooms[x][y].isVisited() || rooms[x][alsoCheckY(y - 1, rooms)].isVisited()) ? "------" : BLUE + "······" + RESET);
+                }
             }
-            System.out.println((rooms[rooms.length - 1][y].isVisited()) ? "+" : BLUE + "+" + RESET);
+            System.out.println((rooms[x-1][y].isVisited() || rooms[x-1][alsoCheckY(y - 1, rooms)].isVisited() || rooms[alsoCheckX(x, rooms)][y].isVisited()
+                    || rooms[alsoCheckX(x, rooms)][alsoCheckY(y - 1, rooms)].isVisited()) ? "+" : BLUE + "+" + RESET);
 
-            // Row 2:
-            for (int x = 0; x < rooms.length; x++) {
+            // Row 2: Example: |Knight|      : S    :      :
+            for (x = 0; x < rooms.length; x++) {
 
                 System.out.print((rooms[x][y].isVisited() || rooms[alsoCheckX(x - 1, rooms)][y].isVisited()) ? "|" : BLUE + ":" + RESET);
 
@@ -126,7 +155,7 @@ public class Map {
             System.out.println(rooms[rooms.length - 1][y].isVisited() ? "|" : BLUE + ":" + RESET);
 
             // Row 3:
-            for (int x = 0; x < rooms.length; x++) {
+            for (x = 0; x < rooms.length; x++) {
 
                 System.out.print((rooms[x][y].isVisited() || rooms[alsoCheckX(x - 1, rooms)][y].isVisited()) ? "|" : BLUE + ":" + RESET);
 
@@ -138,11 +167,11 @@ public class Map {
                     treasures = rooms[x][y].treasures;
                     treasureStr = "";
                     for (Treasure treasure : treasures) {
-                        treasureStr += treasure.getClass() == dungeonrun.Treasures.LooseCoins.class ? "L" : "";
-                        treasureStr += treasure.getClass() == dungeonrun.Treasures.MoneyPouch.class ? "M" : "";
-                        treasureStr += treasure.getClass() == dungeonrun.Treasures.Jewlery.class ? "J" : "";
-                        treasureStr += treasure.getClass() == dungeonrun.Treasures.Gemstone.class ? "G" : "";
-                        treasureStr += treasure.getClass() == dungeonrun.Treasures.Chest.class ? "C" : "";
+                        treasureStr += treasure.name.contains("oins") ? "L" : "";
+                        treasureStr += treasure.name.contains("oney") ? "M" : "";
+                        treasureStr += treasure.name.contains("ewel") ? "J" : "";
+                        treasureStr += treasure.name.contains("ston") ? "G" : "";
+                        treasureStr += treasure.name.contains("hest") ? "C" : "";
                     }
                     System.out.printf("%s %-5.5s%s", BR_YELLOW, treasureStr, RESET);
                 }
@@ -150,12 +179,13 @@ public class Map {
             System.out.println(rooms[rooms.length - 1][y].isVisited() ? "|" : BLUE + ":" + RESET);
         } // for x
 
-        // Final row, underneith    
-        for (int x = 0; x < rooms[0].length; x++) {
-            if (rooms[x][rooms[0].length - 1].isVisited()) {
-                System.out.print("+------");
+        // Final row, underneith, example: Example: +-Exit-+······+······+·Exit·+     
+        for ( x = 0; x < rooms.length; x++) {
+            if (isCornerRoom(x, rooms[0].length - 1)) {
+                System.out.print((rooms[x][rooms[0].length - 1].isVisited()) ? "+-Exit-" : BLUE + "+·Exit·" + RESET);
+
             } else {
-                System.out.print(BLUE + "+······" + RESET);
+                System.out.print((rooms[x][rooms[0].length - 1].isVisited()) ? "+------" : BLUE + "+······" + RESET);
             }
         }
         System.out.println((rooms[rooms.length - 1][rooms[0].length - 1].isVisited()) ? "+" : BLUE + "+" + RESET);
