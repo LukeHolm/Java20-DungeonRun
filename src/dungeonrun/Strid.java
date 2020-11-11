@@ -23,20 +23,22 @@ public class Strid {
     Map map;
 
 
+
     boolean insideRoom = true;
 
     public void stridDice(Map map, Heroes hero) {
         this.hero = hero;
         this.map = map;
-        System.out.println(map.toString());
-        int i = (int) (Math.random() * 4) + 1;
 
-        System.out.println("You encounter " + i + " monsters!");
+
+        //int i = (int) (Math.random() * 4) + 1;
+
+
 
         /*Turordningen avgörs genom att alla stridsdeltagare slår lika antal tärningar som sitt Initiativ.
                 Högst börjar och resten ordnas i fallande skala. Denna turordning gäller tills striden är slut.*/
 
-        //temp random list of monsters
+        /*temp random list of monsters
         for (int m = 0; m < i; m++) {
             do {
                 Room randomRoom = new Room();
@@ -46,15 +48,40 @@ public class Strid {
             } while (monsterObj == null);
             monsterList.add(monsterObj);
         }
-        //END temp random list of monsters
+        /END temp random list of monsters*/
 
-      /*  ArrayList<Integer> iniList = new ArrayList<>();
-        for(int j=0; j<i; j++ ) {
-            monsterObj = monsterList.get(j);
-            diceRoll(monsterObj.initiative);
+        String monsterStr = "";
+        for (Monster monster : map.rooms[hero.mapPosX][hero.mapPosY].monsters) {
+            monsterStr += "one " + monster.getClass().getSimpleName() + ", ";
+            monsterList.add(monster);
 
-        }*/
+        }
+
+        monsterStr = monsterStr.length() > 2 ? monsterStr.substring(0, monsterStr.length() - 2) : monsterStr;
+
+        System.out.println("You encounter "+monsterStr);
+        System.out.println(monsterList.toString());
+
+        //TODO turordning
+        int x = 0;
         int heroTurn = diceRoll(hero.initiative);
+        ArrayList<Monster> iniList = new ArrayList<>();
+        for (Monster monster : monsterList) {
+            monsterObj = monster;
+
+            int y = diceRoll(monsterObj.initiative);
+            if (y > x) {
+                iniList.add(0, monsterObj);
+
+            } else {
+                iniList.add(monsterObj);
+            }
+           // System.out.println(monsterObj.creatureIsA + " " + y);
+            x = y;
+
+        }
+        //TODO turordning
+
 
 
         while (insideRoom) {
@@ -62,34 +89,35 @@ public class Strid {
 
             try {
 
-                monsterObj = monsterList.get(monsterList.size() - 1);
+                monsterObj = iniList.get(0);
 
-                System.out.println("Monsters left in room: " + monsterList.toString());
-                System.out.println("\nYou encounter a vicious " + monsterObj.creatureIsA);
+                System.out.println("Monsters left in room: " + iniList.toString());
+                System.out.println("\nEncounter against " + monsterObj.creatureIsA + " started");
+
 
                 System.out.print("\nTo attack press '1' or to run away press '0': ");
                 int mainInput = input.nextInt();
 
                 if (mainInput == 1) {
                     //if (diceRoll(monsterObj.initiative) > heroTurn) {
-                      //  monsterAtk();
+                    //  monsterAtk();
                     //}
                     playerAtk();
-                   if (monsterObj.toughness == 0) {
-                       System.out.println("----------------------------");
-                       System.out.println("The monster has been killed!");
-                       System.out.println("----------------------------");
+                    if (monsterObj.toughness == 0) {
+                        System.out.println("----------------------------");
+                        System.out.println("The monster has been killed!");
+                        System.out.println("----------------------------");
 
 
-                       monsterList.remove(monsterList.size() - 1);
+                        iniList.remove(iniList.get(0));
 
-                       System.out.println("|||||||||||||||||||||||");
-                       System.out.println(monsterList.size() + " monsters left");
-                       System.out.println("|||||||||||||||||||||||");
-                   }
-                    if (monsterList.size() == 0) {
+                        System.out.println("|||||||||||||||||||||||");
+                        System.out.println(iniList.size() + " monsters left");
+                        System.out.println("|||||||||||||||||||||||");
+                    }
+                    if (iniList.size() == 0) {
 
-                        System.out.println(GREEN + "All monsters are defeated. Leaving room..." + RESET);
+                        System.out.println(GREEN + "Leaving room..." + RESET);
                         break;
                     }
                     System.out.println("Your current toughness: " + hero.toughness);
@@ -170,33 +198,33 @@ public class Strid {
             System.exit(0);
 
         }
-        System.out.println("Your current toughness: " + hero.toughness);
+
 
     }
 
     public void playerAtk() {
 
         //while (monsterObj.toughness > 0) {
-            int playerAtk = diceRoll(hero.attack);
-            int monsterDef = diceRoll(monsterObj.agility);
-            System.out.println("..............");
-            System.out.println("Player attack");
-            System.out.println("..............");
-            System.out.println("You attack for " + playerAtk + " damage!");
-            System.out.println("The " + monsterObj.creatureIsA + " defends for " + monsterDef);
+        int playerAtk = diceRoll(hero.attack);
+        int monsterDef = diceRoll(monsterObj.agility);
+        System.out.println("..............");
+        System.out.println("Player attack");
+        System.out.println("..............");
+        System.out.println("You attack for " + playerAtk + " damage!");
+        System.out.println("The " + monsterObj.creatureIsA + " defends for " + monsterDef);
 
-            if (playerAtk > monsterDef) {
-                System.out.println(BR_GREEN + "The monster took damage! The monster had " + monsterObj.toughness + " toughness");
-                monsterObj.toughness--;
-                System.out.println("The monster now has " + monsterObj.toughness + RESET);
-            } else if (playerAtk < monsterDef) {
-                System.out.println("The monster avoided the attack!");
-            } else {
-                System.out.println("Draw!");
-            }
-            if (monsterObj.toughness > 0) {
-                monsterAtk();
-            }
+        if (playerAtk > monsterDef) {
+            System.out.println(BR_GREEN + "The monster took damage! The monster had " + monsterObj.toughness + " toughness");
+            monsterObj.toughness--;
+            System.out.println("The monster now has " + monsterObj.toughness + RESET);
+        } else if (playerAtk < monsterDef) {
+            System.out.println("The monster avoided the attack!");
+        } else {
+            System.out.println("Draw!");
+        }
+        if (monsterObj.toughness > 0) {
+            monsterAtk();
+        }
         //}
 
     }
