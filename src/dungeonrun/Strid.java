@@ -5,7 +5,6 @@ import dungeonrun.Characters.Heroes;
 import dungeonrun.Monsters.*;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Scanner;
 
 
@@ -121,7 +120,8 @@ public class Strid {
 
         }
 //outside room
-
+        map.rooms[hero.mapPosX][hero.mapPosY].monsters.clear();
+        map.rooms[hero.mapPosX][hero.mapPosY].monsters.addAll(iniList);
     }
 
 
