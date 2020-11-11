@@ -178,7 +178,7 @@ public class GameLoop {
                 System.out.println("Behind the monster(s) you see " + treasureStr);
             }
             strid.stridDice(map, hero);
-            hero.fightMonsters(map);
+
 
         } else {
             System.out.println("In the room you find " + treasureStr);
