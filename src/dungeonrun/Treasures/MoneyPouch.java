@@ -11,7 +11,8 @@ package dungeonrun.Treasures;
  */
 public class MoneyPouch extends Treasure {
     public MoneyPouch(){
-        treasureIsA = "small money pouch";
+        treasureDescription = "a small money pouch";
+        name = "money pouch";
         value = 6;  
         frequency = 0.2;
     }
