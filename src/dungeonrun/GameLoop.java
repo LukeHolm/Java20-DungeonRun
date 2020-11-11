@@ -3,6 +3,7 @@ package dungeonrun;
 
 import dungeonrun.Characters.Heroes;
 import dungeonrun.Monsters.Monster;
+import dungeonrun.Treasures.Treasure;
 
 import java.awt.MenuItem;
 import java.util.HashSet;
@@ -189,8 +190,8 @@ public class GameLoop {
             // Picking up the Treasures
             for (Treasure treasure : map.rooms[hero.mapPosX][hero.mapPosY].treasures) {
 
-                System.out.println("Picking up the " + treasure.name + " worth " + treasure.valuePoints + " value points");
-                hero.highScore += treasure.valuePoints;
+                System.out.println("Picking up the " + treasure.name + " worth " + treasure.value + " value points");
+                hero.highScore += treasure.value;
             }
             map.rooms[hero.mapPosX][hero.mapPosY].treasures.clear(); // Removing all the Treasures from the room
         }
