@@ -11,7 +11,8 @@ package dungeonrun.Treasures;
  */
 public class Gemstone extends Treasure {
     public Gemstone(){
-        treasureIsA = "gemstone";
+        treasureDescription = "a shiny gemstone";
+        name = "gemstone";
         value = 14;
         frequency = 0.1;
     }

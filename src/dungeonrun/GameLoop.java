@@ -2,6 +2,7 @@ package dungeonrun;
 
 import dungeonrun.Characters.Heroes;
 import dungeonrun.Monsters.Monster;
+import dungeonrun.Treasures.Treasure;
 
 import java.awt.MenuItem;
 import java.util.HashSet;
@@ -130,8 +131,8 @@ public class GameLoop {
 
                 enteringRoom(map, hero);
 
-                System.out.println("You have a total of " + hero.highScore + " value points");
-                getStringFromUser(BR_GREEN + "Press <enter> to continue" + RESET);
+                //Unnecessary step, removed by Lucas to add flow to game. 
+                //getStringFromUser(BR_GREEN + "Press <enter> to continue" + RESET);
             }
             System.out.println("");
 
@@ -153,7 +154,7 @@ public class GameLoop {
         monsterStr = monsterStr.length() > 2 ? monsterStr.substring(0, monsterStr.length() - 2) : monsterStr; //Remove last comma.
 
         for (Treasure treasure : map.rooms[hero.mapPosX][hero.mapPosY].treasures) {
-            treasureStr += treasure.name + ", ";
+            treasureStr += treasure.treasureDescription + ", ";
         }
         treasureStr = treasureStr.length() > 2 ? treasureStr.substring(0, treasureStr.length() - 2) : treasureStr; //Remove last comma.
 
@@ -164,23 +165,25 @@ public class GameLoop {
         } else if (monsterStr.length() != 0) {
             System.out.println("Auch, when you enter the room you see: " + monsterStr);
             if (treasureStr.length() != 0) {
-                System.out.println("Behind the monster(s) you see: " + treasureStr);
+                System.out.println("Behind the monster(s) you see " + treasureStr);
             }
             strid.stridDice(map, hero);
             hero.fightMonsters(map);
 
         } else {
-            System.out.println("Excellent, you see: " + treasureStr);
+            System.out.println("In the room you find " + treasureStr);
         }
 
         if (treasureStr.length() >= 0) {
             // Picking up the Treasures
             for (Treasure treasure : map.rooms[hero.mapPosX][hero.mapPosY].treasures) {
 
-                System.out.println("Picking up the " + treasure.name + " worth " + treasure.valuePoints + " value points");
-                hero.highScore += treasure.valuePoints;
+                System.out.println("You pick up the " + treasure.name + ". It's worth " + treasure.value + " gold");
+                hero.highScore += treasure.value;
+
             }
             map.rooms[hero.mapPosX][hero.mapPosY].treasures.clear(); // Removing all the Treasures
+            System.out.println("You have a total of " + hero.highScore + " gold");
         }
     }
 
