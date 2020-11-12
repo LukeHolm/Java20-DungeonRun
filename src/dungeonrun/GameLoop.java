@@ -188,7 +188,7 @@ public class GameLoop {
         }
 
         // Picking up the Treasures
-        if (Strid.tryLoot = true) {
+        if (Strid.tryLoot) {
             for (Treasure treasure : map.rooms[hero.mapPosX][hero.mapPosY].treasures) {
 
                 System.out.println("You pick up the " + treasure.name + ". It's worth " + treasure.value + " gold");

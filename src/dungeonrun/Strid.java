@@ -228,8 +228,10 @@ public class Strid {
         if (chanceEscape <= escChance) {
             System.out.println("You failed to escape!");
             monsterAtk();
+            return true;
+        } else {
+            return false;
         }
-        return true;
     }
 
 }
