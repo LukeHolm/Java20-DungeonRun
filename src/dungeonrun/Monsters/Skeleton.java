@@ -18,4 +18,28 @@ public class Skeleton extends Monster {
     public String toString() {
         return "Skeleton";
     }
+    
+    @Override
+    public String[] displayStrings() {
+    	
+        String[] ascii = {
+        		"      .-.		",
+        		"     (o.o)		",
+        		"      |=|		",
+        		"     __|__		",
+        		"   //.=|=.\\\\	",
+        		"  // .=|=. \\\\",
+        		"  \\\\ .=|=. //",
+        		"   \\\\(_=_)//	",
+        		"    (:| |:)	",
+        		"     || ||		",
+        		"     () ()		",
+        		"     || ||		",
+        		"    ==' '==    " };
+        
+        return ascii;
+    }
+    
+    
+    
 }
