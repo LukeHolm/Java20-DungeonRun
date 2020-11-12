@@ -4,7 +4,7 @@ import dungeonrun.Characters.Heroes;
 import dungeonrun.Characters.Knight;
 import dungeonrun.Characters.Thief;
 import dungeonrun.Characters.Wizard;
-import static dungeonrun.PlayMusic.playMusic;
+//import static dungeonrun.PlayMusic.playMusic;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -143,7 +143,7 @@ public class Main {
                 System.out.println("\nYou have chosen the brave knight" + " " + characterName);
                 hero = new Knight(characterName);
                 // players.add(hero);  From the spec.: "Dungeon Run är ett textbaserat äventyrsspel för en spelare"
-                System.out.println("\nYou have chosen the brave knight" + " " + characterName);
+
 
                 break;
             case 2:
