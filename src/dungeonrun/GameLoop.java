@@ -2,6 +2,7 @@ package dungeonrun;
 
 import dungeonrun.Characters.Heroes;
 import dungeonrun.Monsters.Monster;
+import static dungeonrun.PlayMusic.playMusic;
 import dungeonrun.Treasures.Treasure;
 
 import java.awt.MenuItem;
@@ -95,7 +96,7 @@ public class GameLoop {
 
             switch (navigMenuChoice) {
                 case NAVIG_MENU_NORTH:
-
+                    playMusic("Music\\\\footdoor.wav");
                     // System.out.println("hero.mapPosX = " + hero.mapPosX + "hero.mapPosY = " + hero.mapPosY + "map.rooms.length" + map.rooms.length);
                     if (hero.mapPosY > 0) {
                         // Go north
@@ -106,6 +107,7 @@ public class GameLoop {
                     break;
 
                 case NAVIG_MENU_SOUTH:
+                    playMusic("Music\\\\footdoor.wav");
                     if (hero.mapPosY < map.rooms.length - 1) {
                         hero.mapPosY++;
                     } else {
@@ -113,6 +115,7 @@ public class GameLoop {
                     }
                     break;
                 case NAVIG_MENU_WEST:
+                    playMusic("Music\\\\footdoor.wav");
                     if (hero.mapPosX > 0) {
                         // Go east
                         hero.mapPosX--;
@@ -121,6 +124,7 @@ public class GameLoop {
                     }
                     break;
                 case NAVIG_MENU_EAST:
+                    playMusic("Music\\\\footdoor.wav");
                     if (hero.mapPosX < map.rooms[0].length - 1) {
                         // Go east
                         hero.mapPosX++;
@@ -149,7 +153,7 @@ public class GameLoop {
         } while (navigMenuChoice != NavigMenuItem.NAVIG_MENU_EXIT);
     }
 
-  private static void enteringRoom(Map map, Heroes hero) {
+    private static void enteringRoom(Map map, Heroes hero) {
 
         String monsterStr = "";
         String treasureStr = "";
@@ -178,7 +182,6 @@ public class GameLoop {
                 System.out.println("Behind the monster(s) you see " + treasureStr);
             }
             strid.stridDice(map, hero);
-
 
         } else {
             System.out.println("In the room you find " + treasureStr);

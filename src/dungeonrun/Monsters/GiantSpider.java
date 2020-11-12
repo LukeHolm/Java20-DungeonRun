@@ -18,4 +18,20 @@ public class GiantSpider extends Monster {
     public String toString() {
         return "GiantSpider";
     }
+    
+    @Override
+    public String[] displayStrings() {
+    	
+        String[] ascii = {
+	    "      /      \\   	",   
+	    "   \\  \\  ,,  /  /  	",
+	    "    '-.`\\()/`.-'  	",
+	    "   .--_'(  )'_--. 	",
+	    "  / /` /`\"\"`\\ `\\ \\ ",
+	    "   |  |  ><  |  |   	",
+	    "   \\  \\      /  /   ",
+	    "       '.__.'   		"};
+        
+        return ascii;
+    }
 }

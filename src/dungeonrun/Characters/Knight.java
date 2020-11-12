@@ -20,4 +20,22 @@ public class Knight extends Heroes {
      public String toString(){
         return "Knight name is " + playersName + "\n";
     }
+    
+    @Override
+    public String[] displayStrings() {
+
+        String[] ascii = {
+        	 "\n       !		",
+        	 "\n      .-.		",
+        	 "\n    __|=|__	",
+        	 "\n   (_/`-`\\_)	",
+        	 "\n   //\\___/\\\\	",
+        	 "\n   <>/   \\<>	",
+        	 "\n    \\|_._|/	",
+        	 "\n     <_I_>	",
+        	 "\n      |||		",
+        	 "\n     /_|_\\	"};
+      
+        return ascii;
+    }
 }
