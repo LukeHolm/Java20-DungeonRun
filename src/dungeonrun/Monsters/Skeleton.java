@@ -23,6 +23,7 @@ public class Skeleton extends Monster {
     public String[] displayStrings() {
     	
         String[] ascii = {
+        		"               ",
         		"      .-.      ",
         		"     (o.o)     ",
         		"      |=|      ",
@@ -35,9 +36,18 @@ public class Skeleton extends Monster {
         		"     || ||     ",
         		"     () ()     ",
         		"     || ||     ",
-        		"    ==' '==    " };
+        		"    ==' '==    ",
+        		"               ",
+        		"   "};
         
-        return ascii;
+        String[] fixedAscii = ascii;
+
+        // Replace "£" with "\"
+        for (int i = 0; i < ascii.length; i++) {
+            fixedAscii[i] = ascii[i].replace("£", "\\");
+        }
+
+        return fixedAscii;
     }
     
     

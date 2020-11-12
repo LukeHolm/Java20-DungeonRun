@@ -25,19 +25,30 @@ public class Thief extends Heroes {
     public String[] displayStrings() {
 
         String[] ascii = {
-        		   "        ££££     ",
-        		   "         £c .(   ",
-        		   "          £ _/   ",
-        		   "       ___/(  /( ",
-        		   "      /--/ ££//  ",
-        		   "  __ )/ /£/ £/   ",
-        		   " `-.£  //££      ",
-        		   "    ££//  ££     ",
-        		   "     £/    ££    ",
-        		   "            ££   ",
-        		   "            '--` "};
+        		   "                   ",
+        		   "         £££       ",
+        		   "          ££££     ",
+        		   "           £c .(   ",
+        		   "            £ _/   ",
+        		   "         ___/(  /( ",
+        		   "        /--/ ££//  ",
+        		   "    __ )/ /£/ £/   ",
+        		   "   `-.£  //££      ",
+        		   "      ££//  ££     ",
+        		   "       £/    ££    ",
+        		   "              ££   ",
+        		   "               ££  ",
+        		   "               '--`",
+        		   " "};
              
-        return ascii;
+        String[] fixedAscii = ascii;
+
+        // Replace "£" with "\"
+        for (int i = 0; i < ascii.length; i++) {
+            fixedAscii[i] = ascii[i].replace("£", "\\");
+        }
+
+        return fixedAscii;
     }
     
 }

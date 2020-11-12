@@ -24,6 +24,7 @@ public class Orc extends Monster {
     public String[] displayStrings() {
 
         String[] ascii = {
+        		 "                             ",
         		 "            ,      ,         ", 
         		 "           /(.-''-.)£        ",
         		 "       |£  £/      £/  /|    ",
@@ -34,8 +35,18 @@ public class Orc extends Monster {
         		 "          £,___/£___,/       ",
         		 "        ___£ £|uu|/ /___     ",
         		 "      /`    £ .--. /    `£   ",
-        		 "     /       '----'       £  "};
+        		 "     /       '----'       £  ",
+        		 "     |                    |  ",
+        		 " ",
+        		 " "};
         
-        return ascii;
+        String[] fixedAscii = ascii;
+
+        // Replace "£" with "\"
+        for (int i = 0; i < ascii.length; i++) {
+            fixedAscii[i] = ascii[i].replace("£", "\\");
+        }
+
+        return fixedAscii;
     }
 }

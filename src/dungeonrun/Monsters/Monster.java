@@ -13,6 +13,7 @@ public class Monster extends Creatures {
     public String[] displayStrings() {
 
         String[] ascii = {
+        		"                   ",
         		"        ____       ",
         		"    .-,(_''_),-.   ",
         		"     £_£(),()/_/   ",
@@ -22,10 +23,21 @@ public class Monster extends Creatures {
         		"    {_[ (_,_)      ",
         		"        | Y |      ",
         		"        | | |      ",
+        		"        | | |      ",
+        		"        | | |      ",
         		"       /  |  £     ",
-        		"       ''' '''     "};
+        		"       ''' '''     ",
+        		"  ",
+        		"  "};
         
-        return ascii;
+        String[] fixedAscii = ascii;
+
+        // Replace "£" with "\"
+        for (int i = 0; i < ascii.length; i++) {
+            fixedAscii[i] = ascii[i].replace("£", "\\");
+        }
+
+        return fixedAscii;
     }
 
 }

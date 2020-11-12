@@ -23,6 +23,7 @@ public class Troll extends Monster {
     public String[] displayStrings() {
 
         String[] ascii = {
+        		"                   ",
         		"     .:£:/:.       ",
         		"   .:£:£:/:/:.     ",
         		"  :.:£:£:/:/:.:    ",
@@ -35,8 +36,16 @@ public class Troll extends Monster {
         		" /_//  /^£  ££_£   ",
         		" WW(  (   )  )WW   ",
         		"  __£,,£ /,,/__    ",
-        		" (______Y______)   "};
+        		" (______Y______)   ",
+        		"                   "};
         
-        return ascii;
+        String[] fixedAscii = ascii;
+
+        // Replace "£" with "\"
+        for (int i = 0; i < ascii.length; i++) {
+            fixedAscii[i] = ascii[i].replace("£", "\\");
+        }
+
+        return fixedAscii;
     }
 }
