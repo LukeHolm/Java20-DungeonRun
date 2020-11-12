@@ -12,6 +12,7 @@ public class Strid {
     public static final String BR_GREEN = "\u001b[32;1m";
     public static final String GREEN = "\u001b[32m";
     public static final String BR_BLUE = "\u001b[34;1m";
+    public static boolean tryLoot = true;
     ArrayList<Integer> dice = new ArrayList<>();
     ArrayList<Monster> monsterList = new ArrayList<>();
     Scanner input = new Scanner(System.in);
@@ -49,7 +50,7 @@ public class Strid {
             try {
                 monsterObj = iniList.get(0);
 
-                System.out.println("Encounter against " + monsterObj.creatureIsA + " started\n");
+                System.out.println("\nEncounter against " + monsterObj.creatureIsA + " started\n");
                 if (heroTurn < orderList.get(0)) {
                     System.out.println("The monster threw " + orderList.get(0) + " while you threw " + heroTurn + ". The monster attacks first!");
                     monsterAtk();
@@ -86,8 +87,8 @@ public class Strid {
                     System.out.println("\nMonsters left in room: " + iniList.toString());
                 } else if (mainInput == 0) {
 
-                    insideRoom = tryEscape();
-
+                    tryLoot = tryEscape();
+                    insideRoom = tryLoot;
 
                     //FELHANTERING
                 } else {
@@ -214,6 +215,7 @@ public class Strid {
         if (hero.agility == 5) {
             chanceEscape = hero.agility * 0.16;
             System.out.println(hero.playersName + BR_BLUE + " The Wizard uses glow to blind the enemies, giving it a higher chance to escape!" + RESET);
+
         }
 
         if (chanceEscape > escChance) {
