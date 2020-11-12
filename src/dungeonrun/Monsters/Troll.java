@@ -18,4 +18,25 @@ public class Troll extends Monster {
     public String toString() {
         return "Troll";
     }
+    
+    @Override
+    public String[] displayStrings() {
+
+        String[] ascii = {
+        		"     .:\\:/:.		",
+        		"   .:\\:\\:/:/:.	",
+        		"  :.:\\:\\:/:/:.:	",
+        		" :=.' -   - '.=:	",
+        		" '=(\\ 9   9 /)='	",
+        		"    (  (_)  )		",
+        		"    /`-vvv-'\\		",
+        		"   /         \\	",
+        		"  / /|,,,,,|\\ \\	",
+        		" /_//  /^\\  \\\\_\\",
+        		" WW(  (   )  )WW	",
+        		"  __\\,,\\ /,,/__	",
+        		" (______Y______)	"};
+        
+        return ascii;
+    }
 }

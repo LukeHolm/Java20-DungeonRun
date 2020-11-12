@@ -19,4 +19,23 @@ public class Orc extends Monster {
     public String toString() {
         return "Orc";
     }
+    
+    @Override
+    public String[] displayStrings() {
+
+        String[] ascii = {
+        		 "            ,      ,  		", 
+        		 "           /(.-\"\"-.)\\		",
+        		 "       |\\  \\/      \\/  /|	",
+        		 "       | \\ / =.  .= \\ / |	",
+        		 "       \\( \\   o\\/o   / )/	",
+        		 "        \\_, '-/  \\-' ,_/	",
+        		 "          /   \\__/   \\		",
+        		 "          \\,___/\\___,/		",
+        		 "        ___\\ \\|uu|/ /___	",
+        		 "      /`    \\ .--. /    `\\	",
+        		 "     /       '----'       \\	"};
+        
+        return ascii;
+    }
 }
