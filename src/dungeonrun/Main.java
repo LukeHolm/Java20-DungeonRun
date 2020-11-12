@@ -146,6 +146,7 @@ public class Main {
                 characterName = scanner.nextLine();
 
                 System.out.println("\nYou have chosen the brave knight" + " " + characterName);
+                playMusic("Music\\\\Knightpicked.wav");
                 hero = new Knight(characterName);
                 // players.add(hero);  From the spec.: "Dungeon Run är ett textbaserat äventyrsspel för en spelare"
                 System.out.println("\nYou have chosen the brave knight" + " " + characterName);
@@ -157,6 +158,7 @@ public class Main {
                 characterName = scanner.nextLine();
 
                 System.out.println("\nYou have chosen the intelligent wizard" + " " + characterName);
+                playMusic("Music\\\\Wizardpicked.wav");
                 hero = new Wizard(characterName);
                 // players.add(hero);  From the spec.: "Dungeon Run är ett textbaserat äventyrsspel för en spelare"
 
