@@ -9,7 +9,7 @@ public class Monster extends Creatures {
         alive = true;
     }
     
- // Returning a String array, so monster can be written row for row, with other figures further away on each row.
+    @Override
     public String[] displayStrings() {
 
         String[] ascii = {
