@@ -2,7 +2,7 @@ package dungeonrun;
 
 import dungeonrun.Characters.Heroes;
 import dungeonrun.Monsters.Monster;
-import static dungeonrun.PlayMusic.playMusic;
+
 import dungeonrun.Treasures.Treasure;
 
 import java.awt.MenuItem;
@@ -96,7 +96,7 @@ public class GameLoop {
 
             switch (navigMenuChoice) {
                 case NAVIG_MENU_NORTH:
-                    playMusic("Music\\\\footdoor.wav");
+                    //playMusic("Music\\\\footdoor.wav");
                     // System.out.println("hero.mapPosX = " + hero.mapPosX + "hero.mapPosY = " + hero.mapPosY + "map.rooms.length" + map.rooms.length);
                     if (hero.mapPosY > 0) {
                         // Go north
@@ -107,7 +107,7 @@ public class GameLoop {
                     break;
 
                 case NAVIG_MENU_SOUTH:
-                    playMusic("Music\\\\footdoor.wav");
+                    //  playMusic("Music\\\\footdoor.wav");
                     if (hero.mapPosY < map.rooms.length - 1) {
                         hero.mapPosY++;
                     } else {
@@ -115,7 +115,7 @@ public class GameLoop {
                     }
                     break;
                 case NAVIG_MENU_WEST:
-                    playMusic("Music\\\\footdoor.wav");
+                    //    playMusic("Music\\\\footdoor.wav");
                     if (hero.mapPosX > 0) {
                         // Go east
                         hero.mapPosX--;
@@ -124,7 +124,7 @@ public class GameLoop {
                     }
                     break;
                 case NAVIG_MENU_EAST:
-                    playMusic("Music\\\\footdoor.wav");
+                    //     playMusic("Music\\\\footdoor.wav");
                     if (hero.mapPosX < map.rooms[0].length - 1) {
                         // Go east
                         hero.mapPosX++;
@@ -177,7 +177,7 @@ public class GameLoop {
             // getStringFromUser(BR_GREEN + "Press <enter> to continue" + RESET);
 
         } else if (monsterStr.length() != 0) {
-            System.out.println("Auch, when you enter the room you see: " + monsterStr);
+            System.out.println("Oh no, when you enter the room you see: " + monsterStr);
             if (treasureStr.length() != 0) {
                 System.out.println("Behind the monster(s) you see " + treasureStr);
             }
@@ -187,17 +187,20 @@ public class GameLoop {
             System.out.println("In the room you find " + treasureStr);
         }
 
-        if (treasureStr.length() >= 0) {
-            // Picking up the Treasures
+        // Picking up the Treasures
+        if (Strid.tryLoot = true) {
             for (Treasure treasure : map.rooms[hero.mapPosX][hero.mapPosY].treasures) {
 
                 System.out.println("You pick up the " + treasure.name + ". It's worth " + treasure.value + " gold");
                 hero.highScore += treasure.value;
 
             }
-            map.rooms[hero.mapPosX][hero.mapPosY].treasures.clear(); // Removing all the Treasures
-            System.out.println("You have a total of " + hero.highScore + " gold");
+            map.rooms[hero.mapPosX][hero.mapPosY].treasures.clear();
+        } // Removing all the Treasures
+        else{
+            System.out.println("The monsters will keep the treasures in the room...");
         }
+        System.out.println("You have a total of " + hero.highScore + " gold");
     }
 
     private static NavigMenuItem getNavigMenuChoice(String prompt, Map map, Heroes hero) {
