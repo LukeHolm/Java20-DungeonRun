@@ -14,7 +14,7 @@ public class Main {
     public static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        
+       // playMusic("Music\\\\rainthunder.wav"); 
 
         while (true) {
             mainGame();
