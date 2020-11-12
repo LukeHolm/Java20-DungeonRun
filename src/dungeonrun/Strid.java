@@ -44,8 +44,8 @@ public class Strid {
 
             try {
                 monsterObj = iniList.get(0);
-                System.out.println("Monsters left in room: " + iniList.toString());
-                System.out.println("\nEncounter against " + monsterObj.creatureIsA + " started");
+
+                System.out.println("Encounter against " + monsterObj.creatureIsA + " started\n");
                 if (heroTurn < orderList.get(0)) {
                     System.out.println("The monster threw " + orderList.get(0) + " while you threw " + heroTurn + ". The monster attacks first!");
                     monsterAtk();
@@ -75,7 +75,7 @@ public class Strid {
                     }
                     System.out.println("Your current toughness: " + hero.toughness);
 
-
+                    System.out.println("Monsters left in room: " + iniList.toString());
                 } else if (mainInput == 0) {
 
                     insideRoom = tryEscape();
@@ -132,7 +132,7 @@ public class Strid {
 
             System.out.println(BR_RED + "You took damage! You had " + hero.toughness + " toughness");
             hero.toughness--;
-            System.out.println("But now you have " + hero.toughness + RESET);
+            System.out.println("But now you have " + hero.toughness + RESET + "\n");
 
         } else if (monsterAtk < simonDef) {
             System.out.println("You defended yourself from the attack!");
@@ -164,7 +164,7 @@ public class Strid {
         if (playerAtk > monsterDef) {
             System.out.println(BR_GREEN + "The monster took damage! The monster had " + monsterObj.toughness + " toughness");
             monsterObj.toughness--;
-            System.out.println("The monster now has " + monsterObj.toughness + RESET);
+            System.out.println("The monster now has " + monsterObj.toughness + RESET + "\n");
         } else if (playerAtk < monsterDef) {
             System.out.println("The monster avoided the attack!");
         } else {
