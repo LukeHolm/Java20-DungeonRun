@@ -1,12 +1,8 @@
 package dungeonrun;
-
 import dungeonrun.Characters.Heroes;
-
 import dungeonrun.Monsters.*;
-
 import java.util.ArrayList;
 import java.util.Scanner;
-
 
 public class Strid {
     public static final String BR_RED = "\u001b[31;1m";
@@ -15,22 +11,16 @@ public class Strid {
     public static final String GREEN = "\u001b[32m";
     ArrayList<Integer> dice = new ArrayList<>();
     ArrayList<Monster> monsterList = new ArrayList<>();
-
     Scanner input = new Scanner(System.in);
     Heroes hero;
     Monster monsterObj;
     Map map;
-
-
     boolean insideRoom = true;
 
     public void stridDice(Map map, Heroes hero) {
         this.hero = hero;
         this.map = map;
-
         monsterList.addAll(map.rooms[hero.mapPosX][hero.mapPosY].monsters);
-
-
 
         int x = 0;
         int heroTurn = diceRoll(hero.initiative);
@@ -47,21 +37,13 @@ public class Strid {
                 iniList.add(monsterObj);
                 orderList.add(y);
             }
-
-
             x = y;
-
         }
-
-        //TODO save monsters in rooms that are abandoned
 
         while (insideRoom) {
 
-
             try {
-
                 monsterObj = iniList.get(0);
-
                 System.out.println("Monsters left in room: " + iniList.toString());
                 System.out.println("\nEncounter against " + monsterObj.creatureIsA + " started");
                 if (heroTurn < orderList.get(0)) {
@@ -69,7 +51,6 @@ public class Strid {
                     monsterAtk();
                     orderList.set(0,0);
                 }
-
 
                 System.out.print("\nTo attack press '1' or to run away press '0': ");
                 int mainInput = input.nextInt();
@@ -82,9 +63,7 @@ public class Strid {
                         System.out.println("The monster has been killed!");
                         System.out.println("----------------------------");
 
-
                         iniList.remove(iniList.get(0));
-
                         System.out.println("|||||||||||||||||||||||");
                         System.out.println(iniList.size() + " monsters left");
                         System.out.println("|||||||||||||||||||||||");
@@ -130,21 +109,15 @@ public class Strid {
     }
 
     public int diceRoll(int diceRolls) {
-        //System.out.print("Throwing dice!");
+
         int sum = 0;
         System.out.println();
         for (int i = 1; i < diceRolls + 1; i++) {
             int roll = rollthedice();
-
             dice.add(roll);
             sum += roll;
-            //System.out.println("Result of dice number " + i + ": " + roll + ", Sum: " + sum);
         }
-
-        //System.out.println("Sum of all dice: " + sum);
-        //System.out.println("Total amount of throws: " + diceRolls + "\n");
         return sum;
-
     }
 
     public void monsterAtk() {
@@ -179,7 +152,7 @@ public class Strid {
 
     public void playerAtk() {
 
-        //while (monsterObj.toughness > 0) {
+
         int playerAtk = diceRoll(hero.attack);
         int monsterDef = diceRoll(monsterObj.agility);
         System.out.println("..............");
@@ -200,7 +173,7 @@ public class Strid {
         if (monsterObj.toughness > 0) {
             monsterAtk();
         }
-        //}
+
 
     }
 
@@ -212,7 +185,7 @@ public class Strid {
 
         if (chanceEscape > escChance) {
             System.out.println("You escaped!");
-            //TODO return amount of monsters left in room
+
 
             return false;
 
