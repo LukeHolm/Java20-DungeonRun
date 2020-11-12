@@ -14,11 +14,11 @@ public class Main {
     public static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        //playMusic("Music\\\\raincd.wav"); //Fungerade test ljud
-        Strid stridigt = new Strid();
+
+
         while (true) {
             mainGame();
-            //   stridigt.stridDice();
+
         }
     }
 
@@ -31,7 +31,7 @@ public class Main {
         int test;
         String characterName;
         int Hero;
-
+        try {
         System.out.println("\n *** Welcome to Dungeon Run! *** \n");
         System.out.println("1. New game");
         System.out.println("2. Load existing character");
@@ -60,6 +60,13 @@ public class Main {
 
             default:
                 System.out.println("Invalid input, please try again.");
+        }
+        } catch (Exception e) {
+            //Any corrupted or invalid input results in a exception. Inform user that the input is invalid
+            System.out.print("Invalid input. Must be integers...\n");
+
+            scanner.next();
+
         }
     }
     
@@ -125,6 +132,7 @@ public class Main {
         Drawings.drawThief();
         System.out.println("\033[0;1m 3. Thief\033[0m\n Initiativ: 7\n Tålighet: 5\n Attack 5\n Smidighet: 7\n");
         System.out.println("-----------------------------------\n");
+        try {
         int menuChoice = scanner.nextInt();
         scanner.nextLine();
         switch (menuChoice) {
@@ -158,6 +166,11 @@ public class Main {
                 break;
             default:
                 System.out.println("Invalid input, please try again.");
+        }
+        } catch (InputMismatchException s) {
+            System.out.println("incorrect input");
+            scanner.next();
+
         }
         return hero;
     }
