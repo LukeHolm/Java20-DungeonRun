@@ -1,6 +1,8 @@
 package dungeonrun;
+
 import dungeonrun.Characters.Heroes;
 import dungeonrun.Monsters.*;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -9,6 +11,7 @@ public class Strid {
     public static final String RESET = "\u001b[0m";
     public static final String BR_GREEN = "\u001b[32;1m";
     public static final String GREEN = "\u001b[32m";
+    public static final String BR_BLUE = "\u001b[34;1m";
     ArrayList<Integer> dice = new ArrayList<>();
     ArrayList<Monster> monsterList = new ArrayList<>();
     Scanner input = new Scanner(System.in);
@@ -16,6 +19,7 @@ public class Strid {
     Monster monsterObj;
     Map map;
     boolean insideRoom = true;
+    int knightBlock;
 
     public void stridDice(Map map, Heroes hero) {
         this.hero = hero;
@@ -49,7 +53,7 @@ public class Strid {
                 if (heroTurn < orderList.get(0)) {
                     System.out.println("The monster threw " + orderList.get(0) + " while you threw " + heroTurn + ". The monster attacks first!");
                     monsterAtk();
-                    orderList.set(0,0);
+                    orderList.set(0, 0);
                 }
 
                 System.out.print("\nTo attack press '1' or to run away press '0': ");
@@ -58,7 +62,7 @@ public class Strid {
                 if (mainInput == 1) {
 
                     playerAtk();
-                    if (monsterObj.toughness == 0) {
+                    if (monsterObj.toughness <= 0) {
                         System.out.println("         />_________________________________\n" +
                                 "[########[]_________________________________>\n" +
                                 "         \\>");
@@ -67,19 +71,19 @@ public class Strid {
                                 "[########[]_________________________________>\n" +
                                 "         \\>");
 
+
                         iniList.remove(iniList.get(0));
                         System.out.println("|||||||||||||||||||||||");
                         System.out.println(iniList.size() + " monsters left");
                         System.out.println("|||||||||||||||||||||||");
                     }
                     if (iniList.size() == 0) {
-
+                        knightBlock = 0;
                         System.out.println(GREEN + "Leaving room..." + RESET);
                         break;
                     }
-                    System.out.println("Your current toughness: " + hero.toughness);
 
-                    System.out.println("Monsters left in room: " + iniList.toString());
+                    System.out.println("\nMonsters left in room: " + iniList.toString());
                 } else if (mainInput == 0) {
 
                     insideRoom = tryEscape();
@@ -125,36 +129,40 @@ public class Strid {
     }
 
     public void monsterAtk() {
+        knightBlock++;
         int monsterAtk = diceRoll(monsterObj.attack);
         int simonDef = diceRoll(hero.agility);
         System.out.println("..............");
-        System.out.println("Monster attack");
+        System.out.println("Monster attack ");
         System.out.println("..............");
-        System.out.println("The " + monsterObj.creatureIsA + " attacks you for " + monsterAtk + " damage!");
-        System.out.println("You defend yourself for " + simonDef);
-        if (monsterAtk > simonDef) {
+        if (knightBlock == 1 && hero.agility == 4) {
+            System.out.println("\n" + BR_BLUE + hero.playersName + " the Knight blocks the first attack of the fight!\n" + RESET);
 
-            System.out.println(BR_RED + "You took damage! You had " + hero.toughness + " toughness");
-            hero.toughness--;
-            System.out.println("But now you have " + hero.toughness + RESET + "\n");
-
-        } else if (monsterAtk < simonDef) {
-            System.out.println("You defended yourself from the attack!");
         } else {
-            System.out.println("Draw!");
+            System.out.println("The " + monsterObj.creatureIsA + " attacks you for " + monsterAtk + " damage!");
+            System.out.println("You defend yourself for " + simonDef);
+            if (monsterAtk > simonDef) {
+                System.out.println(BR_RED + "You took damage! You had " + hero.toughness + " toughness");
+                hero.toughness--;
+                System.out.println("But now you have " + hero.toughness + RESET + "\n");
+            } else if (monsterAtk < simonDef) {
+                System.out.println("You defended yourself from the attack!");
+            } else {
+                System.out.println("Draw!");
+            }
+            if (hero.toughness == 0) {
+                System.out.println("----------------------------");
+                System.out.println("You died!");
+                System.out.println("----------------------------");
+                System.exit(0);
+
+
+            }
         }
-        if (hero.toughness == 0) {
-            System.out.println("----------------------------");
-            System.out.println("You died!");
-            System.out.println("----------------------------");
-            System.exit(0);
-
-        }
-
-
     }
 
     public void playerAtk() {
+        boolean thiefSpecial = false;
 
 
         int playerAtk = diceRoll(hero.attack);
@@ -165,9 +173,27 @@ public class Strid {
         System.out.println("You attack for " + playerAtk + " damage!");
         System.out.println("The " + monsterObj.creatureIsA + " defends for " + monsterDef);
 
+
         if (playerAtk > monsterDef) {
+            if (hero.agility == 7) {
+                double specialAttack = 0.25;
+                double specialChance = Math.random();
+                if (specialAttack >= specialChance) {
+                    System.out.println(BR_BLUE + "\nCritical Hit! Your damage is doubled!\n" + RESET);
+                    thiefSpecial = true;
+                } else {
+                    thiefSpecial = false;
+                }
+            }
             System.out.println(BR_GREEN + "The monster took damage! The monster had " + monsterObj.toughness + " toughness");
-            monsterObj.toughness--;
+            if (thiefSpecial) {
+                monsterObj.toughness--;
+                monsterObj.toughness--;
+            } else {
+                monsterObj.toughness--;
+            }
+
+
             System.out.println("The monster now has " + monsterObj.toughness + RESET + "\n");
         } else if (playerAtk < monsterDef) {
             System.out.println("The monster avoided the attack!");
@@ -185,11 +211,14 @@ public class Strid {
 
         double chanceEscape = hero.agility * 0.1;
         double escChance = Math.random();
-
+        if (hero.agility == 5) {
+            chanceEscape = hero.agility * 0.16;
+            System.out.println(hero.playersName + BR_BLUE + " The Wizard uses glow to blind the enemies, giving it a higher chance to escape!" + RESET);
+        }
 
         if (chanceEscape > escChance) {
             System.out.println("You escaped!");
-
+            knightBlock = 0;
 
             return false;
 
