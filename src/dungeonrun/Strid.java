@@ -59,9 +59,13 @@ public class Strid {
 
                     playerAtk();
                     if (monsterObj.toughness == 0) {
-                        System.out.println("----------------------------");
-                        System.out.println("The monster has been killed!");
-                        System.out.println("----------------------------");
+                        System.out.println("         />_________________________________\n" +
+                                "[########[]_________________________________>\n" +
+                                "         \\>");
+                        System.out.println("           The monster has been killed!");
+                        System.out.println("         />_________________________________\n" +
+                                "[########[]_________________________________>\n" +
+                                "         \\>");
 
                         iniList.remove(iniList.get(0));
                         System.out.println("|||||||||||||||||||||||");
