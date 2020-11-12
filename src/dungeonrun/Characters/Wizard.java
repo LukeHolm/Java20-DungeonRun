@@ -20,4 +20,24 @@ public class Wizard extends Heroes {
      public String toString(){
         return "Wizard name is " + playersName + "\n";
     }
+    
+    @Override
+    public String[] displayStrings() {
+
+        String[] ascii = {
+        		"\n         /^\\    ",
+        		"\n    /\\   \"V\"  ",
+        		"\n   /__\\   I     ",
+        		"\n  //..\\\\  I    ",
+        		"\n  \\].`[/  I     ",
+        		"\n  /l\\/j\\  (]    ",
+        		"\n /. ~~ ,\\/I     ",
+        		"\n \\\\L__j^\\/I   ",
+        		"\n  \\/--v}  I     ",
+        		"\n  |    |  I      ",
+        		"\n  |    l  I      ",
+        		"\n_/j  L l\\_!     "};
+             
+        return ascii;
+    }
 }

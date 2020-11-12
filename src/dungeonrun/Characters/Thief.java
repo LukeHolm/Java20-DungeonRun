@@ -20,4 +20,24 @@ public class Thief extends Heroes {
      public String toString(){
         return "Thief name is " + playersName + "\n";
     }
+    
+    @Override
+    public String[] displayStrings() {
+
+        String[] ascii = {
+        		   "\n          \\\\\\\\		",
+        		   "\n           \\c .(	",
+        		   "\n            \\ _/	",
+        		   "\n         ___/(  /(	",
+        		   "\n        /--/ \\\\//	",
+        		   "\n    __ )/ /\\/ \\/	",
+        		   "\n   `-.\\  //\\\\		",
+        		   "\n      \\\\//  \\\\		",
+        		   "\n       \\/    \\\\		",
+        		   "\n              \\\\	",
+        		   "\n              '--`	"};
+             
+        return ascii;
+    }
+    
 }
