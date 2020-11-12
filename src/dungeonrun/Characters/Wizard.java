@@ -25,18 +25,18 @@ public class Wizard extends Heroes {
     public String[] displayStrings() {
 
         String[] ascii = {
-        		"         /^\\    ",
-        		"    /\\   \"V\"  ",
-        		"   /__\\   I     ",
-        		"  //..\\\\  I    ",
-        		"  \\].`[/  I     ",
-        		"  /l\\/j\\  (]   ",
-        		" /. ~~ ,\\/I     ",
-        		" \\\\L__j^\\/I   ",
-        		"  \\/--v}  I     ",
-        		"  |    |  I      ",
-        		"  |    l  I      ",
-        		"_/j  L l\\_!     "};
+        		"         /^£  ",
+        		"    /£   'V'  ",
+        		"   /__£   I   ",
+        		"  //..££  I   ",
+        		"  £].`[/  I   ",
+        		"  /l£/j£  (]  ",
+        		" /. ~~ ,£/I   ",
+        		" ££L__j^£/I   ",
+        		"  £/--v}  I   ",
+        		"  |    |  I   ",
+        		"  |    l  I   ",
+        		"_/j  L l£_!   "};
              
         return ascii;
     }
