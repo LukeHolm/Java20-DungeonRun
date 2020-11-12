@@ -4,7 +4,7 @@ import dungeonrun.Characters.Heroes;
 import dungeonrun.Characters.Knight;
 import dungeonrun.Characters.Thief;
 import dungeonrun.Characters.Wizard;
-//import static dungeonrun.PlayMusic.playMusic;
+import static dungeonrun.PlayMusic.playMusic;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
