@@ -4,7 +4,7 @@ import dungeonrun.Characters.Heroes;
 import dungeonrun.Characters.Knight;
 import dungeonrun.Characters.Thief;
 import dungeonrun.Characters.Wizard;
-import static dungeonrun.PlayMusic.playMusic;
+//import static dungeonrun.PlayMusic.playMusic;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -15,7 +15,7 @@ public class Main {
     public static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-       // playMusic("Music\\\\rainthunder.wav"); 
+        // playMusic("Music\\\\rainthunder.wav"); 
 
         while (true) {
             mainGame();
@@ -41,7 +41,7 @@ public class Main {
 
             switch (choice) {
                 case 1:
-                    playMusic("Music\\\\clickclack.wav");
+                    // playMusic("Music\\\\clickclack.wav");
                     theHero = getPlayer();
                     theMap = chooseMap(theHero);
                     // TODO: choose starting point
@@ -49,7 +49,7 @@ public class Main {
                     GameLoop.playTheGame(theMap, theHero);
                     break;
                 case 2:
-                     playMusic("Music\\\\clickclack.wav");
+                    //  playMusic("Music\\\\clickclack.wav");
                     /*              for (Heroes character : players) {
                     System.out.println(character);
                 }*/
@@ -84,19 +84,19 @@ public class Main {
 
                 switch (size) {
                     case 1:
-                         playMusic("Music\\\\clickclack.wav");
+                        //   playMusic("Music\\\\clickclack.wav");
                         theMap = new Map(4, 4, hero);
                         runtime = false;
                         break;
 
                     case 2:
-                         playMusic("Music\\\\clickclack.wav");
+                        //   playMusic("Music\\\\clickclack.wav");
                         theMap = new Map(5, 5, hero);
                         runtime = false;
                         break;
 
                     case 3:
-                         playMusic("Music\\\\clickclack.wav");
+                        //  playMusic("Music\\\\clickclack.wav");
                         theMap = new Map(8, 8, hero);
                         runtime = false;
                         break;
@@ -139,32 +139,31 @@ public class Main {
         scanner.nextLine();
         switch (menuChoice) {
             case 1:
-                 playMusic("Music\\\\clickclack.wav");
+                // playMusic("Music\\\\clickclack.wav");
                 System.out.println("Enter the name of your character");
                 characterName = scanner.nextLine();
 
                 System.out.println("\nYou have chosen the brave knight" + " " + characterName);
-                playMusic("Music\\\\Knightpicked.wav");
+                //  playMusic("Music\\\\Knightpicked.wav");
                 hero = new Knight(characterName);
                 System.out.println(Arrays.toString(hero.displayStrings()));
                 // players.add(hero);  From the spec.: "Dungeon Run är ett textbaserat äventyrsspel för en spelare"
 
-
                 break;
             case 2:
-                 playMusic("Music\\\\clickclack.wav");
+                // playMusic("Music\\\\clickclack.wav");
                 System.out.println("\nEnter the name of your character");
                 characterName = scanner.nextLine();
 
                 System.out.println("\nYou have chosen the intelligent wizard" + " " + characterName);
-                playMusic("Music\\\\Wizardpicked.wav");
+                // playMusic("Music\\\\Wizardpicked.wav");
                 hero = new Wizard(characterName);
                 System.out.println(Arrays.toString(hero.displayStrings()));
                 // players.add(hero);  From the spec.: "Dungeon Run är ett textbaserat äventyrsspel för en spelare"
 
                 break;
             case 3:
-                 playMusic("Music\\\\clickclack.wav");
+                //   playMusic("Music\\\\clickclack.wav");
                 System.out.println("Enter the name of your character");
                 characterName = scanner.nextLine();
 
