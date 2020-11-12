@@ -8,6 +8,7 @@ import static dungeonrun.PlayMusic.playMusic;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.Arrays;
 
 public class Main {
 
@@ -123,13 +124,10 @@ public class Main {
 
         System.out.println("\nPlease choose a character\n");
         System.out.println("-----------------------------------\n ");
-        Drawings.drawKnight();
         System.out.println("\033[0;1m 1. Knight\033[0m\n Initiativ: 5\n Tålighet: 9\n Attack 6\n Smidighet: 4\n ");
         System.out.println("-----------------------------------\n");
-        Drawings.drawWizard();
         System.out.println("\033[0;1m 2. Wizard\033[0m\n Initiativ: 6\n Tålighet: 4\n Attack 9\n Smidighet: 5\n");
         System.out.println("-----------------------------------\n");
-        Drawings.drawThief();
         System.out.println("\033[0;1m 3. Thief\033[0m\n Initiativ: 7\n Tålighet: 5\n Attack 5\n Smidighet: 7\n");
         System.out.println("-----------------------------------\n");
 
@@ -142,6 +140,7 @@ public class Main {
 
                 System.out.println("\nYou have chosen the brave knight" + " " + characterName);
                 hero = new Knight(characterName);
+                System.out.println(Arrays.toString(hero.displayStrings()));
                 // players.add(hero);  From the spec.: "Dungeon Run är ett textbaserat äventyrsspel för en spelare"
                 System.out.println("\nYou have chosen the brave knight" + " " + characterName);
 
@@ -152,6 +151,7 @@ public class Main {
 
                 System.out.println("\nYou have chosen the intelligent wizard" + " " + characterName);
                 hero = new Wizard(characterName);
+                System.out.println(Arrays.toString(hero.displayStrings()));
                 // players.add(hero);  From the spec.: "Dungeon Run är ett textbaserat äventyrsspel för en spelare"
  
                 break;
@@ -161,6 +161,7 @@ public class Main {
 
                 System.out.println("\nYou have chosen the cunning thief" + " " + characterName);
                 hero = new Thief(characterName);
+                System.out.println(Arrays.toString(hero.displayStrings()));
                 // players.add(hero);  From the spec.: "Dungeon Run är ett textbaserat äventyrsspel för en spelare"
  
                 break;
