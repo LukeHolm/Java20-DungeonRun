@@ -189,7 +189,18 @@ public class Strid {
                 double specialAttack = 0.25;
                 double specialChance = Math.random();
                 if (specialAttack >= specialChance) {
-                    System.out.println(BR_BLUE + "\nCritical Hit! Your damage is doubled!\n" + RESET);
+                    System.out.println("  _");            
+                    System.out.println(" //");
+                    System.out.println("( \\");
+                    System.out.println(" \\ \\");
+                    System.out.println("  \\ \\");
+                    System.out.println("   \\ \\");
+                    System.out.println("    \\ \\");
+                    System.out.println("     \\ \\");
+                    System.out.println("      \\ \\");
+                    System.out.println("       \\ \\");
+                    System.out.println("        )/");
+                    System.out.println(BR_BLUE + "\nCritical Hit! " + hero.playersName + " hits extra hard with the crowbar and the monster takes double damage!\n" + RESET);
                     thiefSpecial = true;
                 } else {
                     thiefSpecial = false;
