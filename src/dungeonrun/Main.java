@@ -149,7 +149,7 @@ public class Main {
                 System.out.println("\nYou have chosen the brave knight" + " " + characterName);
                 hero = new Knight(characterName);
                 // players.add(hero);  From the spec.: "Dungeon Run är ett textbaserat äventyrsspel för en spelare"
-                System.out.println("\nYou have chosen the brave knight" + " " + characterName);
+
 
                 break;
             case 2:
