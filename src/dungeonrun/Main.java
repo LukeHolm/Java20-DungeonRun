@@ -167,9 +167,7 @@ public class Main {
                 // music.playMusic(gamemenumusic); // play gamemenumusic
 
                // music.playMusic(beepmenu);
-                System.out.println("Enter the name of your character");
-                characterName = scanner.nextLine();
-
+               
                 System.out.println("\nYou have chosen the brave knight" + " " + characterName);
                // music.playMusic(knightpicked);
                 hero = new Knight(characterName);
@@ -186,9 +184,7 @@ public class Main {
                 // music.playMusic(dungeonmusic); // play dungeomusic
                 // music.playMusic(gamemenumusic); // play gamemenumusic
 
-                //music.playMusic(beepmenu);
-                System.out.println("\nEnter the name of your character");
-                characterName = scanner.nextLine();
+                //music.playMusic(beepmenu);         
                 System.out.println("\nYou have chosen the intelligent wizard" + " " + characterName);
                // music.playMusic(wizardpicked);
                 hero = new Wizard(characterName);
@@ -200,10 +196,6 @@ public class Main {
                 // music.stopMusic(); // Stop gamemenumusic
                 // music.playMusic(dungeonmusic); // play dungeomusic
                 // music.playMusic(gamemenumusic); // play gamemenumusic
-                System.out.println("Enter the name of your character");
-                characterName = scanner.nextLine();
-
-                System.out.println("\nYou have chosen the cunning thief" + " " + characterName);
                 System.out.println("What is your thiefs name?");
                 characterName = newHero();
                 hero = new Thief(characterName);
