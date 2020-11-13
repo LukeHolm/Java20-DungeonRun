@@ -214,7 +214,16 @@ public class Strid {
         double escChance = Math.random();
         if (hero.agility == 5) {
             chanceEscape = hero.agility * 0.16;
-            System.out.println(hero.playersName + BR_BLUE + " The Wizard uses glow to blind the enemies, giving it a higher chance to escape!" + RESET);
+        System.out.println("  .   . ¨ '  ,  ,");
+        System.out.println("       \\  |  //");
+        System.out.println("     \\   _^_     /");
+        System.out.println(" ¨  __  ( ¤ )  __");
+        System.out.println("    ,    |/|    ¨");
+        System.out.println("   /     |¨|    \\ ");
+        System.out.println("¨    ¨   |^|      ¨ ");
+        System.out.println("         |<|");
+        System.out.println("         |>| ");
+        System.out.println(hero.playersName + BR_BLUE + " The Wizard raises the staff of ____  and fires a big glowing light towards the enemies to blind them, giving it a higher chance to escape!" + RESET);
 
         }
 
