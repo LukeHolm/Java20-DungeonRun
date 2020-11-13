@@ -173,7 +173,7 @@ public class GameLoop {
             // getStringFromUser(BR_GREEN + "Press <enter> to continue" + RESET);
 
         } else if (monsterStr.length() != 0) {
-            System.out.println("Auch, when you enter the room you see: " + monsterStr);
+            System.out.println("OH MY GOD, when you enter the room you see: " + monsterStr);
             if (treasureStr.length() != 0) {
                 System.out.println("Behind the monster(s) you see " + treasureStr);
             }
