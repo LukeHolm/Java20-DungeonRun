@@ -136,7 +136,7 @@ public class Strid {
         System.out.println("..............");
         System.out.println("Monster attack ");
         System.out.println("..............");
-        if (knightBlock == 1 && hero.agility == 4) {
+        if (knightBlock == 1 && hero.creatureIsA.equalsIgnoreCase("Knight")) {
         System.out.println("|`-._/\\_.-`|");
         System.out.println("|    ||    |");
         System.out.println("|___o()o___|");
@@ -185,7 +185,7 @@ public class Strid {
 
 
         if (playerAtk > monsterDef) {
-            if (hero.agility == 7) {
+            if (hero.creatureIsA.equalsIgnoreCase("Thief")) {
                 double specialAttack = 0.25;
                 double specialChance = Math.random();
                 if (specialAttack >= specialChance) {
@@ -232,7 +232,7 @@ public class Strid {
 
         double chanceEscape = hero.agility * 0.1;
         double escChance = Math.random();
-        if (hero.agility == 5) {
+        if (hero.creatureIsA.equalsIgnoreCase("Wizard")) {
             chanceEscape = hero.agility * 0.16;
         System.out.println("  .   . ¨ '  ,  ,");
         System.out.println("       \\  |  //");
