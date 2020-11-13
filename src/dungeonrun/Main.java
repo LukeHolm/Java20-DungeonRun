@@ -18,9 +18,9 @@ public class Main {
     public static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-       
-       music.playMusic(gamemenumusic);
-        
+
+        music.playMusic(gamemenumusic);
+
         while (true) {
 
             mainGame();
@@ -63,7 +63,7 @@ public class Main {
                     break;
 
                 case 3:
-                   
+
                     System.out.println("Thank you for playing Dungeon Run!\nGoodbye!");
                     System.exit(0);
                     break;
@@ -150,15 +150,12 @@ public class Main {
         switch (menuChoice) {
             case 1:
                 music.playMusic(beepmenu);
-                
-                
                 System.out.println("\nEnter the name of your character");
                 characterName = scanner.nextLine();
 
                 System.out.println("\nYou have chosen the brave knight" + " " + characterName);
                 hero = new Knight(characterName);
                 // players.add(hero);  From the spec.: "Dungeon Run är ett textbaserat äventyrsspel för en spelare"
-
 
                 break;
             case 2:
