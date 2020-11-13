@@ -137,6 +137,15 @@ public class Strid {
         System.out.println("Monster attack ");
         System.out.println("..............");
         if (knightBlock == 1 && hero.agility == 4) {
+        System.out.println("|`-._/\\_.-`|");
+        System.out.println("|    ||    |");
+        System.out.println("|___o()o___|");
+        System.out.println("|__((<>))__|");
+        System.out.println("\\   o\\/o   /");
+        System.out.println(" \\   ||   /");
+        System.out.println("  \\  ||  /");
+        System.out.println("   '.||.'");
+        System.out.println("     ``");
             System.out.println("\n" + BR_BLUE + hero.playersName + " the Knight blocks the first attack of the fight!\n" + RESET);
 
         } else {
