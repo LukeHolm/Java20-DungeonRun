@@ -1,6 +1,7 @@
 package dungeonrun;
 
 import dungeonrun.Characters.Heroes;
+import static dungeonrun.Main.music;
 import dungeonrun.Monsters.Monster;
 import dungeonrun.Treasures.Treasure;
 
@@ -124,6 +125,9 @@ public class GameLoop {
                     if (hero.mapPosX < map.rooms[0].length - 1) {
                         // Go east
                         hero.mapPosX++;
+                         
+                          
+                         
                     } else {
                         System.out.println("There's no door in that direction, you are staying put");
                     }

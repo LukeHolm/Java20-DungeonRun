@@ -11,14 +11,14 @@ import java.util.Scanner;
 
 public class Main {
 
-    //static String gamemenumusic = "rainthunder.wav";
-    //static String dungeonmusic = "dungeonmusic.wav";
-    //static MusicStuff music = new MusicStuff();
+    static String gamemenumusic = "rainthunder.wav";
+    static String dungeonmusic = "dungeonmusic.wav";
+    static MusicStuff music = new MusicStuff();
     public static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
        
-       // music.playMusic(gamemenumusic);
+       // music.playMusic(gamemenumusic); // gamemenumusic
         
         while (true) {
 
@@ -142,6 +142,9 @@ public class Main {
         scanner.nextLine();
         switch (menuChoice) {
             case 1:
+                // music.stopMusic(); // Stop gamemenumusic
+               // music.playMusic(dungeonmusic); // play dungeomusic
+               // music.playMusic(gamemenumusic); // play gamemenumusic
                 
                 
                 System.out.println("Enter the name of your character");
@@ -154,6 +157,10 @@ public class Main {
 
                 break;
             case 2:
+                // music.stopMusic(); // Stop gamemenumusic
+               // music.playMusic(dungeonmusic); // play dungeomusic
+               // music.playMusic(gamemenumusic); // play gamemenumusic
+                
                 System.out.println("\nEnter the name of your character");
                 characterName = scanner.nextLine();
 
@@ -163,6 +170,9 @@ public class Main {
 
                 break;
             case 3:
+                 // music.stopMusic(); // Stop gamemenumusic
+               // music.playMusic(dungeonmusic); // play dungeomusic
+               // music.playMusic(gamemenumusic); // play gamemenumusic
                 System.out.println("Enter the name of your character");
                 characterName = scanner.nextLine();
 
@@ -187,6 +197,7 @@ public class Main {
                 int dir = input.nextInt();
                 switch (dir) {
                     case 1:
+                       
                         System.out.println("You chose the upper left corner.");
                         hero.mapPosX = 0;
                         hero.mapPosY = 0;
