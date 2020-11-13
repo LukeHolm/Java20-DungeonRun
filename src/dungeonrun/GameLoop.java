@@ -12,6 +12,7 @@ import java.util.Set;
 
 public class GameLoop {
     static String footstep = "footdoor.wav";
+    static String win = "Victory.wav";
     static MusicStuff music = new MusicStuff();
     public static final String RESET = "\u001b[0m";
     public static final String BR_BLACK = "\u001b[30;1m";
@@ -140,6 +141,10 @@ public class GameLoop {
 
                 case NAVIG_MENU_EXIT:
                     // handled below
+                    music.playMusic(win);
+                    System.out.println("--------------EXITING--------------");
+                    System.out.println("    You have survived this time...");
+                    System.out.println("--------------EXITING--------------");
                     break;
                 default: {
                     System.out.println(BR_RED + "Unexpected error, should never end up here after the shape checks, missing case in switch?" + RESET);

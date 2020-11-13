@@ -155,7 +155,7 @@ public class Main {
         switch (menuChoice) {
             case 1:
                 // music.stopMusic(); // Stop gamemenumusic
-                // music.playMusic(dungeonmusic); // play dungeomusic
+                //music.playMusic(dungeonmusic); // play dungeomusic
                 // music.playMusic(gamemenumusic); // play gamemenumusic
 
                 music.playMusic(beepmenu);
@@ -169,6 +169,7 @@ public class Main {
 
                 break;
             case 2:
+                
                 // music.stopMusic(); // Stop gamemenumusic
                 // music.playMusic(dungeonmusic); // play dungeomusic
                 // music.playMusic(gamemenumusic); // play gamemenumusic

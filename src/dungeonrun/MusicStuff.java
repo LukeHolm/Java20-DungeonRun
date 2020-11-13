@@ -36,7 +36,8 @@ public class MusicStuff {
 
     void stopMusic() {
         clip.stop();
-
+       
+        
     }
 
 }
