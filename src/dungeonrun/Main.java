@@ -22,7 +22,7 @@ public class Main {
     public static void main(String[] args) {
 
         // music.playMusic(gamemenumusic); // gamemenumusic
-        music.playMusic(gamemenumusic);
+       // music.playMusic(gamemenumusic);
 
         while (true) {
 
@@ -50,7 +50,7 @@ public class Main {
             switch (choice) {
                 case 1:
 
-                    music.playMusic(beepmenu);
+                  //  music.playMusic(beepmenu);
 
                     theHero = getPlayer();
                     theMap = chooseMap(theHero);
@@ -96,19 +96,19 @@ public class Main {
                 switch (size) {
                     case 1:
 
-                        music.playMusic(beepmenu);
+                      //  music.playMusic(beepmenu);
                         theMap = new Map(4, 4, hero);
                         runtime = false;
                         break;
 
                     case 2:
-                        music.playMusic(beepmenu);
+                      //  music.playMusic(beepmenu);
                         theMap = new Map(5, 5, hero);
                         runtime = false;
                         break;
 
                     case 3:
-                        music.playMusic(beepmenu);
+                     //   music.playMusic(beepmenu);
                         theMap = new Map(8, 8, hero);
                         runtime = false;
                         break;
@@ -158,12 +158,12 @@ public class Main {
                 //music.playMusic(dungeonmusic); // play dungeomusic
                 // music.playMusic(gamemenumusic); // play gamemenumusic
 
-                music.playMusic(beepmenu);
+               // music.playMusic(beepmenu);
                 System.out.println("Enter the name of your character");
                 characterName = scanner.nextLine();
 
                 System.out.println("\nYou have chosen the brave knight" + " " + characterName);
-                music.playMusic(knightpicked);
+               // music.playMusic(knightpicked);
                 hero = new Knight(characterName);
                 // players.add(hero);  From the spec.: "Dungeon Run är ett textbaserat äventyrsspel för en spelare"
 
@@ -174,17 +174,17 @@ public class Main {
                 // music.playMusic(dungeonmusic); // play dungeomusic
                 // music.playMusic(gamemenumusic); // play gamemenumusic
 
-                music.playMusic(beepmenu);
+                //music.playMusic(beepmenu);
                 System.out.println("\nEnter the name of your character");
                 characterName = scanner.nextLine();
                 System.out.println("\nYou have chosen the intelligent wizard" + " " + characterName);
-                music.playMusic(wizardpicked);
+               // music.playMusic(wizardpicked);
                 hero = new Wizard(characterName);
                 // players.add(hero);  From the spec.: "Dungeon Run är ett textbaserat äventyrsspel för en spelare"
 
                 break;
             case 3:
-                music.playMusic(beepmenu);
+                //music.playMusic(beepmenu);
                 // music.stopMusic(); // Stop gamemenumusic
                 // music.playMusic(dungeonmusic); // play dungeomusic
                 // music.playMusic(gamemenumusic); // play gamemenumusic

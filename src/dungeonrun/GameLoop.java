@@ -98,7 +98,7 @@ public class GameLoop {
 
             switch (navigMenuChoice) {
                 case NAVIG_MENU_NORTH:
-                    music.playMusic(footstep);
+                  //  music.playMusic(footstep);
 
                     // System.out.println("hero.mapPosX = " + hero.mapPosX + "hero.mapPosY = " + hero.mapPosY + "map.rooms.length" + map.rooms.length);
                     if (hero.mapPosY > 0) {
@@ -110,7 +110,7 @@ public class GameLoop {
                     break;
 
                 case NAVIG_MENU_SOUTH:
-                    music.playMusic(footstep);
+                 //   music.playMusic(footstep);
                     if (hero.mapPosY < map.rooms.length - 1) {
                         hero.mapPosY++;
                     } else {
@@ -118,7 +118,7 @@ public class GameLoop {
                     }
                     break;
                 case NAVIG_MENU_WEST:
-                    music.playMusic(footstep);
+                 //   music.playMusic(footstep);
                     if (hero.mapPosX > 0) {
                         // Go east
                         hero.mapPosX--;
@@ -127,7 +127,7 @@ public class GameLoop {
                     }
                     break;
                 case NAVIG_MENU_EAST:
-                    music.playMusic(footstep);
+                  //  music.playMusic(footstep);
                     if (hero.mapPosX < map.rooms[0].length - 1) {
                         // Go east
                         hero.mapPosX++;
@@ -141,7 +141,7 @@ public class GameLoop {
 
                 case NAVIG_MENU_EXIT:
                     // handled below
-                    music.playMusic(win);
+                   // music.playMusic(win);
                     System.out.println("--------------EXITING--------------");
                     System.out.println("    You have survived this time...");
                     System.out.println("--------------EXITING--------------");
