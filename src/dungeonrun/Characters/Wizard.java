@@ -1,11 +1,10 @@
 package dungeonrun.Characters;
 
-import dungeonrun.Monsters.Creatures;
-
 public class Wizard extends Heroes {
 
     public Wizard(String playersName) {
         super(playersName);
+        creatureIsA = "Wizard";
         initiative = 6;
         toughness = 4;
         attack = 9;
