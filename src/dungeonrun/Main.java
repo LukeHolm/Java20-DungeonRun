@@ -16,14 +16,14 @@ import java.util.logging.Logger;
 
 public class Main {
 
-    //static String gamemenumusic = "rainthunder.wav";
-    //static String dungeonmusic = "dungeonmusic.wav";
-    //static MusicStuff music = new MusicStuff();
+    static String gamemenumusic = "rainthunder.wav";
+    static String dungeonmusic = "dungeonmusic.wav";
+    static MusicStuff music = new MusicStuff();
     public static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
        
-       // music.playMusic(gamemenumusic);
+       // music.playMusic(gamemenumusic); // gamemenumusic
         
         while (true) {
             mainGame();
@@ -146,6 +146,9 @@ public class Main {
             case 1:
                 System.out.println("What is your knights name?");
                 characterName = newHero();
+                // music.stopMusic(); // Stop gamemenumusic
+               // music.playMusic(dungeonmusic); // play dungeomusic
+               // music.playMusic(gamemenumusic); // play gamemenumusic
                 hero = new Knight(characterName);
                 saveHero(characterName, hero);
                 System.out.println("\nYou have chosen " + characterName + " the brave knight.");
@@ -180,6 +183,7 @@ public class Main {
                 int dir = input.nextInt();
                 switch (dir) {
                     case 1:
+                       
                         System.out.println("You chose the upper left corner.");
                         hero.mapPosX = 0;
                         hero.mapPosY = 0;
