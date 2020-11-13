@@ -1,9 +1,6 @@
 package dungeonrun.Characters;
 
-import dungeonrun.Map;
-import dungeonrun.Strid;
 import dungeonrun.Monsters.Creatures;
-import dungeonrun.Monsters.Monster;
 
 public class Heroes extends Creatures {
 
@@ -12,11 +9,11 @@ public class Heroes extends Creatures {
     public int mapPosX;
     public int mapPosY;
     public int playedGames;
-    public int totalValuePointsEver;
-    public int killedGiantSpidersEver;
-    public int killedSkeletonsEver;
-    public int killedOrcsEver;
-    public int killedTrollsEver;
+    public int totalGold;
+    public int giantSpidersKilled;
+    public int skeletonsKilled;
+    public int orcsKilled;
+    public int trollsKilled;
 
     public Heroes(String playersName) {
         this.playersName = playersName;
@@ -25,11 +22,11 @@ public class Heroes extends Creatures {
         mapPosX = 0;
         mapPosY = 0;
         playedGames = 0;
-        totalValuePointsEver = 0;
-        killedGiantSpidersEver = 0;
-        killedSkeletonsEver = 0;
-        killedOrcsEver = 0;
-        killedTrollsEver = 0;
+        totalGold = 0;
+        giantSpidersKilled = 0;
+        skeletonsKilled = 0;
+        orcsKilled = 0;
+        trollsKilled = 0;
     }
 
     public String getPlayersName() {
@@ -72,44 +69,44 @@ public class Heroes extends Creatures {
         this.playedGames = playedGames;
     }
 
-    public int getTotalValuePointsEver() {
-        return totalValuePointsEver;
+    public int getTotalGold() {
+        return totalGold;
     }
 
-    public void setTotalValuePointsEver(int totalValuePointsEver) {
-        this.totalValuePointsEver = totalValuePointsEver;
+    public void setTotalGold(int totalGold) {
+        this.totalGold = totalGold;
     }
 
-    public int getKilledGiantSpidersEver() {
-        return killedGiantSpidersEver;
+    public int getGiantSpidersKilled() {
+        return giantSpidersKilled;
     }
 
-    public void setKilledGiantSpidersEver(int killedGiantSpidersEver) {
-        this.killedGiantSpidersEver = killedGiantSpidersEver;
+    public void setGiantSpidersKilled(int giantSpidersKilled) {
+        this.giantSpidersKilled = giantSpidersKilled;
     }
 
-    public int getKilledSkeletonsEver() {
-        return killedSkeletonsEver;
+    public int getSkeletonsKilled() {
+        return skeletonsKilled;
     }
 
-    public void setKilledSkeletonsEver(int killedSkeletonsEver) {
-        this.killedSkeletonsEver = killedSkeletonsEver;
+    public void setSkeletonsKilled(int skeletonsKilled) {
+        this.skeletonsKilled = skeletonsKilled;
     }
 
-    public int getKilledOrcsEver() {
-        return killedOrcsEver;
+    public int getOrcsKilled() {
+        return orcsKilled;
     }
 
-    public void setKilledOrcsEver(int killedOrcsEver) {
-        this.killedOrcsEver = killedOrcsEver;
+    public void setOrcsKilled(int orcsKilled) {
+        this.orcsKilled = orcsKilled;
     }
 
-    public int getKilledTrollsEver() {
-        return killedTrollsEver;
+    public int getTrollsKilled() {
+        return trollsKilled;
     }
 
-    public void setKilledTrollsEver(int killedTrollsEver) {
-        this.killedTrollsEver = killedTrollsEver;
+    public void setTrollsKilled(int trollsKilled) {
+        this.trollsKilled = trollsKilled;
     }
 
     /* public void fightMonsters(Map map) {
