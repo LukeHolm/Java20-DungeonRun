@@ -200,6 +200,7 @@ public class GameLoop {
         else{
             System.out.println("The monsters will keep the treasures in the room...");
         }
+        Strid.tryLoot=true;
         System.out.println("You have a total of " + hero.highScore + " gold");
     }
 
