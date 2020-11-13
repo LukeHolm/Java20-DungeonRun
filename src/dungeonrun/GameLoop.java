@@ -195,7 +195,7 @@ public class GameLoop {
         else{
             System.out.println("The monsters keep the treasures in this room...");
         }
-      Strid.tryLoot=false;
+      Strid.tryLoot=true;
              // Removing all the Treasures
             System.out.println("You have a total of " + hero.highScore + " gold");
 
