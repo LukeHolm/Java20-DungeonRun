@@ -23,21 +23,31 @@ public class Skeleton extends Monster {
     public String[] displayStrings() {
     	
         String[] ascii = {
-        		"      .-.		",
-        		"     (o.o)		",
-        		"      |=|		",
-        		"     __|__		",
-        		"   //.=|=.\\\\	",
-        		"  // .=|=. \\\\",
-        		"  \\\\ .=|=. //",
-        		"   \\\\(_=_)//	",
-        		"    (:| |:)	",
-        		"     || ||		",
-        		"     () ()		",
-        		"     || ||		",
-        		"    ==' '==    " };
+        		"               ",
+        		"      .-.      ",
+        		"     (o.o)     ",
+        		"      |=|      ",
+        		"     __|__     ",
+        		"   //.=|=.££   ",
+        		"  // .=|=. ££  ",
+        		"  ££ .=|=. //  ",
+        		"   ££(_=_)//   ",
+        		"    (:| |:)    ",
+        		"     || ||     ",
+        		"     () ()     ",
+        		"     || ||     ",
+        		"    ==' '==    ",
+        		"               ",
+        		"   "};
         
-        return ascii;
+        String[] fixedAscii = ascii;
+
+        // Replace "£" with "\"
+        for (int i = 0; i < ascii.length; i++) {
+            fixedAscii[i] = ascii[i].replace("£", "\\");
+        }
+
+        return fixedAscii;
     }
     
     

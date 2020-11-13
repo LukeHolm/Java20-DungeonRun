@@ -25,17 +25,29 @@ public class Knight extends Heroes {
     public String[] displayStrings() {
 
         String[] ascii = {
-        	 "\n       !		",
-        	 "\n      .-.		",
-        	 "\n    __|=|__	",
-        	 "\n   (_/`-`\\_)	",
-        	 "\n   //\\___/\\\\	",
-        	 "\n   <>/   \\<>	",
-        	 "\n    \\|_._|/	",
-        	 "\n     <_I_>	",
-        	 "\n      |||		",
-        	 "\n     /_|_\\	"};
-      
-        return ascii;
+        	    "|£             //             ",
+        		" ££           _!_             ",
+        		"  ££         /___£            ",
+        		"   ££        [+++]            ",
+        		"    ££    _ _£^^^/_ _         ",
+        		"     ££/ (    '-'  ( )        ",
+        		"     /( £/ | {&}   /£ £       ",
+        		"       £  / £     / _> )      ", 
+        		"        ''`  >:::;-'`'''-.    ",
+        		"            /:::/         £   ",
+        		"           /  /||   {&}   |   ",
+        		"          (  / (£         /   ",
+        		"          / /   £'-.___.-'    ",
+        		"        _/ /     £ £          ",
+        		"       /___|    /___|         "};
+    
+        String[] fixedAscii = ascii;
+
+        // Replace "£" with "\"
+        for (int i = 0; i < ascii.length; i++) {
+            fixedAscii[i] = ascii[i].replace("£", "\\");
+        }
+
+        return fixedAscii;
     }
 }

@@ -125,8 +125,9 @@ public class Main {
 
         Heroes hero = null;
         String characterName;
-
         System.out.println("\nPlease choose a character\n");
+        System.out.println("");
+        drawCharacters();
         System.out.println("-----------------------------------\n ");
         System.out.println("\033[0;1m 1. Knight\033[0m\n Initiativ: 5\n Tålighet: 9\n Attack 6\n Smidighet: 4\n ");
         System.out.println("-----------------------------------\n");
@@ -134,6 +135,7 @@ public class Main {
         System.out.println("-----------------------------------\n");
         System.out.println("\033[0;1m 3. Thief\033[0m\n Initiativ: 7\n Tålighet: 5\n Attack 5\n Smidighet: 7\n");
         System.out.println("-----------------------------------\n");
+        
 
         int menuChoice = scanner.nextInt();
         scanner.nextLine();
@@ -146,7 +148,6 @@ public class Main {
                 System.out.println("\nYou have chosen the brave knight" + " " + characterName);
                 //  playMusic("Music\\\\Knightpicked.wav");
                 hero = new Knight(characterName);
-                System.out.println(Arrays.toString(hero.displayStrings()));
                 // players.add(hero);  From the spec.: "Dungeon Run är ett textbaserat äventyrsspel för en spelare"
 
                 break;
@@ -158,7 +159,6 @@ public class Main {
                 System.out.println("\nYou have chosen the intelligent wizard" + " " + characterName);
                 // playMusic("Music\\\\Wizardpicked.wav");
                 hero = new Wizard(characterName);
-                System.out.println(Arrays.toString(hero.displayStrings()));
                 // players.add(hero);  From the spec.: "Dungeon Run är ett textbaserat äventyrsspel för en spelare"
 
                 break;
@@ -169,7 +169,6 @@ public class Main {
 
                 System.out.println("\nYou have chosen the cunning thief" + " " + characterName);
                 hero = new Thief(characterName);
-                System.out.println(Arrays.toString(hero.displayStrings()));
                 // players.add(hero);  From the spec.: "Dungeon Run är ett textbaserat äventyrsspel för en spelare"
 
                 break;
@@ -223,4 +222,53 @@ public class Main {
         }
         return 0;
     }
+    
+    public static void drawCharacters() {
+        Heroes knight = new Knight("Kalle");
+        Heroes wizard = new Wizard("Wille");
+        Heroes thief = new Thief("Tony");
+
+        // Want to print the number of rows in the tallest figure
+        int noOfRows = Integer.max(knight.displayHeight(knight), Integer.max(wizard.displayHeight(wizard), thief.displayHeight(thief)));
+        //System.out.println("noOfRows " + noOfRows);
+
+        // Need to write the same number of charcters for each knight line, so the next figure will be straight 
+        int widthOfFigure = knight.displayWidth(knight);
+
+        String format;
+
+        // Get the ASCII looks of the Character
+        String[] knightDisplayStrings = knight.displayStrings();
+
+        int knightWidth = knight.displayWidth(knight);
+        String figureRowString;
+        
+        // Get the ASCII looks of the Wizard
+        String[] mirroredWizardDisplayStrings = wizard.mirroredDisplayStrings(wizard);
+        
+        // Get the ASCII looks of the Character
+        String[] thiefDisplayStrings = thief.displayStrings();
+
+        for (int row = 0; row < noOfRows; row++) {
+            if (row < knight.displayHeight(knight)) {
+                figureRowString = knightDisplayStrings[row];
+            } else {
+                figureRowString = "";
+            }
+
+            //Want to print with the same width, using printf with format, example printf("%-3s", str) for printing  3 chars 
+            format = "%-" + knightWidth + "s";
+            System.out.printf(format, figureRowString);
+
+            if (row < wizard.displayWidth(wizard)) {
+                System.out.print(" : " + mirroredWizardDisplayStrings[row]);
+                System.out.print(" : " + thiefDisplayStrings[row]);
+            }
+            
+            System.out.println("");
+            
+        }
+    }
+    
+    
 }

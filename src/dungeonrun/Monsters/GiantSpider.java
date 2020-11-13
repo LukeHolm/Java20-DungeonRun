@@ -23,15 +23,27 @@ public class GiantSpider extends Monster {
     public String[] displayStrings() {
     	
         String[] ascii = {
-	    "      /      \\   	",   
-	    "   \\  \\  ,,  /  /  	",
-	    "    '-.`\\()/`.-'  	",
-	    "   .--_'(  )'_--. 	",
-	    "  / /` /`\"\"`\\ `\\ \\ ",
-	    "   |  |  ><  |  |   	",
-	    "   \\  \\      /  /   ",
-	    "       '.__.'   		"};
+        "                     ",
+        "                     ",
+        "       |    |        ",		
+	    "      /      £       ",   
+	    "   £  £  ,,  /  /    ",
+	    "    '-.`£()/`.-'     ",
+	    "   .--_'(  )'_--. 	  ",
+	    "  / /` /`''`£ `£ £   ",
+	    "   |  |  ><  |  |    ",
+	    "   £  £      /  /    ",
+	    "       '.__.'        ",
+	    "                     ",
+	    "  "};
         
-        return ascii;
+        String[] fixedAscii = ascii;
+
+        // Replace "£" with "\"
+        for (int i = 0; i < ascii.length; i++) {
+            fixedAscii[i] = ascii[i].replace("£", "\\");
+        }
+
+        return fixedAscii;
     }
 }
