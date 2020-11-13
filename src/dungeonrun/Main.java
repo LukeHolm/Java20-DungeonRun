@@ -4,7 +4,7 @@ import dungeonrun.Characters.Heroes;
 import dungeonrun.Characters.Knight;
 import dungeonrun.Characters.Thief;
 import dungeonrun.Characters.Wizard;
-import static dungeonrun.PlayMusic.playMusic;
+
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -14,9 +14,13 @@ public class Main {
     public static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-
+       //String filepath = "rainthunder.wav";
+       // MusicStuff a = new MusicStuff();   //musikgrejer test
+       // a.playMusic(filepath);
+        
 
         while (true) {
+
             mainGame();
 
         }
@@ -32,35 +36,36 @@ public class Main {
         String characterName;
         int Hero;
         try {
-        System.out.println("\n *** Welcome to Dungeon Run! *** \n");
-        System.out.println("1. New game");
-        System.out.println("2. Load existing character");
-        System.out.println("3. Exit");
-        choice = scanner.nextInt();
+            System.out.println("\n *** Welcome to Dungeon Run! *** \n");
+            System.out.println("1. New game");
+            System.out.println("2. Load existing character");
+            System.out.println("3. Exit");
+            choice = scanner.nextInt();
 
-        switch (choice) {
-            case 1:
-                theHero = getPlayer();
-                theMap = chooseMap(theHero);
-                // TODO: choose starting point
-                // Start the main gaming loop:
-                GameLoop.playTheGame(theMap, theHero);
-                break;
-            case 2:
-  /*              for (Heroes character : players) {
+            switch (choice) {
+                case 1:
+                    
+                    theHero = getPlayer();
+                    theMap = chooseMap(theHero);
+                    // TODO: choose starting point
+                    // Start the main gaming loop:
+                    GameLoop.playTheGame(theMap, theHero);
+                    break;
+                case 2:
+                    /*              for (Heroes character : players) {
                     System.out.println(character);
                 }*/
-                System.out.println("TODO: Load character... ");
-                break;
+                    System.out.println("TODO: Load character... ");
+                    break;
 
-            case 3:
-                System.out.println("Thank you for playing Dungeon Run!\nGoodbye!");
-                System.exit(0);
-                break;
+                case 3:
+                    System.out.println("Thank you for playing Dungeon Run!\nGoodbye!");
+                    System.exit(0);
+                    break;
 
-            default:
-                System.out.println("Invalid input, please try again.");
-        }
+                default:
+                    System.out.println("Invalid input, please try again.");
+            }
         } catch (InputMismatchException e) {
             //Any corrupted or invalid input results in a exception. Inform user that the input is invalid
             System.out.print("Invalid input. Must be integers...\n");
@@ -69,7 +74,7 @@ public class Main {
 
         }
     }
-    
+
     public static Map chooseMap(Heroes hero) {
         Scanner input = new Scanner(System.in);
         boolean runtime = true;
@@ -78,20 +83,20 @@ public class Main {
             try {
                 System.out.println("Choose mapsize\n1: Small\n2: Medium\n3: Big");
                 int size = input.nextInt();
-         
+
                 switch (size) {
                     case 1:
-                        theMap = new Map(4,4,hero);
+                        theMap = new Map(4, 4, hero);
                         runtime = false;
                         break;
 
                     case 2:
-                        theMap = new Map(5,5,hero);
+                        theMap = new Map(5, 5, hero);
                         runtime = false;
                         break;
 
                     case 3:
-                        theMap = new Map(8,8,hero);
+                        theMap = new Map(8, 8, hero);
                         runtime = false;
                         break;
 
@@ -100,7 +105,6 @@ public class Main {
                         break;
 
                 }
-
 
             } catch (InputMismatchException s) {
                 System.out.println("incorrect input");
@@ -111,13 +115,13 @@ public class Main {
         }
         System.out.println("The created map looks like this:");
         theMap.draw(hero);
-        
+
         System.out.println("Time to start your adventure!");
         return theMap;
     }
 
     public static Heroes getPlayer() {
-        
+
         Heroes hero = null;
         String characterName;
 
@@ -137,6 +141,7 @@ public class Main {
         scanner.nextLine();
         switch (menuChoice) {
             case 1:
+
                 System.out.println("Enter the name of your character");
                 characterName = scanner.nextLine();
 
@@ -153,7 +158,7 @@ public class Main {
                 System.out.println("\nYou have chosen the intelligent wizard" + " " + characterName);
                 hero = new Wizard(characterName);
                 // players.add(hero);  From the spec.: "Dungeon Run är ett textbaserat äventyrsspel för en spelare"
- 
+
                 break;
             case 3:
                 System.out.println("Enter the name of your character");
@@ -162,7 +167,7 @@ public class Main {
                 System.out.println("\nYou have chosen the cunning thief" + " " + characterName);
                 hero = new Thief(characterName);
                 // players.add(hero);  From the spec.: "Dungeon Run är ett textbaserat äventyrsspel för en spelare"
- 
+
                 break;
             default:
                 System.out.println("Invalid input, please try again.");
@@ -170,8 +175,8 @@ public class Main {
 
         return hero;
     }
-    
-    public int chooseStart(int ul, int ur, Heroes hero){
+
+    public int chooseStart(int ul, int ur, Heroes hero) {
         Scanner input = new Scanner(System.in);
         boolean runtime = true;
         while (runtime) {
@@ -189,7 +194,7 @@ public class Main {
                         System.out.println("You chose the upper right corner.");
                         hero.mapPosX = 0;
                         hero.mapPosY = 0;
-                        
+
                         break;
 
                     case 3:
