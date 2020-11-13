@@ -189,8 +189,9 @@ public class GameLoop {
 
                 System.out.println("You pick up the " + treasure.name + ". It's worth " + treasure.value + " gold");
                 hero.highScore += treasure.value;
-                map.rooms[hero.mapPosX][hero.mapPosY].treasures.clear();
+
             }
+            map.rooms[hero.mapPosX][hero.mapPosY].treasures.clear();
         }
         else{
             System.out.println("The monsters keep the treasures in this room...");
