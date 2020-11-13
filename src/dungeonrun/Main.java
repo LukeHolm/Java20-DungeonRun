@@ -11,14 +11,15 @@ import java.util.Scanner;
 
 public class Main {
 
-    //static String gamemenumusic = "rainthunder.wav";
-    //static String dungeonmusic = "dungeonmusic.wav";
-    //static MusicStuff music = new MusicStuff();
+    static String gamemenumusic = "rainthunder.wav";
+    static String dungeonmusic = "dungeonmusic.wav";
+    static String beepmenu = "beep.wav";
+    static MusicStuff music = new MusicStuff();
     public static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
        
-       // music.playMusic(gamemenumusic);
+       music.playMusic(gamemenumusic);
         
         while (true) {
 
@@ -45,6 +46,7 @@ public class Main {
 
             switch (choice) {
                 case 1:
+                    music.playMusic(beepmenu);
 
                     theHero = getPlayer();
                     theMap = chooseMap(theHero);
@@ -53,6 +55,7 @@ public class Main {
                     GameLoop.playTheGame(theMap, theHero);
                     break;
                 case 2:
+                    music.playMusic(beepmenu);
                     /*              for (Heroes character : players) {
                     System.out.println(character);
                 }*/
@@ -60,6 +63,7 @@ public class Main {
                     break;
 
                 case 3:
+                   
                     System.out.println("Thank you for playing Dungeon Run!\nGoodbye!");
                     System.exit(0);
                     break;
@@ -82,21 +86,24 @@ public class Main {
         Map theMap = null;
         while (runtime) {
             try {
-                System.out.println("Choose mapsize\n1: Small\n2: Medium\n3: Big");
+                System.out.println("\nChoose mapsize\n1: Small\n2: Medium\n3: Big");
                 int size = input.nextInt();
 
                 switch (size) {
                     case 1:
+                        music.playMusic(beepmenu);
                         theMap = new Map(4, 4, hero);
                         runtime = false;
                         break;
 
                     case 2:
+                        music.playMusic(beepmenu);
                         theMap = new Map(5, 5, hero);
                         runtime = false;
                         break;
 
                     case 3:
+                        music.playMusic(beepmenu);
                         theMap = new Map(8, 8, hero);
                         runtime = false;
                         break;
@@ -142,9 +149,10 @@ public class Main {
         scanner.nextLine();
         switch (menuChoice) {
             case 1:
+                music.playMusic(beepmenu);
                 
                 
-                System.out.println("Enter the name of your character");
+                System.out.println("\nEnter the name of your character");
                 characterName = scanner.nextLine();
 
                 System.out.println("\nYou have chosen the brave knight" + " " + characterName);
@@ -154,6 +162,7 @@ public class Main {
 
                 break;
             case 2:
+                music.playMusic(beepmenu);
                 System.out.println("\nEnter the name of your character");
                 characterName = scanner.nextLine();
 
@@ -163,7 +172,8 @@ public class Main {
 
                 break;
             case 3:
-                System.out.println("Enter the name of your character");
+                music.playMusic(beepmenu);
+                System.out.println("\nEnter the name of your character");
                 characterName = scanner.nextLine();
 
                 System.out.println("\nYou have chosen the cunning thief" + " " + characterName);
