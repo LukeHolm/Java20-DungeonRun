@@ -16,50 +16,27 @@ import javax.sound.sampled.Clip;
  */
 public class MusicStuff {
 
+    private Clip clip;
+
     void playMusic(String musicLocation) {
 
         try {
             File musicPath = new File(musicLocation);
-            
-            if(musicPath.exists()){
-                AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
-                Clip clip = AudioSystem.getClip();
-                clip.open(audioInput);
-                clip.start();
-                
-                
-            }
-            else{
-                System.out.println("Can't find file!");
-            }
-        } 
-        catch (Exception e) {
+
+            AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
+            clip = AudioSystem.getClip();
+            clip.open(audioInput);
+            clip.start();
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
-    
-     void stopMusic(String musicLocation) {
 
-        try {
-            File musicPath = new File(musicLocation);
-            
-            if(musicPath.exists()){
-                AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
-                Clip clip = AudioSystem.getClip();
-                clip.open(audioInput);
-                clip.stop();
-                clip.close();
-                
-                
-            }
-            else{
-                System.out.println("Can't find file!");
-            }
-        } 
-        catch (Exception e) {
-            e.printStackTrace();
-        }
+    void stopMusic() {
+        clip.stop();
 
     }
+
 }

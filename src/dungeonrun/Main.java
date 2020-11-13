@@ -16,14 +16,14 @@ import java.util.logging.Logger;
 
 public class Main {
 
-    //static String filepath = "rainthunder.wav";
-    //static String aa = "test1.wav";
-    //static MusicStuff a = new MusicStuff();
+    //static String gamemenumusic = "rainthunder.wav";
+    //static String dungeonmusic = "dungeonmusic.wav";
+    //static MusicStuff music = new MusicStuff();
     public static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        //musikgrejer test
-     //   a.playMusic(filepath);
+       
+       // music.playMusic(gamemenumusic);
         
         while (true) {
             mainGame();
