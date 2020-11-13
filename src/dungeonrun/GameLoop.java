@@ -183,18 +183,22 @@ public class GameLoop {
         } else {
             System.out.println("In the room you find " + treasureStr);
         }
-
-        if (treasureStr.length() >= 0) {
+        if(Strid.tryLoot) {
             // Picking up the Treasures
             for (Treasure treasure : map.rooms[hero.mapPosX][hero.mapPosY].treasures) {
 
                 System.out.println("You pick up the " + treasure.name + ". It's worth " + treasure.value + " gold");
                 hero.highScore += treasure.value;
-
+                map.rooms[hero.mapPosX][hero.mapPosY].treasures.clear();
             }
-            map.rooms[hero.mapPosX][hero.mapPosY].treasures.clear(); // Removing all the Treasures
-            System.out.println("You have a total of " + hero.highScore + " gold");
         }
+        else{
+            System.out.println("The monsters keep the treasures in this room...");
+        }
+      Strid.tryLoot=false;
+             // Removing all the Treasures
+            System.out.println("You have a total of " + hero.highScore + " gold");
+
     }
 
     private static NavigMenuItem getNavigMenuChoice(String prompt, Map map, Heroes hero) {
