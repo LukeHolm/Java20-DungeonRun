@@ -254,7 +254,7 @@ public class Main {
             myWriter.write(Integer.toString(hero.trollsKilled) + "\n");
             myWriter.close();
         } catch (IOException e) {
-            System.out.println("Could not load hero properly.");
+            System.out.println("Could not save hero properly.");
         }
     }
 
