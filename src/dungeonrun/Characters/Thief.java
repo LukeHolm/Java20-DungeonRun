@@ -1,11 +1,10 @@
-package dungeonrun.Characters;
-
-import dungeonrun.Monsters.Creatures;
+package dungeonrun.Characters;;
 
 public class Thief extends Heroes {
 
     public Thief(String playersName) {
         super(playersName);
+        creatureIsA = "Thief";
         initiative = 7;
         toughness = 5;
         attack = 5;

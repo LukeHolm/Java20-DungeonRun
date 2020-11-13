@@ -188,7 +188,7 @@ public class GameLoop {
             for (Treasure treasure : map.rooms[hero.mapPosX][hero.mapPosY].treasures) {
 
                 System.out.println("You pick up the " + treasure.name + ". It's worth " + treasure.value + " gold");
-                hero.highScore += treasure.value;
+                hero.totalGold += treasure.value;
 
             }
             map.rooms[hero.mapPosX][hero.mapPosY].treasures.clear();
@@ -198,7 +198,7 @@ public class GameLoop {
         }
       Strid.tryLoot=true;
              // Removing all the Treasures
-            System.out.println("You have a total of " + hero.highScore + " gold");
+            System.out.println("You have a total of " + hero.totalGold + " gold");
 
     }
 

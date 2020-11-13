@@ -54,8 +54,10 @@ public class Main {
                     
                 case 2:
                     oldHero = listHeroes();
+                    if (oldHero != null){
                     theMap = chooseMap(oldHero);
                     GameLoop.playTheGame(theMap, oldHero);
+                    }
                     break;
 
                 case 3:
@@ -212,7 +214,8 @@ public class Main {
         }
         return 0;
     }
-        public static String newHero() {
+    
+    public static String newHero() {
         String characterName = null;
         boolean done = false;
         while (!done) {
@@ -348,9 +351,9 @@ public class Main {
             } else if (heroType.equals("Wizard")) {
                 oldHero = new Wizard(heroChoice);
             }
+            
             //Transferring stats from file into game:
             try {
-
                 oldHero.creatureIsA = (Files.readAllLines(Paths.get("Characters\\" + heroChoice)).get(0));
                 oldHero.initiative = (Integer.parseInt(Files.readAllLines(Paths.get("Characters\\" + heroChoice)).get(1)));
                 oldHero.toughness = (Integer.parseInt(Files.readAllLines(Paths.get("Characters\\" + heroChoice)).get(2)));
@@ -365,6 +368,7 @@ public class Main {
                 oldHero.orcsKilled = (Integer.parseInt(Files.readAllLines(Paths.get("Characters\\" + heroChoice)).get(11)));
                 oldHero.trollsKilled = (Integer.parseInt(Files.readAllLines(Paths.get("Characters\\" + heroChoice)).get(12)));
             } catch (IOException e) {
+                System.out.println("There was a problem loading the hero.");
             }
         }
         return oldHero;
