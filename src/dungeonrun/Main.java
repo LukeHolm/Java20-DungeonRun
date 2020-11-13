@@ -11,14 +11,15 @@ import java.util.Scanner;
 
 public class Main {
 
+    //static String filepath = "rainthunder.wav";
+    //static String aa = "test1.wav";
+    //static MusicStuff a = new MusicStuff();
     public static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-       //String filepath = "rainthunder.wav";
-       // MusicStuff a = new MusicStuff();   //musikgrejer test
-       // a.playMusic(filepath);
+        //musikgrejer test
+     //   a.playMusic(filepath);
         
-
         while (true) {
 
             mainGame();
@@ -44,7 +45,7 @@ public class Main {
 
             switch (choice) {
                 case 1:
-                    
+
                     theHero = getPlayer();
                     theMap = chooseMap(theHero);
                     // TODO: choose starting point
@@ -141,7 +142,7 @@ public class Main {
         scanner.nextLine();
         switch (menuChoice) {
             case 1:
-
+                //a.stopMusic(filepath);
                 System.out.println("Enter the name of your character");
                 characterName = scanner.nextLine();
 

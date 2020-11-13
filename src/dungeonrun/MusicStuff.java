@@ -38,4 +38,28 @@ public class MusicStuff {
         }
 
     }
+    
+     void stopMusic(String musicLocation) {
+
+        try {
+            File musicPath = new File(musicLocation);
+            
+            if(musicPath.exists()){
+                AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
+                Clip clip = AudioSystem.getClip();
+                clip.open(audioInput);
+                clip.stop();
+                clip.close();
+                
+                
+            }
+            else{
+                System.out.println("Can't find file!");
+            }
+        } 
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 }
