@@ -14,13 +14,14 @@ public class Main {
     static String gamemenumusic = "rainthunder.wav";
     static String dungeonmusic = "dungeonmusic.wav";
     static String beepmenu = "beep.wav";
-    static String knightpicked ="Knightpicked.wav";
-    static String wizardpicked ="Wizardpicked.wav";
+    static String knightpicked = "Knightpicked.wav";
+    static String wizardpicked = "Wizardpicked.wav";
     static MusicStuff music = new MusicStuff();
     public static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
 
+        // music.playMusic(gamemenumusic); // gamemenumusic
         music.playMusic(gamemenumusic);
 
         while (true) {
@@ -48,9 +49,9 @@ public class Main {
 
             switch (choice) {
                 case 1:
-                    
+
                     music.playMusic(beepmenu);
-                    
+
                     theHero = getPlayer();
                     theMap = chooseMap(theHero);
                     // TODO: choose starting point
@@ -94,7 +95,7 @@ public class Main {
 
                 switch (size) {
                     case 1:
-                        
+
                         music.playMusic(beepmenu);
                         theMap = new Map(4, 4, hero);
                         runtime = false;
@@ -153,9 +154,14 @@ public class Main {
         scanner.nextLine();
         switch (menuChoice) {
             case 1:
+                // music.stopMusic(); // Stop gamemenumusic
+                // music.playMusic(dungeonmusic); // play dungeomusic
+                // music.playMusic(gamemenumusic); // play gamemenumusic
+
                 music.playMusic(beepmenu);
-                System.out.println("\nEnter the name of your character");
-                characterName = scanner.nextLine();           
+                System.out.println("Enter the name of your character");
+                characterName = scanner.nextLine();
+
                 System.out.println("\nYou have chosen the brave knight" + " " + characterName);
                 music.playMusic(knightpicked);
                 hero = new Knight(characterName);
@@ -163,6 +169,10 @@ public class Main {
 
                 break;
             case 2:
+                // music.stopMusic(); // Stop gamemenumusic
+                // music.playMusic(dungeonmusic); // play dungeomusic
+                // music.playMusic(gamemenumusic); // play gamemenumusic
+
                 music.playMusic(beepmenu);
                 System.out.println("\nEnter the name of your character");
                 characterName = scanner.nextLine();
@@ -174,7 +184,10 @@ public class Main {
                 break;
             case 3:
                 music.playMusic(beepmenu);
-                System.out.println("\nEnter the name of your character");
+                // music.stopMusic(); // Stop gamemenumusic
+                // music.playMusic(dungeonmusic); // play dungeomusic
+                // music.playMusic(gamemenumusic); // play gamemenumusic
+                System.out.println("Enter the name of your character");
                 characterName = scanner.nextLine();
 
                 System.out.println("\nYou have chosen the cunning thief" + " " + characterName);
@@ -198,6 +211,7 @@ public class Main {
                 int dir = input.nextInt();
                 switch (dir) {
                     case 1:
+
                         System.out.println("You chose the upper left corner.");
                         hero.mapPosX = 0;
                         hero.mapPosY = 0;
