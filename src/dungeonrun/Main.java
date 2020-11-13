@@ -14,6 +14,8 @@ public class Main {
     static String gamemenumusic = "rainthunder.wav";
     static String dungeonmusic = "dungeonmusic.wav";
     static String beepmenu = "beep.wav";
+    static String knightpicked ="Knightpicked.wav";
+    static String wizardpicked ="Wizardpicked.wav";
     static MusicStuff music = new MusicStuff();
     public static Scanner scanner = new Scanner(System.in);
 
@@ -46,8 +48,9 @@ public class Main {
 
             switch (choice) {
                 case 1:
+                    
                     music.playMusic(beepmenu);
-
+                    
                     theHero = getPlayer();
                     theMap = chooseMap(theHero);
                     // TODO: choose starting point
@@ -91,6 +94,7 @@ public class Main {
 
                 switch (size) {
                     case 1:
+                        
                         music.playMusic(beepmenu);
                         theMap = new Map(4, 4, hero);
                         runtime = false;
@@ -151,9 +155,9 @@ public class Main {
             case 1:
                 music.playMusic(beepmenu);
                 System.out.println("\nEnter the name of your character");
-                characterName = scanner.nextLine();
-
+                characterName = scanner.nextLine();           
                 System.out.println("\nYou have chosen the brave knight" + " " + characterName);
+                music.playMusic(knightpicked);
                 hero = new Knight(characterName);
                 // players.add(hero);  From the spec.: "Dungeon Run är ett textbaserat äventyrsspel för en spelare"
 
@@ -162,8 +166,8 @@ public class Main {
                 music.playMusic(beepmenu);
                 System.out.println("\nEnter the name of your character");
                 characterName = scanner.nextLine();
-
                 System.out.println("\nYou have chosen the intelligent wizard" + " " + characterName);
+                music.playMusic(wizardpicked);
                 hero = new Wizard(characterName);
                 // players.add(hero);  From the spec.: "Dungeon Run är ett textbaserat äventyrsspel för en spelare"
 
