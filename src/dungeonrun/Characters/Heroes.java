@@ -14,6 +14,8 @@ public class Heroes extends Creatures {
     public int skeletonsKilled;
     public int orcsKilled;
     public int trollsKilled;
+    public int lastPosY;
+    public int lastPosX;
 
     public Heroes(String playersName) {
         this.playersName = playersName;

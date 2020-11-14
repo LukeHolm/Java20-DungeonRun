@@ -1,7 +1,10 @@
 package dungeonrun;
 
 import dungeonrun.Characters.Heroes;
+
+import static dungeonrun.Main.listHeroes;
 import static dungeonrun.Main.music;
+
 import dungeonrun.Monsters.Monster;
 import dungeonrun.Treasures.Treasure;
 
@@ -20,6 +23,8 @@ public class GameLoop {
     public static final String BR_BLUE = "\u001b[34;1m";
     public static final String BR_MAGENTA = "\u001b[35;1m";
     public static final String BR_CYAN = "\u001b[36;1m";
+
+
 
     private final static Scanner SCANNER = new Scanner(System.in);
 
@@ -57,7 +62,7 @@ public class GameLoop {
             return enabledMenyChoice;
         }
 
-        // Resets the manu choices for a normal room away from walls
+        // Resets the menu choices for a normal room away from walls
         public void resetMenyChoices() {
             for (NavigMenuItem value : NavigMenuItem.values()) {
                 // Enable all menu choices except the EXIT one
@@ -68,7 +73,7 @@ public class GameLoop {
         public NavigMenuItem getNavigMenuItem(char menuCh) {
             NavigMenuItem menuItem = null;
 
-            // Loop over all the meny choises, and return the right (first) item that is enabled and has the matching character
+            // Loop over all the menu choices, and return the right (first) item that is enabled and has the matching character
             for (NavigMenuItem value : NavigMenuItem.values()) {
                 if (value.isEnabledMenyChoice() && menuCh == value.getMenyChoiceChar()) {
                     menuItem = value;
@@ -93,7 +98,8 @@ public class GameLoop {
 
             navigMenuChoice = getNavigMenuChoice("What do you want to do: ", map, hero);
             found = false;
-
+            hero.lastPosY=hero.mapPosY;
+            hero.lastPosX=hero.mapPosX;
             switch (navigMenuChoice) {
                 case NAVIG_MENU_NORTH:
 
@@ -125,9 +131,8 @@ public class GameLoop {
                     if (hero.mapPosX < map.rooms[0].length - 1) {
                         // Go east
                         hero.mapPosX++;
-                         
-                          
-                         
+
+
                     } else {
                         System.out.println("There's no door in that direction, you are staying put");
                     }
@@ -153,7 +158,7 @@ public class GameLoop {
         } while (navigMenuChoice != NavigMenuItem.NAVIG_MENU_EXIT);
     }
 
-  private static void enteringRoom(Map map, Heroes hero) {
+    private static void enteringRoom(Map map, Heroes hero) {
 
         String monsterStr = "";
         String treasureStr = "";
@@ -187,7 +192,7 @@ public class GameLoop {
         } else {
             System.out.println("In the room you find " + treasureStr);
         }
-        if(Strid.tryLoot) {
+        if (Strid.tryLoot) {
             // Picking up the Treasures
             for (Treasure treasure : map.rooms[hero.mapPosX][hero.mapPosY].treasures) {
 
@@ -196,13 +201,17 @@ public class GameLoop {
 
             }
             map.rooms[hero.mapPosX][hero.mapPosY].treasures.clear();
-        }
-        else{
+        } else {
             System.out.println("The monsters keep the treasures in this room...");
+            //code to go back to last visited room should be here
+            map.rooms[hero.mapPosX][hero.mapPosY].setVisited(false);
+            hero.mapPosX=hero.lastPosX;
+            hero.mapPosY=hero.lastPosY;
+
         }
-      Strid.tryLoot=true;
-             // Removing all the Treasures
-            System.out.println("You have a total of " + hero.totalGold + " gold");
+        Strid.tryLoot = true;
+
+        System.out.println("You have a total of " + hero.totalGold + " gold");
 
     }
 
@@ -256,4 +265,6 @@ public class GameLoop {
 
         return userInputString;
     }
+
+
 }
