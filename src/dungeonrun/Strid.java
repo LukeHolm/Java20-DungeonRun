@@ -44,11 +44,13 @@ public class Strid {
             }
             x = y;
         }
-
+        System.out.println("Monsters turn order throws: " + orderList.toString());
+        System.out.println("Hero turn order throw: " + heroTurn);
         while (insideRoom) {
 
             try {
                 monsterObj = iniList.get(0);
+
 
                 System.out.println("\nEncounter against " + monsterObj.creatureIsA + " started\n");
                 if (heroTurn < orderList.get(0)) {
@@ -72,6 +74,7 @@ public class Strid {
                                 "[########[]_________________________________>\n" +
                                 "         \\>");
 
+                        orderList.remove(0);
 
                         iniList.remove(iniList.get(0));
                         System.out.println("|||||||||||||||||||||||");
