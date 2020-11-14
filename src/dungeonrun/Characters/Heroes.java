@@ -108,41 +108,41 @@ public class Heroes extends Creatures {
     public void setTrollsKilled(int trollsKilled) {
         this.trollsKilled = trollsKilled;
     }
-
-    /* public void fightMonsters(Map map) {
-        
-        // TODO: overide this nethod in the three Hero classes
-        // System.out.println("Code for Fighting monsters is not quite linked in yet, pretending a bit now...");
-        for (Monster monster : map.rooms[mapPosX][mapPosY].monsters) {
-            System.out.println("Fighting " + monster.getClass().getSimpleName() + "... and you won!");
-            // System.out.println("Press <enter> to continue");
-        }
-        System.out.println("Congratulations, you have defeated all monsters in this room!");
-        //map.rooms[mapPosX][mapPosY].monsters.clear();
-    }*/
     
     // Returning a String array, so characgters can be written row for row, with other figures further away on each row.
     public String[] displayStrings() {
-
+        // Characters like '\' and '" 'messes upp the line lengths, since you need to write \\ and \" to get them in a string. 
+        // Kan use '£' for '\' and '§' for '"' here, because of the replacement code below.
         String[] ascii = {
-            "         _______            ",
-            "        /       \\           ",
-            "       /         \\          ",
-            "       |  O    O  |         ",
-            "       \\         /          ", 
-            "        \\       /           ", 
-            "       /         \\          ", 
-            "      /   Just    \\         ", 
-            "     /  a silly    \\        ", 
-            "    / figure for    \\       ", 
-            "   /  test purposes, \\      ", 
+            "         §§§§§§§            ",
+            "        /       £           ",
+            "       /         £          ",
+            "       |    O    O|         ",
+            "       £       J /          ", // Row 5
+            "        £       /           ",
+            "       /         b          ",
+            "      /   Just    £         ",
+            "     /  a silly    b        ",
+            "    / figure for    £       ", // Row 10
+            "   /  test purposes, b      ",
             "  | will be overridden|     ",
             "  | in Knight, Wizard |     ",
             "  | and Thief.java    |     ",
-            "   |      ______     |      ",
-            "  __|     |    |    |__     ",
-            " (_________)  (________)    "};
-        
+            "   |      ______     |      ", // Row 15
+            "    >     |    |    <       ",
+            "    >     |    |    <       ",
+            "    (     |    |    )       ",
+            "     £    |    |   /        ",
+            "  ___>    |    |   <___     ", // Row 20
+            " d_________]  [________b    "};
+        //   1234567890123456789012345678
+        // Replace '£' with '\' and replace '§' with '"'
+        for (int i = 0;
+                i < ascii.length;
+                i++) {
+            ascii[i] = ascii[i].replace("£", "\\");
+            ascii[i] = ascii[i].replace("§", "\"");
+        }
         return ascii;
     }
 }
