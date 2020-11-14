@@ -1,5 +1,6 @@
 package dungeonrun;
 
+import dungeonrun.Characters.Heroes;
 import dungeonrun.Monsters.*;
 import dungeonrun.Treasures.*;
 
@@ -101,8 +102,50 @@ public class Room {
         }
     }
 
-    public void draw() {
-        // Handled within Map.draw() now. ASCII-art varinat with a buffer parameter may be coming...
+   public void draw(Heroes hero) {
+
+        String spaceAfterHero = "    ";
+
+        // Print the creatures row by row, side by side
+        for (int row = 0; row < 21; row++) {
+
+            // Print the hero
+            System.out.print(GameLoop.BR_GREEN + hero.displayStrings()[row] + spaceAfterHero); // Print the hero
+
+            // Continue tp print the monsters in the room, on the same row
+            for (Monster monster : monsters) {
+                System.out.print(GameLoop.BR_RED + monster.displayStrings()[row]);
+            }
+
+            // Print all the treasures in the room
+            int treasureRow = row - (21 - 8); // Adjust for lower height of the Treasur display
+            if (treasureRow >= 0) {
+                for (Treasure treasure : treasures) {
+                    System.out.print(GameLoop.BR_YELLOW + treasure.displayStrings()[treasureRow] + " ");
+                }
+            }
+            System.out.println("");
+        }
+
+        // Print name & info under all of them
+        System.out.print(GameLoop.BR_GREEN);  // Green hero
+        String underfigure = hero.getClass().getSimpleName() + " " + hero.playersName;
+        System.out.printf("%-28s" + spaceAfterHero, underfigure);
+
+        // The monsters in red
+        System.out.print(GameLoop.BR_RED);
+        for (Monster monster : monsters) {
+            underfigure = "      " + monster.getClass().getSimpleName();  // 
+            System.out.printf("%-28s", underfigure);
+        }
+
+        // The Treasures in yellow
+        System.out.print(GameLoop.BR_YELLOW);
+        for (Treasure treasure : treasures) {
+            underfigure = treasure.name + " " + treasure.value + "$";
+            System.out.printf("%-18s ", underfigure);
+        }
+        System.out.println("");
     }
 
     public ArrayList<Treasure> getTreasures() {
