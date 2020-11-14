@@ -14,6 +14,7 @@ import java.util.Scanner;
 import java.util.Set;
 
 public class GameLoop {
+
     static String footstep = "footdoor.wav";
     static String win = "Victory.wav";
     static MusicStuff music = new MusicStuff();
@@ -26,26 +27,26 @@ public class GameLoop {
     public static final String BR_MAGENTA = "\u001b[35;1m";
     public static final String BR_CYAN = "\u001b[36;1m";
 
-
-
     private final static Scanner SCANNER = new Scanner(System.in);
 
     public enum NavigMenuItem {
-        NAVIG_MENU_NORTH('n', "Go north", true), // parameters menuChar, menyChoiceText, enabledMenyChoice 
-        NAVIG_MENU_EAST('e', "Go east", true),
-        NAVIG_MENU_SOUTH('s', "Go south", true),
-        NAVIG_MENU_WEST('w', "Go west", true),
-        // NAVIG_MENU_BACK('b', "Go back", true),  // Removed, only exists in the fight-choice when entereing a room, a different menu
-        NAVIG_MENU_EXIT('x', "Exit map", false);
+        NAVIG_MENU_NORTH('W', "Go north", true, false), // parameters menuChar, menyChoiceText, enabledMenyChoice, hiddenMenyChoice
+        NAVIG_MENU_WEST('A', "Go west", true, false),
+        NAVIG_MENU_SOUTH('S', "Go south", true, false),
+        NAVIG_MENU_EAST('D', "Go east", true, false),
+        NAVIG_MENU_SEE_ROOMS_TOGGLE('T', "Toggle 'See all rooms'", true, false),
+        NAVIG_MENU_EXIT('X', "Exit map", false, false);
 
         private String menyText;
         private char menyChar;
         private boolean enabledMenyChoice;
+        private boolean hiddenMenyChoice;
 
-        NavigMenuItem(char menuCh, String menuChoiceText, boolean enabledMenyChoice) {
+        NavigMenuItem(char menuCh, String menuChoiceText, boolean enabledMenyChoice, boolean hiddenMenyChoice) {
             this.menyChar = menuCh;
             this.menyText = menuChoiceText;
             this.enabledMenyChoice = enabledMenyChoice;
+            this.hiddenMenyChoice = hiddenMenyChoice;
         }
 
         public char getMenyChoiceChar() {
@@ -60,24 +61,24 @@ public class GameLoop {
             this.enabledMenyChoice = enabledMenyChoice;
         }
 
+        public void setHiddenMenyChoice(boolean hiddenMenyChoice) {
+            this.hiddenMenyChoice = hiddenMenyChoice;
+        }
+
         public boolean isEnabledMenyChoice() {
             return enabledMenyChoice;
         }
 
-        // Resets the menu choices for a normal room away from walls
-        public void resetMenyChoices() {
-            for (NavigMenuItem value : NavigMenuItem.values()) {
-                // Enable all menu choices except the EXIT one
-                value.setEnabledMenyChoice(value != NAVIG_MENU_EXIT);
-            }
+        public boolean ishiddenMenyChoice() {
+            return hiddenMenyChoice;
         }
 
         public NavigMenuItem getNavigMenuItem(char menuCh) {
             NavigMenuItem menuItem = null;
 
-            // Loop over all the menu choices, and return the right (first) item that is enabled and has the matching character
+            // Loop over all the meny choises, and return the right (first) item that is enabled and has the matching character
             for (NavigMenuItem value : NavigMenuItem.values()) {
-                if (value.isEnabledMenyChoice() && menuCh == value.getMenyChoiceChar()) {
+                if (value.isEnabledMenyChoice() && (menuCh == value.getMenyChoiceChar()) || Character.toLowerCase(menuCh) == Character.toLowerCase(value.getMenyChoiceChar())) {
                     menuItem = value;
                     return menuItem;
                 }
@@ -100,11 +101,11 @@ public class GameLoop {
 
             navigMenuChoice = getNavigMenuChoice("What do you want to do: ", map, hero);
             found = false;
-            hero.lastPosY=hero.mapPosY;
-            hero.lastPosX=hero.mapPosX;
+            hero.lastPosY = hero.mapPosY;
+            hero.lastPosX = hero.mapPosX;
             switch (navigMenuChoice) {
                 case NAVIG_MENU_NORTH:
-                  //  music.playMusic(footstep);
+                    //  music.playMusic(footstep);
 
                     // System.out.println("hero.mapPosX = " + hero.mapPosX + "hero.mapPosY = " + hero.mapPosY + "map.rooms.length" + map.rooms.length);
                     if (hero.mapPosY > 0) {
@@ -116,7 +117,7 @@ public class GameLoop {
                     break;
 
                 case NAVIG_MENU_SOUTH:
-                 //   music.playMusic(footstep);
+                    //   music.playMusic(footstep);
                     if (hero.mapPosY < map.rooms.length - 1) {
                         hero.mapPosY++;
                     } else {
@@ -124,7 +125,7 @@ public class GameLoop {
                     }
                     break;
                 case NAVIG_MENU_WEST:
-                 //   music.playMusic(footstep);
+                    //   music.playMusic(footstep);
                     if (hero.mapPosX > 0) {
                         // Go east
                         hero.mapPosX--;
@@ -133,20 +134,24 @@ public class GameLoop {
                     }
                     break;
                 case NAVIG_MENU_EAST:
-                  //  music.playMusic(footstep);
+                    //  music.playMusic(footstep);
                     if (hero.mapPosX < map.rooms[0].length - 1) {
                         // Go east
                         hero.mapPosX++;
-
 
                     } else {
                         System.out.println("There's no door in that direction, you are staying put");
                     }
                     break;
+                    
+                case NAVIG_MENU_SEE_ROOMS_TOGGLE:
+                    map.seeAllRooms = !map.seeAllRooms; // Toggle seeAllRooms
+                    navigMenuChoice.setHiddenMenyChoice(!map.seeAllRooms);  // If we can see all rooms, it should not be hidden how to turn it off             
+                    break;
 
                 case NAVIG_MENU_EXIT:
                     // handled below
-                   // music.playMusic(win);
+                    // music.playMusic(win);
                     System.out.println("--------------EXITING--------------");
                     System.out.println("    You have survived this time...");
                     System.out.println("--------------EXITING--------------");
@@ -175,7 +180,11 @@ public class GameLoop {
 
         Strid strid = new Strid();
 
+        // Draw a ascii represantation of the room 
+        map.rooms[hero.mapPosX][hero.mapPosY].draw(hero);
+        
         map.rooms[hero.mapPosX][hero.mapPosY].setVisited(true);
+       
 
         for (Monster monster : map.rooms[hero.mapPosX][hero.mapPosY].monsters) {
             monsterStr += "one " + monster.getClass().getSimpleName() + ", ";
@@ -198,7 +207,6 @@ public class GameLoop {
             }
             strid.stridDice(map, hero);
 
-
         } else {
             System.out.println("In the room you find " + treasureStr);
         }
@@ -215,8 +223,8 @@ public class GameLoop {
             System.out.println("The monsters keep the treasures in this room...");
             //code to go back to last visited room should be here
             map.rooms[hero.mapPosX][hero.mapPosY].setVisited(false);
-            hero.mapPosX=hero.lastPosX;
-            hero.mapPosY=hero.lastPosY;
+            hero.mapPosX = hero.lastPosX;
+            hero.mapPosY = hero.lastPosY;
 
         }
         Strid.tryLoot = true;
@@ -231,8 +239,12 @@ public class GameLoop {
 
         System.out.println("Navigation menu:" + BR_YELLOW);
 
-        // Enable EXIT menu choice when it's a Corner room
+        // Enable EXIT menu choice when it's a Corner room, always enable the function of 'See all rooms"-toggle
         NavigMenuItem.NAVIG_MENU_EXIT.setEnabledMenyChoice(map.isCornerRoom(hero.mapPosX, hero.mapPosY));
+        NavigMenuItem.NAVIG_MENU_SEE_ROOMS_TOGGLE.setEnabledMenyChoice(true);
+
+        // Hide 'See all rooms"-toggle if seeAllRooms is not on
+        NavigMenuItem.NAVIG_MENU_SEE_ROOMS_TOGGLE.setHiddenMenyChoice(!map.seeAllRooms);
 
         // Disable navigation choice when there is a wall in that direction
         NavigMenuItem.NAVIG_MENU_NORTH.setEnabledMenyChoice(!map.hasNorthWall(hero.mapPosX, hero.mapPosY));
@@ -240,9 +252,9 @@ public class GameLoop {
         NavigMenuItem.NAVIG_MENU_WEST.setEnabledMenyChoice(!map.hasWestWall(hero.mapPosX, hero.mapPosY));
         NavigMenuItem.NAVIG_MENU_EAST.setEnabledMenyChoice(!map.hasEastWall(hero.mapPosX, hero.mapPosY));
 
-        // Loop over all meny choices in the enum, and print the "meny choice texts" for the enabled ones
+        // Loop over all meny choices in the enum, and print the "meny choice texts" for the enabled & non-hidden ones
         for (NavigMenuItem value : NavigMenuItem.values()) {
-            if (value.isEnabledMenyChoice()) {
+            if (value.isEnabledMenyChoice() && !value.ishiddenMenyChoice()) {
                 System.out.println(BR_YELLOW + value.getMenyChoiceChar() + ": " + value.getMenuChoiceText());
             }
         }
@@ -275,6 +287,5 @@ public class GameLoop {
 
         return userInputString;
     }
-
 
 }
