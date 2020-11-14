@@ -142,19 +142,16 @@ public class Main {
         Heroes hero = null;
         String characterName;
 
-        System.out.println("\nChoose your character\n");
+        System.out.println("\nCharacters to choose from:");
         System.out.println("");
+
+        // Draw the characters (Hero types) to choose fraom, including attribute values
         drawCharacters();
-        System.out.println("-----------------------------------\n ");
-        System.out.println("\033[0;1m 1. Knight\033[0m\n Initiative: 5\n Tålighet: 9\n Attack 6\n Smidighet: 4\n ");
-        System.out.println("-----------------------------------\n");
-        System.out.println("\033[0;1m 2. Wizard\033[0m\n Initiative: 6\n Tålighet: 4\n Attack 9\n Smidighet: 5\n");
-        System.out.println("-----------------------------------\n");
-        System.out.println("\033[0;1m 3. Thief\033[0m\n Initiative: 7\n Tålighet: 5\n Attack 5\n Smidighet: 7\n");
-        System.out.println("-----------------------------------\n");
+        System.out.print("Your choice > ");
 
         int menuChoice = scanner.nextInt();
         scanner.nextLine();
+        
         switch (menuChoice) {
             
             case 1:
