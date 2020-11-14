@@ -51,11 +51,6 @@ public class Map {
             for (int y = 0; y < rooms[x].length; y++) {
                 rooms[x][y] = new Room();
 
-                // If the hero is standing in tis room, it's a "visited" room
-                if (x == hero.mapPosX && y == hero.mapPosY) {
-                    rooms[x][y].visited = true;
-                }
-
                 // Remove Monsters T& Treasures if it's a corner room
                 if (isCornerRoom(x, y)) {
                     rooms[x][y].monsters.clear();   // Remove all monsters

@@ -28,8 +28,7 @@ public class Main {
     public static void main(String[] args) {
 
         // music.playMusic(gamemenumusic); // gamemenumusic
-       // music.playMusic(gamemenumusic); 
-
+        // music.playMusic(gamemenumusic); 
         while (true) {
             mainGame();
         }
@@ -43,7 +42,7 @@ public class Main {
         int choice;
 
         try {
-        	drawCastle();
+            drawCastle();
             System.out.println("\n *** Welcome to Dungeon Run! *** \n");
             System.out.println("1. New game");
             System.out.println("2. Continue with existing hero");
@@ -55,19 +54,23 @@ public class Main {
                 case 1:
                     theHero = getPlayer();
                     theMap = chooseMap(theHero);
+                    chooseStart(theMap.rooms.length, theMap.rooms[0].length, theHero);
+                    theMap.rooms[theHero.mapPosX][theHero.mapPosY].visited = true;
+       
                     GameLoop.playTheGame(theMap, theHero);
                     break;
-                    
+
                 case 2:
-                  //  music.playMusic(beepmenu);
+                    //  music.playMusic(beepmenu);
                     /*              for (Heroes character : players) {
                     System.out.println(character);
                 }*/
                     System.out.println("TODO: Load character... ");
                     oldHero = listHeroes();
-                    if (oldHero != null){
-                    theMap = chooseMap(oldHero);
-                    GameLoop.playTheGame(theMap, oldHero);
+                    if (oldHero != null) {
+                        theMap = chooseMap(oldHero);
+
+                        GameLoop.playTheGame(theMap, oldHero);
                     }
                     break;
 
@@ -101,19 +104,19 @@ public class Main {
                 switch (size) {
                     case 1:
 
-                      //  music.playMusic(beepmenu);
+                        //  music.playMusic(beepmenu);
                         theMap = new Map(4, 4, hero);
                         runtime = false;
                         break;
 
                     case 2:
-                      //  music.playMusic(beepmenu);
+                        //  music.playMusic(beepmenu);
                         theMap = new Map(5, 5, hero);
                         runtime = false;
                         break;
 
                     case 3:
-                     //   music.playMusic(beepmenu);
+                        //   music.playMusic(beepmenu);
                         theMap = new Map(8, 8, hero);
                         runtime = false;
                         break;
@@ -131,10 +134,9 @@ public class Main {
             }
 
         }
-        System.out.println("The created map looks like this:");
-        theMap.draw(hero);
-
-        System.out.println("Time to start your adventure!");
+        // System.out.println("The created map looks like this:");
+        // theMap.draw(hero);
+        // System.out.println("Time to start your adventure!");
         return theMap;
     }
 
@@ -152,22 +154,21 @@ public class Main {
 
         int menuChoice = scanner.nextInt();
         scanner.nextLine();
-        
+
         switch (menuChoice) {
-            
+
             case 1:
                 System.out.println("What is your knights name?");
                 characterName = newHero();
                 // music.stopMusic(); // Stop gamemenumusic
-               // music.playMusic(dungeonmusic); // play dungeomusic
-               // music.playMusic(gamemenumusic); // play gamemenumusic
+                // music.playMusic(dungeonmusic); // play dungeomusic
+                // music.playMusic(gamemenumusic); // play gamemenumusic
                 //music.playMusic(dungeonmusic); // play dungeomusic
                 // music.playMusic(gamemenumusic); // play gamemenumusic
 
-               // music.playMusic(beepmenu);
-               
+                // music.playMusic(beepmenu);
                 System.out.println("\nYou have chosen the brave knight" + " " + characterName);
-               // music.playMusic(knightpicked);
+                // music.playMusic(knightpicked);
                 hero = new Knight(characterName);
                 // players.add(hero);  From the spec.: "Dungeon Run är ett textbaserat äventyrsspel för en spelare"
 
@@ -177,14 +178,13 @@ public class Main {
             case 2:
                 System.out.println("\nWhat is your wizards name?");
                 characterName = newHero();
-                
+
                 // music.stopMusic(); // Stop gamemenumusic
                 // music.playMusic(dungeonmusic); // play dungeomusic
                 // music.playMusic(gamemenumusic); // play gamemenumusic
-
                 //music.playMusic(beepmenu);         
                 System.out.println("\nYou have chosen the intelligent wizard" + " " + characterName);
-               // music.playMusic(wizardpicked);
+                // music.playMusic(wizardpicked);
                 hero = new Wizard(characterName);
                 saveHero(characterName, hero);
                 System.out.println("\nYou have chosen " + characterName + " the intelligent wizard.");
@@ -203,28 +203,32 @@ public class Main {
             default:
                 System.out.println("Invalid input, please try again.");
         }
-        
+
         return hero;
     }
 
-    public int chooseStart(int ul, int ur, Heroes hero) {
+    public static void chooseStart(int sizeX, int sizeY, Heroes hero) {
         Scanner input = new Scanner(System.in);
-        boolean runtime = true;
-        while (runtime) {
+        boolean validInput = false;
+
+        while (!validInput) {
             try {
                 System.out.println("Where do you want to enter the dungeon?\n1.Upper left\n2.Upper right\n3.Lower left\n4.Lower right");
-                int dir = input.nextInt();
-                switch (dir) {
+                int intFromUser = input.nextInt();
+                if (intFromUser >= 1 && intFromUser <= 4) {
+                    validInput = true;
+                }
+                switch (intFromUser) {
                     case 1:
-
                         System.out.println("You chose the upper left corner.");
                         hero.mapPosX = 0;
                         hero.mapPosY = 0;
+
                         break;
 
                     case 2:
                         System.out.println("You chose the upper right corner.");
-                        hero.mapPosX = 0;
+                        hero.mapPosX = sizeX - 1;
                         hero.mapPosY = 0;
 
                         break;
@@ -232,11 +236,13 @@ public class Main {
                     case 3:
                         System.out.println("You chose the lower left corner.");
                         hero.mapPosX = 0;
-                        hero.mapPosY = 0;
+                        hero.mapPosY = sizeY - 1;
                         break;
 
                     case 4:
                         System.out.println("You chose the lower right corner.");
+                        hero.mapPosX = sizeX - 1;
+                        hero.mapPosY = sizeY - 1;
                         break;
 
                     default:
@@ -247,11 +253,9 @@ public class Main {
                 System.out.println("Incorrect input");
                 input.next();
             }
-            runtime = false;
-        }
-        return 0;
+        } // while
     }
-    
+
     public static String newHero() {
         String characterName = null;
         boolean done = false;
@@ -388,7 +392,7 @@ public class Main {
             } else if (heroType.equals("Wizard")) {
                 oldHero = new Wizard(heroChoice);
             }
-            
+
             //Transferring stats from file into game:
             try {
                 oldHero.creatureIsA = (Files.readAllLines(Paths.get("Characters\\" + heroChoice)).get(0));
@@ -410,8 +414,8 @@ public class Main {
         }
         return oldHero;
     }
-    
-   public static void drawCharacters() {
+
+    public static void drawCharacters() {
         ArrayList<Heroes> heroes = new ArrayList<>();
 
         Knight knight = new Knight("");
@@ -457,40 +461,39 @@ public class Main {
         System.out.printf("   %-25s :    %-25s :    %-25s :\n", "Agility: " + knight.agility, "Agility: " + wizard.agility, "Agility: " + thief.agility);
         System.out.printf("%.29s:%s:%s:\n", lineStr, lineStr, lineStr);
     }
-    
+
     public static void drawCastle() {
 
-    	String[] ascii = {
-    			
-    			"         |>>>                                                      |>>>             ",
-    			"         |                     |>>>          |>>>                  |                ",
-    			"         *                     |             |                     *                ",
-    			"        / £                    *             *                    / £               ",
-    			"       /___£                 _/ £           / £_                 /___£              ",
-    			"       [   ]                |/   £_________/   £|                [   ]              ",
-    			"       [ I ]                /     £       /     £                [ I ]              ",
-    			"       [   ]_ _ _          /       £     /       £          _ _ _[   ]              ",
-    			"       [   ] U U |        {#########}   {#########}        | U U [   ]              ",
-    			"       [   ]====/          £=======/     £=======/          £====[   ]              ",
-    			"       [   ]    |           |   I |_ _ _ _| I   |           |    [   ]              ",
-    			"       [___]    |_ _ _ _ _ _|     | U U U |     |_ _ _ _ _ _|    [___]              ",
-    			"       £===/  I | U U U U U |     |=======|     | U U U U U | I  £===/              ",
-    			"        £=/     |===========| I   | + W + |   I |===========|     £=/               ",
-    			"         |  I   |           |     |_______|     |           |   I  |                ",
-    			"         |      |           |     |||||||||     |           |      |                ",
-    			"         |      |           |   I ||vvvvv|| I   |           |      |                ",
-    			"     _-_-|______|-----------|_____||     ||_____|-----------|______|-_-_            ",
-    			"        /________£         /______||     ||______£         /________£               ",
-    			"       |__________|-------|________£_____/________|-------|__________|              "};
-    
-    	for (int i = 0; i < ascii.length; i++) {
-        ascii[i] = ascii[i].replace("£", "\\");
-    	}
-    	for (int row = 0; row < 20; row++) {
-    	 System.out.print(" : " + ascii[row]);
-    	 System.out.println("");
-    	}   
-            
-     }
-    
+        String[] ascii = {
+            "         |>>>                                                      |>>>             ",
+            "         |                     |>>>          |>>>                  |                ",
+            "         *                     |             |                     *                ",
+            "        / £                    *             *                    / £               ",
+            "       /___£                 _/ £           / £_                 /___£              ",
+            "       [   ]                |/   £_________/   £|                [   ]              ",
+            "       [ I ]                /     £       /     £                [ I ]              ",
+            "       [   ]_ _ _          /       £     /       £          _ _ _[   ]              ",
+            "       [   ] U U |        {#########}   {#########}        | U U [   ]              ",
+            "       [   ]====/          £=======/     £=======/          £====[   ]              ",
+            "       [   ]    |           |   I |_ _ _ _| I   |           |    [   ]              ",
+            "       [___]    |_ _ _ _ _ _|     | U U U |     |_ _ _ _ _ _|    [___]              ",
+            "       £===/  I | U U U U U |     |=======|     | U U U U U | I  £===/              ",
+            "        £=/     |===========| I   | + W + |   I |===========|     £=/               ",
+            "         |  I   |           |     |_______|     |           |   I  |                ",
+            "         |      |           |     |||||||||     |           |      |                ",
+            "         |      |           |   I ||vvvvv|| I   |           |      |                ",
+            "     _-_-|______|-----------|_____||     ||_____|-----------|______|-_-_            ",
+            "        /________£         /______||     ||______£         /________£               ",
+            "       |__________|-------|________£_____/________|-------|__________|              "};
+
+        for (int i = 0; i < ascii.length; i++) {
+            ascii[i] = ascii[i].replace("£", "\\");
+        }
+        for (int row = 0; row < 20; row++) {
+            System.out.print(" : " + ascii[row]);
+            System.out.println("");
+        }
+
+    }
+
 }
