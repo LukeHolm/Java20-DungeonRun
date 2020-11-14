@@ -13,6 +13,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.ArrayList;
 
 public class Main {
 
@@ -410,51 +411,51 @@ public class Main {
         return oldHero;
     }
     
-    public static void drawCharacters() {
-        Heroes knight = new Knight("Kalle");
-        Heroes wizard = new Wizard("Wille");
-        Heroes thief = new Thief("Tony");
+   public static void drawCharacters() {
+        ArrayList<Heroes> heroes = new ArrayList<>();
+
+        Knight knight = new Knight("");
+        heroes.add(knight);
+
+        Heroes wizard = new Wizard("");
+        heroes.add(wizard);
+
+        Heroes thief = new Thief("");
+        heroes.add(thief);
 
         // Want to print the number of rows in the tallest figure
         int noOfRows = Integer.max(knight.displayHeight(knight), Integer.max(wizard.displayHeight(wizard), thief.displayHeight(thief)));
         //System.out.println("noOfRows " + noOfRows);
 
-        // Need to write the same number of charcters for each knight line, so the next figure will be straight 
-        int widthOfFigure = knight.displayWidth(knight);
-
-        String format;
-
-        // Get the ASCII looks of the Character
-        String[] knightDisplayStrings = knight.displayStrings();
-
-        int knightWidth = knight.displayWidth(knight);
-        String figureRowString;
-        
-        // Get the ASCII looks of the Wizard
-        String[] mirroredWizardDisplayStrings = wizard.mirroredDisplayStrings(wizard);
-        
-        // Get the ASCII looks of the Character
-        String[] thiefDisplayStrings = thief.displayStrings();
-
-        for (int row = 0; row < noOfRows; row++) {
-            if (row < knight.displayHeight(knight)) {
-                figureRowString = knightDisplayStrings[row];
-            } else {
-                figureRowString = "";
-            }
-
-            //Want to print with the same width, using printf with format, example printf("%-3s", str) for printing  3 chars 
-            format = "%-" + knightWidth + "s";
-            System.out.printf(format, figureRowString);
-
-            if (row < wizard.displayWidth(wizard)) {
-                System.out.print(" : " + mirroredWizardDisplayStrings[row]);
-                System.out.print(" : " + thiefDisplayStrings[row]);
-            }
-            
-            System.out.println("");
-            
+        // Print the first row, with tha class name overlayed in the upper left
+        for (Heroes hero : heroes) {
+            String firstRow = hero.displayStrings()[0];
+            String heroClassName = hero.getClass().getSimpleName();
+            firstRow = heroClassName + firstRow.substring(heroClassName.length());
+            System.out.print(GameLoop.BR_GREEN + firstRow + GameLoop.RESET + " : ");
         }
+        System.out.println("");
+
+        // Print all the rows, assuming all characters have the same number of display rows
+        for (int row = 1; row < noOfRows; row++) {
+            for (Heroes hero : heroes) {
+                System.out.print(GameLoop.BR_GREEN + hero.displayStrings()[row] + GameLoop.RESET + " : ");
+            }
+            System.out.println("");
+        }
+
+        // Now list theair attribute values underneith
+        String lineStr = new String(new char[30]).replace("\0", "-"); // 30 underline chars
+
+        System.out.printf(
+                "%.29s:%s:%s:\n", lineStr, lineStr, lineStr);
+        // TODO: Use color "\033[0;1m" that was previously used?
+        System.out.printf("1. %-25s : 2. %-25s : 3. %-25s :\n", knight.getClass().getSimpleName(), wizard.getClass().getSimpleName(), thief.getClass().getSimpleName());
+        System.out.printf("   %-25s :    %-25s :    %-25s :\n", "Agility: " + knight.agility, "Agility: " + wizard.agility, "Agility: " + thief.agility);
+        System.out.printf("   %-25s :    %-25s :    %-25s :\n", "Toughness: " + knight.toughness, "Toughness: " + wizard.toughness, "Toughness: " + thief.toughness);
+        System.out.printf("   %-25s :    %-25s :    %-25s :\n", "Attack: " + knight.attack, "Attack: " + wizard.attack, "Attack: " + thief.attack);
+        System.out.printf("   %-25s :    %-25s :    %-25s :\n", "Agility: " + knight.agility, "Agility: " + wizard.agility, "Agility: " + thief.agility);
+        System.out.printf("%.29s:%s:%s:\n", lineStr, lineStr, lineStr);
     }
     
     public static void drawCastle() {
