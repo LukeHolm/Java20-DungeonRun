@@ -137,15 +137,15 @@ public class Strid {
         System.out.println("Monster attack ");
         System.out.println("..............");
         if (knightBlock == 1 && hero.agility == 4) {
-            System.out.println("|`-._/\\_.-`|");
-            System.out.println("|    ||    |");
-            System.out.println("|___o()o___|");
-            System.out.println("|__((<>))__|");
-            System.out.println("\\   o\\/o   /");
-            System.out.println(" \\   ||   /");
-            System.out.println("  \\  ||  /");
-            System.out.println("   '.||.'");
-            System.out.println("     ``");
+        System.out.println("|`-._/\\_.-`|");
+        System.out.println("|    ||    |");
+        System.out.println("|___o()o___|");
+        System.out.println("|__((<>))__|");
+        System.out.println("\\   o\\/o   /");
+        System.out.println(" \\   ||   /");
+        System.out.println("  \\  ||  /");
+        System.out.println("   '.||.'");
+        System.out.println("     ``");
             System.out.println("\n" + BR_BLUE + hero.playersName + " the Knight blocks the first attack of the fight!\n" + RESET);
 
         } else {
@@ -189,7 +189,7 @@ public class Strid {
                 double specialAttack = 0.25;
                 double specialChance = Math.random();
                 if (specialAttack >= specialChance) {
-                    System.out.println("  _");
+                    System.out.println("  _");            
                     System.out.println(" //");
                     System.out.println("( \\");
                     System.out.println(" \\ \\");
@@ -234,28 +234,28 @@ public class Strid {
         double escChance = Math.random();
         if (hero.agility == 5) {
             chanceEscape = hero.agility * 0.16;
-            System.out.println("  .   . ¨ '  ,  ,");
-            System.out.println("       \\  |  //");
-            System.out.println("     \\   _^_     /");
-            System.out.println(" ¨  __  ( ¤ )  __");
-            System.out.println("    ,    |/|    ¨");
-            System.out.println("   /     |¨|    \\ ");
-            System.out.println("¨    ¨   |^|      ¨ ");
-            System.out.println("         |<|");
-            System.out.println("         |>| ");
-            System.out.println(hero.playersName + BR_BLUE + " The Wizard raises the staff of ____  and fires a big glowing light towards the enemies to blind them, giving it a higher chance to escape!" + RESET);
+        System.out.println("  .   . ¨ '  ,  ,");
+        System.out.println("       \\  |  //");
+        System.out.println("     \\   _^_     /");
+        System.out.println(" ¨  __  ( ¤ )  __");
+        System.out.println("    ,    |/|    ¨");
+        System.out.println("   /     |¨|    \\ ");
+        System.out.println("¨    ¨   |^|      ¨ ");
+        System.out.println("         |<|");
+        System.out.println("         |>| ");
+        System.out.println(hero.playersName + BR_BLUE + " The Wizard raises the staff of ____  and fires a big glowing light towards the enemies to blind them, giving it a higher chance to escape!" + RESET);
 
         }
 
         if (chanceEscape > escChance) {
-            System.out.println(GREEN + "You escaped!" + RESET);
+            System.out.println("You escaped!");
             knightBlock = 0;
 
             return false;
 
         }
         if (chanceEscape <= escChance) {
-            System.out.println(BR_RED + "You failed to escape!" + RESET);
+            System.out.println("You failed to escape!");
             monsterAtk();
             return true;
         } else {

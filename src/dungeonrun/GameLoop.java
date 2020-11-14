@@ -14,7 +14,9 @@ import java.util.Scanner;
 import java.util.Set;
 
 public class GameLoop {
-
+    static String footstep = "footdoor.wav";
+    static String win = "Victory.wav";
+    static MusicStuff music = new MusicStuff();
     public static final String RESET = "\u001b[0m";
     public static final String BR_BLACK = "\u001b[30;1m";
     public static final String BR_RED = "\u001b[31;1m";
@@ -102,6 +104,7 @@ public class GameLoop {
             hero.lastPosX=hero.mapPosX;
             switch (navigMenuChoice) {
                 case NAVIG_MENU_NORTH:
+                  //  music.playMusic(footstep);
 
                     // System.out.println("hero.mapPosX = " + hero.mapPosX + "hero.mapPosY = " + hero.mapPosY + "map.rooms.length" + map.rooms.length);
                     if (hero.mapPosY > 0) {
@@ -113,6 +116,7 @@ public class GameLoop {
                     break;
 
                 case NAVIG_MENU_SOUTH:
+                 //   music.playMusic(footstep);
                     if (hero.mapPosY < map.rooms.length - 1) {
                         hero.mapPosY++;
                     } else {
@@ -120,6 +124,7 @@ public class GameLoop {
                     }
                     break;
                 case NAVIG_MENU_WEST:
+                 //   music.playMusic(footstep);
                     if (hero.mapPosX > 0) {
                         // Go east
                         hero.mapPosX--;
@@ -128,6 +133,7 @@ public class GameLoop {
                     }
                     break;
                 case NAVIG_MENU_EAST:
+                  //  music.playMusic(footstep);
                     if (hero.mapPosX < map.rooms[0].length - 1) {
                         // Go east
                         hero.mapPosX++;
@@ -140,6 +146,10 @@ public class GameLoop {
 
                 case NAVIG_MENU_EXIT:
                     // handled below
+                   // music.playMusic(win);
+                    System.out.println("--------------EXITING--------------");
+                    System.out.println("    You have survived this time...");
+                    System.out.println("--------------EXITING--------------");
                     break;
                 default: {
                     System.out.println(BR_RED + "Unexpected error, should never end up here after the shape checks, missing case in switch?" + RESET);

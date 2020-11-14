@@ -20,9 +20,11 @@ public class Knight extends Heroes {
         return "Knight name is " + playersName + "\n";
     }
 
+
     @Override
     public String[] displayStrings() {
-        // Here you can use "£" instead of "\\" so the rows lines up, and it will be replaced with "\" in the code below 
+        // Characters like '\' and '" 'messes upp the line lengths, since you need to write \\ and \" to get them in a string. 
+        // Kan use '£' for '\' and '§' for '"' here, because of the replacement code below.
         String[] ascii = {
             "                            ",
             "                            ",
@@ -46,9 +48,11 @@ public class Knight extends Heroes {
             "       _/ /        £ £      ", // Row 20
             "      /___|       /___|     "};
         //   1234567890123456789012345678
-        // Replace "£" with "\"
+
+        // Replace '£' with '\' and replace '§' with '"'
         for (int i = 0; i < ascii.length; i++) {
             ascii[i] = ascii[i].replace("£", "\\");
+            ascii[i] = ascii[i].replace("§", "\"");
         }
         return ascii;
     }
