@@ -41,6 +41,7 @@ public class Map {
 
     Scanner input = new Scanner(System.in);
     public Room[][] rooms;
+    public boolean seeAllRooms;
 
     public Map(int sizeX, int sizeY, Heroes hero) {
 
@@ -87,21 +88,7 @@ public class Map {
 
     //  public void draw(Character character) {
     public void draw(Heroes hero) {
-        /* Example of map output: 
-+-Exit-+······+······+·Exit·+
-|Knight|      : S    :      :
-|Kalle | L    :      : J    :
-+------+······+······+······+
-:      :      : G    :      :
-: L    : L    : L    : LJ   :
-+······+······+······+······+
-:      : G    :      :      :
-: M    : M    : M    : LJ   :
-+······+······+······+······+
-:      : S    :      : SO   :
-:      : L    : L    :      :
-+·Exit·+······+······+·Exit·+
-         */
+
         Room currentRoom;
         ArrayList<Monster> monsters;
         ArrayList<Treasure> treasures;
@@ -140,14 +127,16 @@ public class Map {
                     System.out.printf("%s%-6.6s%s", BR_GREEN, hero.getClass().getSimpleName(), RESET);
 
                 } else {
-                    monsters = rooms[x][y].getMonsters();
                     monsterStr = "";
-                    for (Monster monster : monsters) {
+                    if (rooms[x][y].isVisited() || seeAllRooms) {
+                        monsters = rooms[x][y].monsters;
+                        for (Monster monster : monsters) {
 
-                        monsterStr += (monster.getClass() == dungeonrun.Monsters.GiantSpider.class) ? "G" : "";
-                        monsterStr += (monster.getClass() == dungeonrun.Monsters.Skeleton.class) ? "S" : "";
-                        monsterStr += (monster.getClass() == dungeonrun.Monsters.Orc.class) ? "O" : "";
-                        monsterStr += (monster.getClass() == dungeonrun.Monsters.Troll.class) ? "T" : "";
+                            monsterStr += (monster.getClass() == dungeonrun.Monsters.GiantSpider.class) ? "G" : "";
+                            monsterStr += (monster.getClass() == dungeonrun.Monsters.Skeleton.class) ? "S" : "";
+                            monsterStr += (monster.getClass() == dungeonrun.Monsters.Orc.class) ? "O" : "";
+                            monsterStr += (monster.getClass() == dungeonrun.Monsters.Troll.class) ? "T" : "";
+                        }
                     }
                     System.out.printf("%s %-5.5s%s", BR_RED, monsterStr, RESET);
                 }
@@ -163,15 +152,17 @@ public class Map {
                     System.out.printf("%s%-6.6s%s", BR_GREEN, hero.playersName, RESET);
 
                 } else {
-
-                    treasures = rooms[x][y].treasures;
                     treasureStr = "";
-                    for (Treasure treasure : treasures) {
-                        treasureStr += treasure.getClass() == dungeonrun.Treasures.LooseCoins.class ? "L" : "";
-                        treasureStr += treasure.getClass() == dungeonrun.Treasures.MoneyPouch.class ? "M" : "";
-                        treasureStr += treasure.getClass() == dungeonrun.Treasures.Jewlery.class ? "J" : "";
-                        treasureStr += treasure.getClass() == dungeonrun.Treasures.Gemstone.class ? "G" : "";
-                        treasureStr += treasure.getClass() == dungeonrun.Treasures.Chest.class ? "C" : "";
+                    if (rooms[x][y].isVisited() || seeAllRooms) {
+                        treasures = rooms[x][y].treasures;
+
+                        for (Treasure treasure : treasures) {
+                            treasureStr += treasure.getClass() == dungeonrun.Treasures.LooseCoins.class ? "L" : "";
+                            treasureStr += treasure.getClass() == dungeonrun.Treasures.MoneyPouch.class ? "M" : "";
+                            treasureStr += treasure.getClass() == dungeonrun.Treasures.Jewlery.class ? "J" : "";
+                            treasureStr += treasure.getClass() == dungeonrun.Treasures.Gemstone.class ? "G" : "";
+                            treasureStr += treasure.getClass() == dungeonrun.Treasures.Chest.class ? "C" : "";
+                        }
                     }
                     System.out.printf("%s %-5.5s%s", BR_YELLOW, treasureStr, RESET);
                 }
