@@ -222,7 +222,7 @@ public class GameLoop {
         } else {
             System.out.println("The monsters keep the treasures in this room...");
             //code to go back to last visited room should be here
-            map.rooms[hero.mapPosX][hero.mapPosY].setVisited(false);
+            // map.rooms[hero.mapPosX][hero.mapPosY].setVisited(false); Greger: I think this should still be visitied, as it's contents is known by the player
             hero.mapPosX = hero.lastPosX;
             hero.mapPosY = hero.lastPosY;
 
