@@ -27,8 +27,9 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // music.playMusic(gamemenumusic); // gamemenumusic
-        // music.playMusic(gamemenumusic); 
+       // music.playMusic(gamemenumusic); // gamemenumusic
+
+        Drawings.drawCastle();
         while (true) {
             mainGame();
         }
@@ -42,7 +43,7 @@ public class Main {
         int choice;
 
         try {
-            Drawings.drawCastle();
+
             System.out.println("\n *** Welcome to Dungeon Run! *** \n");
             System.out.println("1. New game");
             System.out.println("2. Continue with existing hero");
@@ -52,6 +53,7 @@ public class Main {
 
             switch (choice) {
                 case 1:
+                    ////  music.playMusic(beepmenu);
                     theHero = getPlayer();
                     theMap = chooseMap(theHero);
                     chooseStart(theMap.rooms.length, theMap.rooms[0].length, theHero);
@@ -61,7 +63,7 @@ public class Main {
                     break;
 
                 case 2:
-                    //  music.playMusic(beepmenu);
+                    //////   music.playMusic(beepmenu);
                     /*              for (Heroes character : players) {
                     System.out.println(character);
                 }*/
@@ -104,19 +106,19 @@ public class Main {
                 switch (size) {
                     case 1:
 
-                        //  music.playMusic(beepmenu);
+                        /// //  music.playMusic(beepmenu);
                         theMap = new Map(4, 4, hero);
                         runtime = false;
                         break;
 
                     case 2:
-                        //  music.playMusic(beepmenu);
+                        ///  //  music.playMusic(beepmenu);
                         theMap = new Map(5, 5, hero);
                         runtime = false;
                         break;
 
                     case 3:
-                        //   music.playMusic(beepmenu);
+                        ///// //   music.playMusic(beepmenu);
                         theMap = new Map(8, 8, hero);
                         runtime = false;
                         break;
@@ -163,17 +165,12 @@ public class Main {
                 switch (menuChoice) {
 
                     case 1:
+                      ///  //  music.playMusic(beepmenu);
                         System.out.println("What is your knights name?");
                         characterName = newHero();
-                        // music.stopMusic(); // Stop gamemenumusic
-                        // music.playMusic(dungeonmusic); // play dungeomusic
-                        // music.playMusic(gamemenumusic); // play gamemenumusic
-                        //music.playMusic(dungeonmusic); // play dungeomusic
-                        // music.playMusic(gamemenumusic); // play gamemenumusic
 
-                        // music.playMusic(beepmenu);
                         System.out.println("\nYou have chosen the brave knight" + " " + characterName);
-                        // music.playMusic(knightpicked);
+                        //////////// music.playMusic(knightpicked);
                         hero = new Knight(characterName);
                         // players.add(hero);  From the spec.: "Dungeon Run är ett textbaserat äventyrsspel för en spelare"
 
@@ -182,27 +179,23 @@ public class Main {
                         validInput = true;
                         break;
                     case 2:
+                        ///  //  music.playMusic(beepmenu);
                         System.out.println("\nWhat is your wizards name?");
                         characterName = newHero();
 
-                        // music.stopMusic(); // Stop gamemenumusic
-                        // music.playMusic(dungeonmusic); // play dungeomusic
-                        // music.playMusic(gamemenumusic); // play gamemenumusic
-                        //music.playMusic(beepmenu);         
                         System.out.println("\nYou have chosen the intelligent wizard" + " " + characterName);
-                        // music.playMusic(wizardpicked);
+                        /////////// music.playMusic(wizardpicked);
                         hero = new Wizard(characterName);
                         saveHero(characterName, hero);
                         System.out.println("\nYou have chosen " + characterName + " the intelligent wizard.");
                         validInput = true;
                         break;
                     case 3:
-                        //music.playMusic(beepmenu);
-                        // music.stopMusic(); // Stop gamemenumusic
-                        // music.playMusic(dungeonmusic); // play dungeomusic
-                        // music.playMusic(gamemenumusic); // play gamemenumusic
+                        ///  //  music.playMusic(beepmenu);
+
                         System.out.println("What is your thiefs name?");
                         characterName = newHero();
+                         //FIXA THIEFPICK LJUD
                         hero = new Thief(characterName);
                         saveHero(characterName, hero);
                         System.out.println("\nYou have chosen " + characterName + " the cunning thief.");
@@ -233,6 +226,7 @@ public class Main {
                 }
                 switch (intFromUser) {
                     case 1:
+                        ///  //  music.playMusic(beepmenu);
                         System.out.println("You chose the upper left corner.");
                         hero.mapPosX = 0;
                         hero.mapPosY = 0;
@@ -240,6 +234,7 @@ public class Main {
                         break;
 
                     case 2:
+                        ///  //  music.playMusic(beepmenu);
                         System.out.println("You chose the upper right corner.");
                         hero.mapPosX = sizeX - 1;
                         hero.mapPosY = 0;
@@ -247,12 +242,14 @@ public class Main {
                         break;
 
                     case 3:
+                        ///  //  music.playMusic(beepmenu);
                         System.out.println("You chose the lower left corner.");
                         hero.mapPosX = 0;
                         hero.mapPosY = sizeY - 1;
                         break;
 
                     case 4:
+                        ///  //  music.playMusic(beepmenu);
                         System.out.println("You chose the lower right corner.");
                         hero.mapPosX = sizeX - 1;
                         hero.mapPosY = sizeY - 1;
