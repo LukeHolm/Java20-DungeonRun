@@ -8,8 +8,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Strid {
+
     static String wizardspecial = "WizardSpecial.wav";
     static String thiefspecial = "ThiefSpecial.wav";
+    static String knightspecial = "KnightSpecial.wav";
     public static final String BR_RED = "\u001b[31;1m";
     public static final String RESET = "\u001b[0m";
     public static final String BR_GREEN = "\u001b[32;1m";
@@ -54,7 +56,6 @@ public class Strid {
             try {
                 monsterObj = iniList.get(0);
 
-
                 System.out.println("\nEncounter against " + monsterObj.creatureIsA + " started\n");
                 if (heroTurn < orderList.get(0)) {
                     System.out.println("The monster threw " + orderList.get(0) + " while you threw " + heroTurn + ". The monster attacks first!");
@@ -69,13 +70,13 @@ public class Strid {
 
                     playerAtk();
                     if (monsterObj.toughness <= 0) {
-                        System.out.println("         />_________________________________\n" +
-                                "[########[]_________________________________>\n" +
-                                "         \\>");
+                        System.out.println("         />_________________________________\n"
+                                + "[########[]_________________________________>\n"
+                                + "         \\>");
                         System.out.println("           The monster has been killed!");
-                        System.out.println("         />_________________________________\n" +
-                                "[########[]_________________________________>\n" +
-                                "         \\>");
+                        System.out.println("         />_________________________________\n"
+                                + "[########[]_________________________________>\n"
+                                + "         \\>");
 
                         orderList.remove(0);
 
@@ -101,7 +102,6 @@ public class Strid {
                     System.out.print("Incorrect input, enter '1' or '0'. You wrote: " + mainInput + "\n");
                 }
 
-
             } catch (Exception e) {
                 //Any corrupted or invalid input results in a exception. Inform user that the input is invalid
                 System.out.print("Invalid input. Must be integers...\n");
@@ -111,13 +111,11 @@ public class Strid {
             }
             //SLUT FELHANTERING
 
-
         }
 //outside room
         map.rooms[hero.mapPosX][hero.mapPosY].monsters.clear();
         map.rooms[hero.mapPosX][hero.mapPosY].monsters.addAll(iniList);
     }
-
 
     public static int rollthedice() {
         return (int) (Math.random() * 6) + 1;
@@ -143,16 +141,20 @@ public class Strid {
         System.out.println("Monster attack ");
         System.out.println("..............");
         if (knightBlock == 1 && hero.agility == 4) {
-        System.out.println("|`-._/\\_.-`|");
-        System.out.println("|    ||    |");
-        System.out.println("|___o()o___|");
-        System.out.println("|__((<>))__|");
-        System.out.println("\\   o\\/o   /");
-        System.out.println(" \\   ||   /");
-        System.out.println("  \\  ||  /");
-        System.out.println("   '.||.'");
-        System.out.println("     ``");
+            System.out.println("|`-._/\\_.-`|");
+            System.out.println("|    ||    |");
+            System.out.println("|___o()o___|");
+            System.out.println("|__((<>))__|");
+            System.out.println("\\   o\\/o   /");
+            System.out.println(" \\   ||   /");
+            System.out.println("  \\  ||  /");
+            System.out.println("   '.||.'");
+            System.out.println("     ``");
+            System.out.println("..............");
+            System.out.println("  SHIELD UP");
+            System.out.println("..............");
             System.out.println("\n" + BR_BLUE + hero.playersName + " the Knight blocks the first attack of the fight!\n" + RESET);
+            music.playMusic(knightspecial);
 
         } else {
             System.out.println("The " + monsterObj.creatureIsA + " attacks you for " + monsterAtk + " damage!");
@@ -172,14 +174,12 @@ public class Strid {
                 System.out.println("----------------------------");
                 System.exit(0);
 
-
             }
         }
     }
 
     public void playerAtk() {
         boolean thiefSpecial = false;
-
 
         int playerAtk = diceRoll(hero.attack);
         int monsterDef = diceRoll(monsterObj.agility);
@@ -189,13 +189,12 @@ public class Strid {
         System.out.println("You attack for " + playerAtk + " damage!");
         System.out.println("The " + monsterObj.creatureIsA + " defends for " + monsterDef);
 
-
         if (playerAtk > monsterDef) {
             if (hero.agility == 7) {
                 double specialAttack = 0.25;
                 double specialChance = Math.random();
                 if (specialAttack >= specialChance) {
-                    System.out.println("  _");            
+                    System.out.println("  _");
                     System.out.println(" //");
                     System.out.println("( \\");
                     System.out.println(" \\ \\");
@@ -209,7 +208,7 @@ public class Strid {
                     System.out.println(BR_BLUE + "\nCritical Hit! " + hero.playersName + " hits extra hard with the crowbar and the monster takes double damage!\n" + RESET);
                     music.playMusic(thiefspecial);
                     thiefSpecial = true;
-                    
+
                 } else {
                     thiefSpecial = false;
                 }
@@ -222,7 +221,6 @@ public class Strid {
                 monsterObj.toughness--;
             }
 
-
             System.out.println("The monster now has " + monsterObj.toughness + RESET + "\n");
         } else if (playerAtk < monsterDef) {
             System.out.println("The monster avoided the attack!");
@@ -233,7 +231,6 @@ public class Strid {
             monsterAtk();
         }
 
-
     }
 
     public boolean tryEscape() {
@@ -242,17 +239,17 @@ public class Strid {
         double escChance = Math.random();
         if (hero.agility == 5) {
             chanceEscape = hero.agility * 0.16;
-        System.out.println("  .   . ¨ '  ,  ,");
-        System.out.println("       \\  |  //");
-        System.out.println("     \\   _^_     /");
-        System.out.println(" ¨  __  ( ¤ )  __");
-        System.out.println("    ,    |/|    ¨");
-        System.out.println("   /     |¨|    \\ ");
-        System.out.println("¨    ¨   |^|      ¨ ");
-        System.out.println("         |<|");
-        System.out.println("         |>| ");
-        System.out.println(hero.playersName + BR_BLUE + " The Wizard raises the staff of ____  and fires a big glowing light towards the enemies to blind them, giving it a higher chance to escape!" + RESET);
-        music.playMusic(wizardspecial);
+            System.out.println("  .   . ¨ '  ,  ,");
+            System.out.println("       \\  |  //");
+            System.out.println("     \\   _^_     /");
+            System.out.println(" ¨  __  ( ¤ )  __");
+            System.out.println("    ,    |/|    ¨");
+            System.out.println("   /     |¨|    \\ ");
+            System.out.println("¨    ¨   |^|      ¨ ");
+            System.out.println("         |<|");
+            System.out.println("         |>| ");
+            System.out.println(hero.playersName + BR_BLUE + " The Wizard raises the staff of ____  and fires a big glowing light towards the enemies to blind them, giving it a higher chance to escape!" + RESET);
+            music.playMusic(wizardspecial);
 
         }
 
@@ -273,4 +270,3 @@ public class Strid {
     }
 
 }
-
