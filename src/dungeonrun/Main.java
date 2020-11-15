@@ -42,7 +42,7 @@ public class Main {
         int choice;
 
         try {
-            drawCastle();
+            Drawings.drawCastle();
             System.out.println("\n *** Welcome to Dungeon Run! *** \n");
             System.out.println("1. New game");
             System.out.println("2. Continue with existing hero");
@@ -56,7 +56,7 @@ public class Main {
                     theMap = chooseMap(theHero);
                     chooseStart(theMap.rooms.length, theMap.rooms[0].length, theHero);
                     theMap.rooms[theHero.mapPosX][theHero.mapPosY].visited = true;
-       
+
                     GameLoop.playTheGame(theMap, theHero);
                     break;
 
@@ -144,65 +144,78 @@ public class Main {
 
         Heroes hero = null;
         String characterName;
+        boolean validInput = false;
 
         System.out.println("\nCharacters to choose from:");
         System.out.println("");
 
         // Draw the characters (Hero types) to choose fraom, including attribute values
         drawCharacters();
-        System.out.print("Your choice > ");
 
-        int menuChoice = scanner.nextInt();
-        scanner.nextLine();
+        do {
+            System.out.print("Your choice > ");
 
-        switch (menuChoice) {
+            try {
 
-            case 1:
-                System.out.println("What is your knights name?");
-                characterName = newHero();
-                // music.stopMusic(); // Stop gamemenumusic
-                // music.playMusic(dungeonmusic); // play dungeomusic
-                // music.playMusic(gamemenumusic); // play gamemenumusic
-                //music.playMusic(dungeonmusic); // play dungeomusic
-                // music.playMusic(gamemenumusic); // play gamemenumusic
+                int menuChoice = scanner.nextInt();
+                scanner.nextLine();
 
-                // music.playMusic(beepmenu);
-                System.out.println("\nYou have chosen the brave knight" + " " + characterName);
-                // music.playMusic(knightpicked);
-                hero = new Knight(characterName);
-                // players.add(hero);  From the spec.: "Dungeon Run är ett textbaserat äventyrsspel för en spelare"
+                switch (menuChoice) {
 
-                saveHero(characterName, hero);
-                System.out.println("\nYou have chosen " + characterName + " the brave knight.");
-                break;
-            case 2:
-                System.out.println("\nWhat is your wizards name?");
-                characterName = newHero();
+                    case 1:
+                        System.out.println("What is your knights name?");
+                        characterName = newHero();
+                        // music.stopMusic(); // Stop gamemenumusic
+                        // music.playMusic(dungeonmusic); // play dungeomusic
+                        // music.playMusic(gamemenumusic); // play gamemenumusic
+                        //music.playMusic(dungeonmusic); // play dungeomusic
+                        // music.playMusic(gamemenumusic); // play gamemenumusic
 
-                // music.stopMusic(); // Stop gamemenumusic
-                // music.playMusic(dungeonmusic); // play dungeomusic
-                // music.playMusic(gamemenumusic); // play gamemenumusic
-                //music.playMusic(beepmenu);         
-                System.out.println("\nYou have chosen the intelligent wizard" + " " + characterName);
-                // music.playMusic(wizardpicked);
-                hero = new Wizard(characterName);
-                saveHero(characterName, hero);
-                System.out.println("\nYou have chosen " + characterName + " the intelligent wizard.");
-                break;
-            case 3:
-                //music.playMusic(beepmenu);
-                // music.stopMusic(); // Stop gamemenumusic
-                // music.playMusic(dungeonmusic); // play dungeomusic
-                // music.playMusic(gamemenumusic); // play gamemenumusic
-                System.out.println("What is your thiefs name?");
-                characterName = newHero();
-                hero = new Thief(characterName);
-                saveHero(characterName, hero);
-                System.out.println("\nYou have chosen " + characterName + " the cunning thief.");
-                break;
-            default:
-                System.out.println("Invalid input, please try again.");
-        }
+                        // music.playMusic(beepmenu);
+                        System.out.println("\nYou have chosen the brave knight" + " " + characterName);
+                        // music.playMusic(knightpicked);
+                        hero = new Knight(characterName);
+                        // players.add(hero);  From the spec.: "Dungeon Run är ett textbaserat äventyrsspel för en spelare"
+
+                        saveHero(characterName, hero);
+                        System.out.println("\nYou have chosen " + characterName + " the brave knight.");
+                        validInput = true;
+                        break;
+                    case 2:
+                        System.out.println("\nWhat is your wizards name?");
+                        characterName = newHero();
+
+                        // music.stopMusic(); // Stop gamemenumusic
+                        // music.playMusic(dungeonmusic); // play dungeomusic
+                        // music.playMusic(gamemenumusic); // play gamemenumusic
+                        //music.playMusic(beepmenu);         
+                        System.out.println("\nYou have chosen the intelligent wizard" + " " + characterName);
+                        // music.playMusic(wizardpicked);
+                        hero = new Wizard(characterName);
+                        saveHero(characterName, hero);
+                        System.out.println("\nYou have chosen " + characterName + " the intelligent wizard.");
+                        validInput = true;
+                        break;
+                    case 3:
+                        //music.playMusic(beepmenu);
+                        // music.stopMusic(); // Stop gamemenumusic
+                        // music.playMusic(dungeonmusic); // play dungeomusic
+                        // music.playMusic(gamemenumusic); // play gamemenumusic
+                        System.out.println("What is your thiefs name?");
+                        characterName = newHero();
+                        hero = new Thief(characterName);
+                        saveHero(characterName, hero);
+                        System.out.println("\nYou have chosen " + characterName + " the cunning thief.");
+                        validInput = true;
+                        break;
+                    default:
+                        System.out.println("Invalid input, please try again.");
+                }
+            } catch (Exception e) {
+
+            }
+
+        } while (!validInput);
 
         return hero;
     }
@@ -382,8 +395,10 @@ public class Main {
             String heroType = null;
             try {
                 heroType = (Files.readAllLines(Paths.get("Characters\\" + heroChoice)).get(0));
+
             } catch (IOException ex) {
-                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Main.class
+                        .getName()).log(Level.SEVERE, null, ex);
             }
             if (heroType.equals("Knight")) {
                 oldHero = new Knight(heroChoice);
@@ -431,7 +446,11 @@ public class Main {
         int noOfRows = Integer.max(knight.displayHeight(knight), Integer.max(wizard.displayHeight(wizard), thief.displayHeight(thief)));
         //System.out.println("noOfRows " + noOfRows);
 
-        // Print the first row, with tha class name overlayed in the upper left
+        String lineStr = new String(new char[30]).replace("\0", "-"); // 30 underline chars
+        System.out.printf(":%.30s:%s:%s:\n", lineStr, lineStr, lineStr); // Top border
+
+        // Print the first row, with tha class name overlayed in the upper left*
+        System.out.print(GameLoop.RESET + ": ");
         for (Heroes hero : heroes) {
             String firstRow = hero.displayStrings()[0];
             String heroClassName = hero.getClass().getSimpleName();
@@ -442,6 +461,7 @@ public class Main {
 
         // Print all the rows, assuming all characters have the same number of display rows
         for (int row = 1; row < noOfRows; row++) {
+            System.out.print(GameLoop.RESET + ": ");
             for (Heroes hero : heroes) {
                 System.out.print(GameLoop.BR_GREEN + hero.displayStrings()[row] + GameLoop.RESET + " : ");
             }
@@ -449,51 +469,14 @@ public class Main {
         }
 
         // Now list theair attribute values underneith
-        String lineStr = new String(new char[30]).replace("\0", "-"); // 30 underline chars
-
-        System.out.printf(
-                "%.29s:%s:%s:\n", lineStr, lineStr, lineStr);
+        System.out.printf(":%.30s:%s:%s:\n", lineStr, lineStr, lineStr);
         // TODO: Use color "\033[0;1m" that was previously used?
-        System.out.printf("1. %-25s : 2. %-25s : 3. %-25s :\n", knight.getClass().getSimpleName(), wizard.getClass().getSimpleName(), thief.getClass().getSimpleName());
-        System.out.printf("   %-25s :    %-25s :    %-25s :\n", "Agility: " + knight.agility, "Agility: " + wizard.agility, "Agility: " + thief.agility);
-        System.out.printf("   %-25s :    %-25s :    %-25s :\n", "Toughness: " + knight.toughness, "Toughness: " + wizard.toughness, "Toughness: " + thief.toughness);
-        System.out.printf("   %-25s :    %-25s :    %-25s :\n", "Attack: " + knight.attack, "Attack: " + wizard.attack, "Attack: " + thief.attack);
-        System.out.printf("   %-25s :    %-25s :    %-25s :\n", "Agility: " + knight.agility, "Agility: " + wizard.agility, "Agility: " + thief.agility);
-        System.out.printf("%.29s:%s:%s:\n", lineStr, lineStr, lineStr);
-    }
-
-    public static void drawCastle() {
-
-        String[] ascii = {
-            "         |>>>                                                      |>>>             ",
-            "         |                     |>>>          |>>>                  |                ",
-            "         *                     |             |                     *                ",
-            "        / £                    *             *                    / £               ",
-            "       /___£                 _/ £           / £_                 /___£              ",
-            "       [   ]                |/   £_________/   £|                [   ]              ",
-            "       [ I ]                /     £       /     £                [ I ]              ",
-            "       [   ]_ _ _          /       £     /       £          _ _ _[   ]              ",
-            "       [   ] U U |        {#########}   {#########}        | U U [   ]              ",
-            "       [   ]====/          £=======/     £=======/          £====[   ]              ",
-            "       [   ]    |           |   I |_ _ _ _| I   |           |    [   ]              ",
-            "       [___]    |_ _ _ _ _ _|     | U U U |     |_ _ _ _ _ _|    [___]              ",
-            "       £===/  I | U U U U U |     |=======|     | U U U U U | I  £===/              ",
-            "        £=/     |===========| I   | + W + |   I |===========|     £=/               ",
-            "         |  I   |           |     |_______|     |           |   I  |                ",
-            "         |      |           |     |||||||||     |           |      |                ",
-            "         |      |           |   I ||vvvvv|| I   |           |      |                ",
-            "     _-_-|______|-----------|_____||     ||_____|-----------|______|-_-_            ",
-            "        /________£         /______||     ||______£         /________£               ",
-            "       |__________|-------|________£_____/________|-------|__________|              "};
-
-        for (int i = 0; i < ascii.length; i++) {
-            ascii[i] = ascii[i].replace("£", "\\");
-        }
-        for (int row = 0; row < 20; row++) {
-            System.out.print(" : " + ascii[row]);
-            System.out.println("");
-        }
-
+        System.out.printf(": 1. %-25s : 2. %-25s : 3. %-25s :\n", knight.getClass().getSimpleName(), wizard.getClass().getSimpleName(), thief.getClass().getSimpleName());
+        System.out.printf(":    %-25s :    %-25s :    %-25s :\n", "Initiative: " + knight.initiative, "Initiative: " + wizard.initiative, "Initiative: " + thief.initiative);
+        System.out.printf(":    %-25s :    %-25s :    %-25s :\n", "Toughness: " + knight.toughness, "Toughness: " + wizard.toughness, "Toughness: " + thief.toughness);
+        System.out.printf(":    %-25s :    %-25s :    %-25s :\n", "Attack: " + knight.attack, "Attack: " + wizard.attack, "Attack: " + thief.attack);
+        System.out.printf(":    %-25s :    %-25s :    %-25s :\n", "Agility: " + knight.agility, "Agility: " + wizard.agility, "Agility: " + thief.agility);
+        System.out.printf(":%.30s:%s:%s:\n", lineStr, lineStr, lineStr);
     }
 
 }
