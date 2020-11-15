@@ -13,14 +13,17 @@ public class Chest extends Treasure {
     public String[] displayStrings() {
         // Here you can use "£" instead of"\\" so the rows lines up, and it will be replaced with "\" in the code below 
         String[] ascii = {
+            "                  ",
+            "                  ", // 2
             "  ,------------,  ",
-            " /______d_____/ £ ", // 2
+            " /______d_____/ £ ", // 4
             " £    £   /   £  )",
-            "  £__£__db__/__£.'", // 4
+            "  £__£__db__/__£.'", // 6
             " ,----/888£----,| ",
-            "|=='==8==='==|' | ", // 6
-            "|     d      |_-' ",
-            "'------------'    "}; // 8
+            "|=='==8==='==|' | ", // 8
+            "|    (d)     |  | ",
+            "|            | _' ",
+            "|------------|'   "}; // 10
         //   123456789012345678
         // Replace "£" with "\"
         for (int i = 0; i < ascii.length; i++) {

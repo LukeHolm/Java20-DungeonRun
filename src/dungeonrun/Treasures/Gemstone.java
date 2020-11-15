@@ -23,14 +23,16 @@ public class Gemstone extends Treasure {
     public String[] displayStrings() {
         // Here you can use "£" instead of"\\" so the rows lines up, and it will be replaced with "\" in the code below 
         String[] ascii = {
+            "                  ",
+            "                  ", // 2           
             "   £  |  |  |  /  ",
-            " £ ____________  /", // 2
+            " £ ____________  /", // 4
             "  /£  /£  /£  /£  ",
-            " / .£/..£/..£/ .£ ", // 4
+            " / .£/..£/..£/ .£ ", // 6
             "  £  £ |  | /  /  ",
-            "    £ £ || / /    ", // 6
+            "    £ £ || / /    ", // 8
             "      ££||//      ",
-            "        £/        "}; // 8
+            "        £/        "}; // 10
         //   123456789012345678
         // Replace "£" with "\"
         for (int i = 0; i < ascii.length; i++) {

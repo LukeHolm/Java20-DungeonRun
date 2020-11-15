@@ -118,7 +118,7 @@ public class Room {
             }
 
             // Print all the treasures in the room
-            int treasureRow = row - (21 - 8); // Adjust for lower height of the Treasur display
+            int treasureRow = row - (21 - 10); // Adjust for lower height of the Treasur display
             if (treasureRow >= 0) {
                 for (Treasure treasure : treasures) {
                     System.out.print(GameLoop.BR_YELLOW + treasure.displayStrings()[treasureRow] + " ");
