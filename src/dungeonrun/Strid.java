@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 public class Strid {
     static String wizardspecial = "WizardSpecial.wav";
+    static String thiefspecial = "ThiefSpecial.wav";
     public static final String BR_RED = "\u001b[31;1m";
     public static final String RESET = "\u001b[0m";
     public static final String BR_GREEN = "\u001b[32;1m";
@@ -206,7 +207,9 @@ public class Strid {
                     System.out.println("       \\ \\");
                     System.out.println("        )/");
                     System.out.println(BR_BLUE + "\nCritical Hit! " + hero.playersName + " hits extra hard with the crowbar and the monster takes double damage!\n" + RESET);
+                    music.playMusic(thiefspecial);
                     thiefSpecial = true;
+                    
                 } else {
                     thiefSpecial = false;
                 }
