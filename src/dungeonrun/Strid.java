@@ -1,12 +1,14 @@
 package dungeonrun;
 
 import dungeonrun.Characters.Heroes;
+import static dungeonrun.Main.music;
 import dungeonrun.Monsters.*;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Strid {
+    static String wizardspecial = "WizardSpecial.wav";
     public static final String BR_RED = "\u001b[31;1m";
     public static final String RESET = "\u001b[0m";
     public static final String BR_GREEN = "\u001b[32;1m";
@@ -247,6 +249,7 @@ public class Strid {
         System.out.println("         |<|");
         System.out.println("         |>| ");
         System.out.println(hero.playersName + BR_BLUE + " The Wizard raises the staff of ____  and fires a big glowing light towards the enemies to blind them, giving it a higher chance to escape!" + RESET);
+        music.playMusic(wizardspecial);
 
         }
 

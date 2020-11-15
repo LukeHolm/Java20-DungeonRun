@@ -16,19 +16,20 @@ import java.util.logging.Logger;
 import java.util.ArrayList;
 
 public class Main {
-
+    //Menu
     static String gamemenumusic = "rainthunder.wav";
     static String dungeonmusic = "dungeonmusic.wav";
     static String beepmenu = "beep.wav";
+    //Characters
     static String knightpicked = "Knightpicked.wav";
     static String wizardpicked = "Wizardpicked.wav";
+    static String thiefpicked = "thiefpicked.wav";
     static MusicStuff music = new MusicStuff();
     public static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
 
-       // music.playMusic(gamemenumusic); // gamemenumusic
-
+        // music.playMusic(gamemenumusic); // gamemenumusic
         Drawings.drawCastle();
         while (true) {
             mainGame();
@@ -165,7 +166,7 @@ public class Main {
                 switch (menuChoice) {
 
                     case 1:
-                      ///  //  music.playMusic(beepmenu);
+                        ///  //  music.playMusic(beepmenu);
                         System.out.println("What is your knights name?");
                         characterName = newHero();
 
@@ -195,7 +196,7 @@ public class Main {
 
                         System.out.println("What is your thiefs name?");
                         characterName = newHero();
-                         //FIXA THIEFPICK LJUD
+                        //music.playMusic(thiefpicked);
                         hero = new Thief(characterName);
                         saveHero(characterName, hero);
                         System.out.println("\nYou have chosen " + characterName + " the cunning thief.");
