@@ -18,6 +18,9 @@ public class Strid {
     static String knightspecial = "KnightSpecial.wav";
     static String humandeath = "humandeath.wav";
     static String gameover = "gameover.wav";
+    static String knightAttack = "KnightAttack1.wav";
+    static String thiefAttack = "ThiefAttack1.wav";
+    static String wizardAttack = "WizardAttack1.wav";
     public static final String BR_RED = "\u001b[31;1m";
     public static final String RESET = "\u001b[0m";
     public static final String BR_GREEN = "\u001b[32;1m";
@@ -280,11 +283,11 @@ public class Strid {
     }
     public void attackSound(){
         if (hero.creatureIsA.equalsIgnoreCase("Wizard")) {
-            System.out.println("Wizard sound effect");
+            music.playMusic(wizardAttack);
         }else if (hero.creatureIsA.equalsIgnoreCase("Knight")) {
-            System.out.println("Knight sound effect");
+            music.playMusic(knightAttack);
         }else{
-            System.out.println("Thief sound effect");
+            music.playMusic(thiefAttack);
         }
     }
 
