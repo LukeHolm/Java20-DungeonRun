@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 import java.util.ArrayList;
 
 public class Main {
+
     //Menu
     static String beepmenu = "beep.wav";
     //Characters
@@ -26,8 +27,7 @@ public class Main {
     public static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-      
-       
+
         Drawings.drawCastle();
         while (true) {
             mainGame();
@@ -69,8 +69,8 @@ public class Main {
                     oldHero = listHeroes();
                     if (oldHero != null) {
                         theMap = chooseMap(oldHero);
-                    chooseStart(theMap.rooms.length, theMap.rooms[0].length, oldHero);
-                    theMap.rooms[oldHero.mapPosX][oldHero.mapPosY].visited = true;
+                        chooseStart(theMap.rooms.length, theMap.rooms[0].length, oldHero);
+                        theMap.rooms[oldHero.mapPosX][oldHero.mapPosY].visited = true;
                         GameLoop.playTheGame(theMap, oldHero);
                     }
                     break;
@@ -167,7 +167,7 @@ public class Main {
                         ///  //  music.playMusic(beepmenu);
                         System.out.println("What is your knights name?");
                         characterName = newHero();
-                         music.playMusic(knightpicked);
+                        music.playMusic(knightpicked);
                         hero = new Knight(characterName);
                         // players.add(hero);  From the spec.: "Dungeon Run är ett textbaserat äventyrsspel för en spelare"
                         saveHero(characterName, hero);
@@ -179,8 +179,7 @@ public class Main {
                         System.out.println("\nWhat is your wizards name?");
                         characterName = newHero();
 
-
-                         music.playMusic(wizardpicked);
+                        music.playMusic(wizardpicked);
                         hero = new Wizard(characterName);
                         saveHero(characterName, hero);
                         System.out.println("\nYou have chosen " + characterName + " the intelligent wizard.");
@@ -234,7 +233,7 @@ public class Main {
 
                     case 2:
                         ////  //  music.playMusic(beepmenu);
-                         music.StopRain();
+                        music.StopRain();
                         music.playDungeonmusic();
                         System.out.println("You chose the upper right corner.");
                         hero.mapPosX = sizeX - 1;
@@ -244,7 +243,7 @@ public class Main {
 
                     case 3:
                         ///  //  music.playMusic(beepmenu);
-                         music.StopRain();
+                        music.StopRain();
                         music.playDungeonmusic();
                         System.out.println("You chose the lower left corner.");
                         hero.mapPosX = 0;
@@ -253,7 +252,7 @@ public class Main {
 
                     case 4:
                         ///  //  music.playMusic(beepmenu);
-                         music.StopRain();
+                        music.StopRain();
                         music.playDungeonmusic();
                         System.out.println("You chose the lower right corner.");
                         hero.mapPosX = sizeX - 1;
@@ -306,7 +305,7 @@ public class Main {
             myWriter.write(hero.playersName + "\n");
             myWriter.write(Integer.toString(hero.highScore) + "\n");
             myWriter.write(Integer.toString(hero.playedGames) + "\n");
-            myWriter.write(Integer.toString(hero.totalGold + 53) + "\n");
+            myWriter.write(Integer.toString(hero.totalGold) + "\n");
             myWriter.write(Integer.toString(hero.giantSpidersKilled) + "\n");
             myWriter.write(Integer.toString(hero.skeletonsKilled) + "\n");
             myWriter.write(Integer.toString(hero.orcsKilled) + "\n");
@@ -380,19 +379,27 @@ public class Main {
             System.out.println("Please enter the name the hero you want to revisit:");
             System.out.println("Or type 'Back' to go back to the menu");
             String heroChoice = scanner.nextLine();
+
+            File heroPath = new File("Characters\\" + heroChoice);
+
             if (heroChoice.equalsIgnoreCase("back")) {
                 break;
+                
+            } else if (!heroPath.exists()) {
+                System.out.println("\nThe hero you have entered does not exist\n");
+                continue;
+                
+            } else if (heroPath.exists()) {
+                System.out.println("\n" + heroChoice + " the " + getHeroStats(heroChoice) + "\nAre you sure? y/n");
+                String sure = scanner.nextLine();
+                if (sure.equalsIgnoreCase("y")) {
+                    System.out.println("And so the story of " + heroChoice + " continues..\n");
+                    choice = true;
+                } else {
+                    System.out.println("The heroes will await your return.");
+                    break;
+                }
             }
-            System.out.println("\n" + heroChoice + " the " + getHeroStats(heroChoice) + "\nAre you sure? y/n");
-            String sure = scanner.nextLine();
-            if (sure.equalsIgnoreCase("y")) {
-                System.out.println("And so the story of " + heroChoice + " continues..\n");
-                choice = true;
-            } else {
-                System.out.println("The heroes will await your return.");
-                break;
-            }
-
             //Setting class to loaded hero
             String heroType = null;
             try {

@@ -1,9 +1,15 @@
 package dungeonrun;
+
 import dungeonrun.Characters.Heroes;
 import static dungeonrun.Main.music;
+import static dungeonrun.Main.saveHero;
 import dungeonrun.Monsters.Monster;
 import dungeonrun.Treasures.Treasure;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Scanner;
+
 public class GameLoop {
 
     static String footstep = "footdoor.wav";
@@ -14,6 +20,7 @@ public class GameLoop {
     public static final String BR_YELLOW = "\u001b[33;1m";
     private final static Scanner SCANNER = new Scanner(System.in);
     public static final String GREEN = "\u001b[32m";
+
     public enum NavigMenuItem {
         NAVIG_MENU_NORTH('W', "Go north", true, false), // parameters menuChar, menyChoiceText, enabledMenyChoice, hiddenMenyChoice
         NAVIG_MENU_WEST('A', "Go west", true, false),
@@ -87,7 +94,7 @@ public class GameLoop {
             hero.lastPosX = hero.mapPosX;
             switch (navigMenuChoice) {
                 case NAVIG_MENU_NORTH:
-                     music.playMusic(footstep);
+                    music.playMusic(footstep);
 
                     // System.out.println("hero.mapPosX = " + hero.mapPosX + "hero.mapPosY = " + hero.mapPosY + "map.rooms.length" + map.rooms.length);
                     if (hero.mapPosY > 0) {
@@ -99,7 +106,7 @@ public class GameLoop {
                     break;
 
                 case NAVIG_MENU_SOUTH:
-                      music.playMusic(footstep);
+                    music.playMusic(footstep);
                     if (hero.mapPosY < map.rooms.length - 1) {
                         hero.mapPosY++;
                     } else {
@@ -107,7 +114,7 @@ public class GameLoop {
                     }
                     break;
                 case NAVIG_MENU_WEST:
-                     music.playMusic(footstep);
+                    music.playMusic(footstep);
                     if (hero.mapPosX > 0) {
                         // Go east
                         hero.mapPosX--;
@@ -116,7 +123,7 @@ public class GameLoop {
                     }
                     break;
                 case NAVIG_MENU_EAST:
-                     music.playMusic(footstep);
+                    music.playMusic(footstep);
                     if (hero.mapPosX < map.rooms[0].length - 1) {
                         // Go east
                         hero.mapPosX++;
@@ -125,7 +132,7 @@ public class GameLoop {
                         System.out.println("There's no door in that direction, you are staying put");
                     }
                     break;
-                    
+
                 case NAVIG_MENU_SEE_ROOMS_TOGGLE:
                     map.seeAllRooms = !map.seeAllRooms; // Toggle seeAllRooms
                     navigMenuChoice.setHiddenMenyChoice(!map.seeAllRooms);  // If we can see all rooms, it should not be hidden how to turn it off             
@@ -133,8 +140,14 @@ public class GameLoop {
 
                 case NAVIG_MENU_EXIT:
                     // handled below
-                      music.StopDungeonmusic();
-                     music.playMusic(win);
+                    try {
+                        hero.toughness = (Integer.parseInt(Files.readAllLines(Paths.get("Characters\\" + hero.playersName)).get(2)));
+                    } catch (IOException e) {
+                        System.out.println("There was a problem saving the hero.");
+                    }
+                    saveHero(hero.playersName, hero);
+                    music.StopDungeonmusic();
+                    music.playMusic(win);
                     System.out.println("--------------EXITING--------------");
                     System.out.println("    You have survived this time...");
                     System.out.println("--------------EXITING--------------");
@@ -146,7 +159,7 @@ public class GameLoop {
 
             if (navigMenuChoice != NavigMenuItem.NAVIG_MENU_EXIT) {
                 enteringRoom(map, hero);
-                
+
             }
             System.out.println("");
 
@@ -160,9 +173,8 @@ public class GameLoop {
 
         Strid strid = new Strid();
         map.rooms[hero.mapPosX][hero.mapPosY].draw(hero);
-        
+
         map.rooms[hero.mapPosX][hero.mapPosY].setVisited(true);
-       
 
         for (Monster monster : map.rooms[hero.mapPosX][hero.mapPosY].monsters) {
             monsterStr += "one " + monster.getClass().getSimpleName() + ", ";
@@ -254,5 +266,4 @@ public class GameLoop {
         System.out.println("");
         return goMenuChoice;
     }
-
 }
