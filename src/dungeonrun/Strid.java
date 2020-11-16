@@ -26,6 +26,7 @@ public class Strid {
     static String knightAttack = "KnightAttack1.wav";
     static String thiefAttack = "ThiefAttack1.wav";
     static String wizardAttack = "WizardAttack1.wav";
+    static String blocked = "knightblocked.wav";
     public static final String BR_RED = "\u001b[31;1m";
     public static final String RESET = "\u001b[0m";
     public static final String BR_GREEN = "\u001b[32;1m";
@@ -198,6 +199,7 @@ public class Strid {
                 System.out.println("But now you have " + hero.toughness + RESET + "\n");
             } else if (monsterAtk < simonDef) {
                 System.out.println("You defended yourself from the attack!");
+                music.playMusic(blocked);
             } else {
                 System.out.println("Draw!");
             }
