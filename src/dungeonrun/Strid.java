@@ -254,14 +254,14 @@ public class Strid {
         }
 
         if (chanceEscape > escChance) {
-            System.out.println("You escaped!");
+            System.out.println(GREEN + "You escaped!" + RESET);
             knightBlock = 0;
 
             return false;
 
         }
         if (chanceEscape <= escChance) {
-            System.out.println("You failed to escape!");
+            System.out.println(BR_RED+"You failed to escape!"+RESET);
             monsterAtk();
             return true;
         } else {
