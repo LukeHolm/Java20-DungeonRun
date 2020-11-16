@@ -70,7 +70,8 @@ public class Main {
                     oldHero = listHeroes();
                     if (oldHero != null) {
                         theMap = chooseMap(oldHero);
-
+                    chooseStart(theMap.rooms.length, theMap.rooms[0].length, oldHero);
+                    theMap.rooms[oldHero.mapPosX][oldHero.mapPosY].visited = true;
                         GameLoop.playTheGame(theMap, oldHero);
                     }
                     break;
@@ -167,12 +168,9 @@ public class Main {
                         ///  //  music.playMusic(beepmenu);
                         System.out.println("What is your knights name?");
                         characterName = newHero();
-
-
                          music.playMusic(knightpicked);
                         hero = new Knight(characterName);
                         // players.add(hero);  From the spec.: "Dungeon Run är ett textbaserat äventyrsspel för en spelare"
-
                         saveHero(characterName, hero);
                         System.out.println("\nYou have chosen " + characterName + " the brave knight.");
                         validInput = true;
