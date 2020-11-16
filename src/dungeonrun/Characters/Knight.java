@@ -1,4 +1,5 @@
 package dungeonrun.Characters;
+
 public class Knight extends Heroes {
 
     public Knight(String playersName) {
@@ -10,39 +11,41 @@ public class Knight extends Heroes {
         agility = 4;
     }
 
+    public void specialAbility() {
+        //"Shield block". Blocks first attack of every encounter
+    }
 
     @Override
     public String toString() {
         return "Knight name is " + playersName + "\n";
     }
 
-
     @Override
     public String[] displayStrings() {
         // Characters like '\' and '" 'messes upp the line lengths, since you need to write \\ and \" to get them in a string. 
         // Kan use '£' for '\' and '§' for '"' here, because of the replacement code below.
         String[] ascii = {
-                "                            ",
-                "                            ",
-                "|£                          ",
-                " ££             //          ",
-                "  ££           _!_          ", // Row 5
-                "   ££         /___£         ",
-                "    ££        [+++]         ",
-                "     ££    _ _£^^^/_ _      ",
-                "      ££/ (    '-'  (  )    ",
-                "      /( £/ |  _|_  || |    ", // Row 10
-                "       £ £/ |   |   /£ £    ",
-                "        £  / £  |  / _> )   ",
-                "         ^`  >::::;-'`^^'-. ",
-                "             /:::/         £",
-                "            /  /||   { }   |", // Row 215
-                "           /  / |£         /",
-                "          (  /  ( '-.___.-' ",
-                "          / /    £ £        ",
-                "         / /      £ £       ",
-                "       _/ /        £ £      ", // Row 20
-                "      /___|       /___|     "};
+            "                            ",
+            "|£                          ",
+            " ££             //          ",
+            "  ££           _!_          ", // Row 5
+            "   ££         /___£         ",
+            "    ££        [+++]         ",
+            "     ££    _ _£^^^/_ _      ",
+            "      ££/ (    '-'  (  )    ",
+            "      /( £/ |  _|_  || |    ", // Row 10
+            "       £ £/ |   |   /£ £    ",
+            "        £  / £  |  / _> )   ",
+            "         ^`  >::::;-'`^^'-. ",
+            "             /:::/         £",
+            "            /    |   { }   |", // Row 215
+            "           /   /|£         /",
+            "          /   / | '-.___.-' ",
+            "         (   /  (   |       ",
+            "         /  /    £  £       ",
+            "        /  /      £  £      ",
+            "     __/  /       _£  £     ", // Row 20
+            "    /_____|      /_____|     "};
         //   1234567890123456789012345678
 
         // Replace '£' with '\' and replace '§' with '"'
@@ -53,4 +56,3 @@ public class Knight extends Heroes {
         return ascii;
     }
 }
-
