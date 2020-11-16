@@ -1,5 +1,7 @@
 package dungeonrun.Characters;
 
+import dungeonrun.Map;
+
 public class Knight extends Heroes {
 
     public Knight(String playersName) {
@@ -32,7 +34,7 @@ public class Knight extends Heroes {
             "   ££         /___£         ",
             "    ££        [+++]         ",
             "     ££    _ _£^^^/_ _      ",
-            "      ££/ (    '-'  (  )    ",
+            "      ££_ (    '-'  (  )    ",
             "      /( £/ |  _|_  || |    ", // Row 10
             "       £ £/ |   |   /£ £    ",
             "        £  / £  |  / _> )   ",
@@ -45,14 +47,56 @@ public class Knight extends Heroes {
             "         /  /    £  £       ",
             "        /  /      £  £      ",
             "     __/  /       _£  £     ", // Row 20
-            "    /_____|      /_____|     "};
+            "    /_____|      /_____|    "};
         //   1234567890123456789012345678
 
-        // Replace '£' with '\' and replace '§' with '"'
-        for (int i = 0; i < ascii.length; i++) {
-            ascii[i] = ascii[i].replace("£", "\\");
-            ascii[i] = ascii[i].replace("§", "\"");
+        String[] color = {
+            "                            ",
+            "e£                          ",
+            " e£             ww          ",
+            "  e£           gwg          ", // Row 5
+            "   e£         g___£         ",
+            "    e£        ge++g         ",
+            "     e£    g _£e^^g_ _      ",
+            "      e£_ g    '-'  (  )    ",
+            "      /( £/ |  r__  g| |    ", // Row 10
+            "       £ £/ |   r   g£ £    ",
+            "        £  / £  r  g _> )   ",
+            "         ^`  >::::;e'`^^'-. ",
+            "             /:::e         £",
+            "            /    e   c }   e", // Row 215
+            "           /   /|e         /",
+            "          /   / | e-.___.-' ",
+            "         (   /  (   |       ",
+            "         /  /    £  £       ",
+            "        /  /      £  £      ",
+            "     __/  /       _£  £     ", // Row 20
+            "    /_____|      /_____|    "};
+        //   1234567890123456789012345678
+
+        String str;
+        String[] coloredAscii = new String[ascii.length];
+        char chr;
+        for (int row = 0; row < ascii.length; row++) {
+            // Replace '£' with '\' and replace '§' with '"'
+            ascii[row] = ascii[row].replace("£", "\\");
+            ascii[row] = ascii[row].replace("§", "\"");
+
+            str = "";
+            for (int x = 0; x < ascii[row].length(); x++) {
+
+                // Get the corresponding location in the color strings, and check if it's lower case letter
+                chr = color[row].charAt(x);
+
+                if (Character.isLowerCase(chr)) {
+                    //  Lookup the corresponding color code, and add it to the output string
+                    str += Map.colorLookup[(int) (chr - 'a')];
+                }
+                // Always add the chracter from the ascii strings
+                str += ascii[row].charAt(x);
+            }
+            coloredAscii[row] = str;
         }
-        return ascii;
+        return coloredAscii;
     }
 }
