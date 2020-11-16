@@ -170,7 +170,7 @@ public class Main {
                         System.out.println("What is your knights name?");
                         characterName = newHero();
 
-                        System.out.println("\nYou have chosen the brave knight" + " " + characterName);
+
                         //////////// music.playMusic(knightpicked);
                         hero = new Knight(characterName);
                         // players.add(hero);  From the spec.: "Dungeon Run är ett textbaserat äventyrsspel för en spelare"
@@ -184,7 +184,7 @@ public class Main {
                         System.out.println("\nWhat is your wizards name?");
                         characterName = newHero();
 
-                        System.out.println("\nYou have chosen the intelligent wizard" + " " + characterName);
+
                         /////////// music.playMusic(wizardpicked);
                         hero = new Wizard(characterName);
                         saveHero(characterName, hero);
