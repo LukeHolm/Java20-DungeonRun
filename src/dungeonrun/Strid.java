@@ -4,6 +4,7 @@ import dungeonrun.Characters.Heroes;
 import static dungeonrun.Main.music;
 import dungeonrun.Monsters.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
@@ -96,7 +97,11 @@ public class Strid {
                     }
                     if (iniList.size() == 0) {
                         knightBlock = 0;
-                        System.out.println(GREEN + "Leaving room..." + RESET);
+
+
+                        System.out.println("Press \"ENTER\" to pick up treasures and continue your adventure...");
+                        Scanner scanner = new Scanner(System.in);
+                        scanner.nextLine();
                         break;
                     }
 

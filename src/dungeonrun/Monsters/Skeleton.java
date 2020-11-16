@@ -1,7 +1,4 @@
 package dungeonrun.Monsters;
-
-import dungeonrun.Monsters.Monster;
-
 public class Skeleton extends Monster {
 
     public Skeleton(){

@@ -1,13 +1,8 @@
 package dungeonrun;
-
-import dungeonrun.Monsters.GiantSpider;
 import dungeonrun.Characters.Heroes;
 import dungeonrun.Monsters.Monster;
 import dungeonrun.Treasures.Treasure;
 import java.util.ArrayList;
-import java.util.Scanner;
-import java.util.InputMismatchException;
-
 public class Map {
 
     public static final String RESET = "\u001b[0m";
@@ -68,7 +63,7 @@ public class Map {
         UNDERLINE/*u*/, BR_WHITE/*v*/, RESET/*w = white*/, DD_WHITE/*x*/,
         BR_YELLOW/*y*/, D_YELLOW/*z*/};
 
-    Scanner input = new Scanner(System.in);
+
     public Room[][] rooms;
     public boolean seeAllRooms;
 
@@ -110,14 +105,11 @@ public class Map {
                 || (hasEastWall(x, y) && hasSouthWall(x, y)) || (hasSouthWall(x, y) && hasWestWall(x, y)));
     }
 
-    //  public void draw(Character character) {
     public void draw(Heroes hero) {
 
-        Room currentRoom;
         ArrayList<Monster> monsters;
         ArrayList<Treasure> treasures;
         String monsterStr, treasureStr;
-        int alsoCheckX, alsoCheckY;
         int x, y;
 
         System.out.println("The map with " + BR_RED + "G" + RESET + " = Giant Spider, " + BR_RED + "S" + RESET + " = Skeleton, " + BR_RED + "O" + RESET + " = Orc, " + BR_RED + "T" + RESET + " = Troll:");
