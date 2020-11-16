@@ -236,7 +236,7 @@ public class Main {
                         break;
 
                     case 2:
-                        ///  //  music.playMusic(beepmenu);
+                        ////  //  music.playMusic(beepmenu);
                         System.out.println("You chose the upper right corner.");
                         hero.mapPosX = sizeX - 1;
                         hero.mapPosY = 0;
