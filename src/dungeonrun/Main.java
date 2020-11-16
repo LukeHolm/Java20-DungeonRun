@@ -14,6 +14,7 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 public class Main {
     //Menu
@@ -26,7 +27,7 @@ public class Main {
     public static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-      
+       
        
         Drawings.drawCastle();
         while (true) {
@@ -52,7 +53,7 @@ public class Main {
 
             switch (choice) {
                 case 1:
-                    ////  music.playMusic(beepmenu);
+                    music.playMusic(beepmenu);
                     theHero = getPlayer();
                     theMap = chooseMap(theHero);
                     chooseStart(theMap.rooms.length, theMap.rooms[0].length, theHero);
@@ -62,7 +63,7 @@ public class Main {
                     break;
 
                 case 2:
-                    //////   music.playMusic(beepmenu);
+                    music.playMusic(beepmenu);
                     /*              for (Heroes character : players) {
                     System.out.println(character);
                 }*/
@@ -105,19 +106,19 @@ public class Main {
                 switch (size) {
                     case 1:
 
-                        /// //  music.playMusic(beepmenu);
+                        music.playMusic(beepmenu);
                         theMap = new Map(4, 4, hero);
                         runtime = false;
                         break;
 
                     case 2:
-                        ///  //  music.playMusic(beepmenu);
+                        music.playMusic(beepmenu);
                         theMap = new Map(5, 5, hero);
                         runtime = false;
                         break;
 
                     case 3:
-                        ///// //   music.playMusic(beepmenu);
+                        music.playMusic(beepmenu);
                         theMap = new Map(8, 8, hero);
                         runtime = false;
                         break;
@@ -164,10 +165,10 @@ public class Main {
                 switch (menuChoice) {
 
                     case 1:
-                        ///  //  music.playMusic(beepmenu);
+                        music.playMusic(beepmenu);
                         System.out.println("What is your knights name?");
                         characterName = newHero();
-                         music.playMusic(knightpicked);
+                        music.playMusic(knightpicked);
                         hero = new Knight(characterName);
                         // players.add(hero);  From the spec.: "Dungeon Run är ett textbaserat äventyrsspel för en spelare"
                         saveHero(characterName, hero);
@@ -175,7 +176,7 @@ public class Main {
                         validInput = true;
                         break;
                     case 2:
-                        ///  //  music.playMusic(beepmenu);
+                        music.playMusic(beepmenu);
                         System.out.println("\nWhat is your wizards name?");
                         characterName = newHero();
 
@@ -187,7 +188,7 @@ public class Main {
                         validInput = true;
                         break;
                     case 3:
-                        ///  //  music.playMusic(beepmenu);
+                        music.playMusic(beepmenu);
 
                         System.out.println("What is your thiefs name?");
                         characterName = newHero();
@@ -223,7 +224,7 @@ public class Main {
                 }
                 switch (intFromUser) {
                     case 1:
-                        ///  //  music.playMusic(beepmenu);
+                        music.playMusic(beepmenu);
                         music.StopRain();
                         music.playDungeonmusic();
                         System.out.println("You chose the upper left corner.");
@@ -233,7 +234,7 @@ public class Main {
                         break;
 
                     case 2:
-                        ////  //  music.playMusic(beepmenu);
+                        music.playMusic(beepmenu);
                          music.StopRain();
                         music.playDungeonmusic();
                         System.out.println("You chose the upper right corner.");
@@ -243,7 +244,7 @@ public class Main {
                         break;
 
                     case 3:
-                        ///  //  music.playMusic(beepmenu);
+                        music.playMusic(beepmenu);
                          music.StopRain();
                         music.playDungeonmusic();
                         System.out.println("You chose the lower left corner.");
@@ -252,7 +253,7 @@ public class Main {
                         break;
 
                     case 4:
-                        ///  //  music.playMusic(beepmenu);
+                        music.playMusic(beepmenu);
                          music.StopRain();
                         music.playDungeonmusic();
                         System.out.println("You chose the lower right corner.");

@@ -196,6 +196,7 @@ public class Strid {
             if (monsterAtk > simonDef) {
                 System.out.println(BR_RED + "You took damage! You had " + hero.toughness + " toughness");
                 hero.toughness--;
+                 music.Random();
                 System.out.println("But now you have " + hero.toughness + RESET + "\n");
             } else if (monsterAtk < simonDef) {
                 System.out.println("You defended yourself from the attack!");

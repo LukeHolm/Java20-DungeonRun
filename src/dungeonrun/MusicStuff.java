@@ -5,7 +5,9 @@
  */
 package dungeonrun;
 
+import static dungeonrun.Main.music;
 import java.io.File;
+import java.util.Random;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -20,6 +22,7 @@ public class MusicStuff {
     private Clip StopRain;
     private Clip StopBattle;
     private Clip StopDungeonmusic;
+    static String sound;
 
     void playMusic(String musicLocation) {
 
@@ -84,7 +87,7 @@ public class MusicStuff {
 
     void playDungeonmusic() {
         try {
-            
+
             File musicPath = new File("dungeonmusic.wav");
 
             AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
@@ -102,10 +105,38 @@ public class MusicStuff {
         try {
             StopDungeonmusic.stop();
         } catch (Exception e) {
-          return;
+            return;
         }
-
 
     }
 
+    void Random() {
+        Random rand = new Random();
+        int hitsound = 1 + rand.nextInt(100);
+        if (hitsound <= 33) {
+            sound = "hit1.wav";
+
+        } else if (hitsound > 33 && hitsound < 66) {
+
+            sound = "hit2.wav";
+        } else if (hitsound >= 66 && hitsound < 100) {
+            sound = "hit3.wav";
+        } else if (hitsound == 100) {
+            sound = "easteregghit.wav";
+        }
+        try {
+
+            File musicPath = new File(sound);
+
+            AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
+            clip = AudioSystem.getClip();
+            clip.open(audioInput);
+            clip.start();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+    
 }

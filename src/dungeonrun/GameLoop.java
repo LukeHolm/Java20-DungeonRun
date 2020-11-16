@@ -109,7 +109,7 @@ public class GameLoop {
                 case NAVIG_MENU_WEST:
                      music.playMusic(footstep);
                     if (hero.mapPosX > 0) {
-                        // Go east
+                        // Go West
                         hero.mapPosX--;
                     } else {
                         System.out.println("There's no door in that direction, you are staying put");
