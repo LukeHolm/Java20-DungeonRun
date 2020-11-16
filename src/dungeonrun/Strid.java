@@ -6,12 +6,17 @@ import dungeonrun.Monsters.*;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Strid {
 
     static String wizardspecial = "WizardSpecial.wav";
     static String thiefspecial = "ThiefSpecial.wav";
     static String knightspecial = "KnightSpecial.wav";
+    static String humandeath = "humandeath.wav";
+
     public static final String BR_RED = "\u001b[31;1m";
     public static final String RESET = "\u001b[0m";
     public static final String BR_GREEN = "\u001b[32;1m";
@@ -169,10 +174,16 @@ public class Strid {
                 System.out.println("Draw!");
             }
             if (hero.toughness == 0) {
-                System.out.println("----------------------------");
-                System.out.println("You died!");
-                System.out.println("----------------------------");
-                System.exit(0);
+                try {
+                    System.out.println("----------------------------");
+                    System.out.println("You died!");
+                    System.out.println("----------------------------");
+                    music.playMusic(humandeath);
+                    TimeUnit.SECONDS.sleep(3);
+                    System.exit(0);
+                } catch (InterruptedException ex) {
+                   
+                }
 
             }
         }
@@ -195,12 +206,12 @@ public class Strid {
                 double specialChance = Math.random();
                 if (specialAttack >= specialChance) {
 
-        System.out.println("___   ___  ___  ");
-        System.out.println("\\  \\ /  / |__ \\");
-        System.out.println(" \\  V  /     ) | ");
-        System.out.println("  >   <     / / ");
-        System.out.println(" /  .  \\   / /_ ");
-        System.out.println("/__/ \\__\\ |____|");
+                    System.out.println("___   ___  ___  ");
+                    System.out.println("\\  \\ /  / |__ \\");
+                    System.out.println(" \\  V  /     ) | ");
+                    System.out.println("  >   <     / / ");
+                    System.out.println(" /  .  \\   / /_ ");
+                    System.out.println("/__/ \\__\\ |____|");
                     System.out.println(BR_BLUE + "\nCritical Hit! " + hero.playersName + " hits extra hard with the crowbar and the monster takes double damage!\n" + RESET);
                     music.playMusic(thiefspecial);
                     thiefSpecial = true;
@@ -257,7 +268,7 @@ public class Strid {
 
         }
         if (chanceEscape <= escChance) {
-            System.out.println(BR_RED+"You failed to escape!"+RESET);
+            System.out.println(BR_RED + "You failed to escape!" + RESET);
             monsterAtk();
             return true;
         } else {
