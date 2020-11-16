@@ -17,6 +17,7 @@ import javax.sound.sampled.Clip;
 public class MusicStuff {
 
     private Clip clip;
+    private Clip StopMusic;
 
     void playMusic(String musicLocation) {
 
@@ -38,6 +39,25 @@ public class MusicStuff {
         clip.stop();
        
         
+    }
+    void  PlayRain(){
+        
+        try {
+            File musicPath = new File("rainthunder.wav");
+
+            AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
+            StopMusic = AudioSystem.getClip();
+            StopMusic.open(audioInput);
+            StopMusic.start();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        
+    }
+    void StopRain(){
+        StopMusic.stop();
     }
 
 }
