@@ -66,7 +66,6 @@ public class Main {
                     /*              for (Heroes character : players) {
                     System.out.println(character);
                 }*/
-                    System.out.println("TODO: Load character... ");
                     oldHero = listHeroes();
                     if (oldHero != null) {
                         theMap = chooseMap(oldHero);
