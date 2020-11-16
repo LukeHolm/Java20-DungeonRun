@@ -194,17 +194,13 @@ public class Strid {
                 double specialAttack = 0.25;
                 double specialChance = Math.random();
                 if (specialAttack >= specialChance) {
-                    System.out.println("  _");
-                    System.out.println(" //");
-                    System.out.println("( \\");
-                    System.out.println(" \\ \\");
-                    System.out.println("  \\ \\");
-                    System.out.println("   \\ \\");
-                    System.out.println("    \\ \\");
-                    System.out.println("     \\ \\");
-                    System.out.println("      \\ \\");
-                    System.out.println("       \\ \\");
-                    System.out.println("        )/");
+
+        System.out.println("___   ___  ___  ");
+        System.out.println("\\  \\ /  / |__ \\");
+        System.out.println(" \\  V  /     ) | ");
+        System.out.println("  >   <     / / ");
+        System.out.println(" /  .  \\   / /_ ");
+        System.out.println("/__/ \\__\\ |____|");
                     System.out.println(BR_BLUE + "\nCritical Hit! " + hero.playersName + " hits extra hard with the crowbar and the monster takes double damage!\n" + RESET);
                     music.playMusic(thiefspecial);
                     thiefSpecial = true;
