@@ -16,7 +16,7 @@ public class Strid {
     static String thiefspecial = "ThiefSpecial.wav";
     static String knightspecial = "KnightSpecial.wav";
     static String humandeath = "humandeath.wav";
-
+    static String gameover = "2.wav";
     public static final String BR_RED = "\u001b[31;1m";
     public static final String RESET = "\u001b[0m";
     public static final String BR_GREEN = "\u001b[32;1m";
@@ -178,8 +178,9 @@ public class Strid {
                     System.out.println("----------------------------");
                     System.out.println("You died!");
                     System.out.println("----------------------------");
+                    music.playMusic(gameover);
                     music.playMusic(humandeath);
-                    TimeUnit.SECONDS.sleep(3);
+                    TimeUnit.SECONDS.sleep(4);
                     System.exit(0);
                 } catch (InterruptedException ex) {
                    
