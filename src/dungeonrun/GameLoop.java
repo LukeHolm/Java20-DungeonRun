@@ -13,7 +13,7 @@ public class GameLoop {
     public static final String BR_GREEN = "\u001b[32;1m";
     public static final String BR_YELLOW = "\u001b[33;1m";
     private final static Scanner SCANNER = new Scanner(System.in);
-
+    public static final String GREEN = "\u001b[32m";
     public enum NavigMenuItem {
         NAVIG_MENU_NORTH('W', "Go north", true, false), // parameters menuChar, menyChoiceText, enabledMenyChoice, hiddenMenyChoice
         NAVIG_MENU_WEST('A', "Go west", true, false),
@@ -196,12 +196,11 @@ public class GameLoop {
             map.rooms[hero.mapPosX][hero.mapPosY].treasures.clear();
         } else {
             System.out.println("The monsters keep the treasures in this room...");
-            //code to go back to last visited room should be here
-            // map.rooms[hero.mapPosX][hero.mapPosY].setVisited(false); Greger: I think this should still be visitied, as it's contents is known by the player
             hero.mapPosX = hero.lastPosX;
             hero.mapPosY = hero.lastPosY;
 
         }
+        System.out.println(GREEN + "Leaving room..." + RESET);
         Strid.tryLoot = true;
 
         System.out.println("You have a total of " + hero.totalGold + " gold");
