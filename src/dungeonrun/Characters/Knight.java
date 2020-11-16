@@ -20,13 +20,11 @@ public class Knight extends Heroes {
         return "Knight name is " + playersName + "\n";
     }
 
-
     @Override
     public String[] displayStrings() {
         // Characters like '\' and '" 'messes upp the line lengths, since you need to write \\ and \" to get them in a string. 
         // Kan use '£' for '\' and '§' for '"' here, because of the replacement code below.
         String[] ascii = {
-            "                            ",
             "                            ",
             "|£                          ",
             " ££             //          ",
@@ -40,13 +38,14 @@ public class Knight extends Heroes {
             "        £  / £  |  / _> )   ",
             "         ^`  >::::;-'`^^'-. ",
             "             /:::/         £",
-            "            /  /||   { }   |", // Row 215
-            "           /  / |£         /",
-            "          (  /  ( '-.___.-' ",
-            "          / /    £ £        ",
-            "         / /      £ £       ",
-            "       _/ /        £ £      ", // Row 20
-            "      /___|       /___|     "};
+            "            /    |   { }   |", // Row 215
+            "           /   /|£         /",
+            "          /   / | '-.___.-' ",
+            "         (   /  (   |       ",
+            "         /  /    £  £       ",
+            "        /  /      £  £      ",
+            "     __/  /       _£  £     ", // Row 20
+            "    /_____|      /_____|     "};
         //   1234567890123456789012345678
 
         // Replace '£' with '\' and replace '§' with '"'
@@ -57,4 +56,3 @@ public class Knight extends Heroes {
         return ascii;
     }
 }
-
