@@ -28,6 +28,7 @@ public class Main {
 
     public static void main(String[] args) {
        //// // music.PlayRain();// Spelar upp regn 
+       
         Drawings.drawCastle();
         while (true) {
             mainGame();

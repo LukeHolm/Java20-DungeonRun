@@ -19,6 +19,10 @@ public class Strid {
     static String knightspecial = "KnightSpecial.wav";
     static String humandeath = "humandeath.wav";
     static String gameover = "gameover.wav";
+    static String spiderdead = "spiderdeath.wav";
+    static String skeletondead = "skeletondeath.wav";
+    static String trolldead = "trolldeath.wav";
+    static String orcdead = "orcdeath.wav";
     static String knightAttack = "KnightAttack1.wav";
     static String thiefAttack = "ThiefAttack1.wav";
     static String wizardAttack = "WizardAttack1.wav";
@@ -80,6 +84,18 @@ public class Strid {
 
                     playerAtk();
                     if (monsterObj.toughness <= 0) {
+                        if (monsterObj.attack == 2) {
+                            music.playMusic(spiderdead);
+                        }
+                        if(monsterObj.attack == 3){
+                            music.playMusic(skeletondead);
+                        }
+                        if(monsterObj.attack == 4){
+                            music.playMusic(orcdead);
+                        }
+                        if(monsterObj.attack == 7){
+                            music.playMusic(trolldead);
+                        }
                         System.out.println("         />_________________________________\n"
                                 + "[########[]_________________________________>\n"
                                 + "         \\>");
@@ -97,7 +113,6 @@ public class Strid {
                     }
                     if (iniList.size() == 0) {
                         knightBlock = 0;
-
 
                         System.out.println("Press \"ENTER\" to pick up treasures and continue your adventure...");
                         Scanner scanner = new Scanner(System.in);
@@ -192,7 +207,7 @@ public class Strid {
                     TimeUnit.SECONDS.sleep(4);
                     System.exit(0);
                 } catch (InterruptedException ex) {
-                   
+
                 }
 
             }
@@ -201,7 +216,7 @@ public class Strid {
 
     public void playerAtk() {
         boolean thiefSpecial = false;
-        
+
         int playerAtk = diceRoll(hero.attack);
         int monsterDef = diceRoll(monsterObj.agility);
         System.out.println("..............");
@@ -286,12 +301,13 @@ public class Strid {
             return false;
         }
     }
-    public void attackSound(){
+
+    public void attackSound() {
         if (hero.creatureIsA.equalsIgnoreCase("Wizard")) {
             music.playMusic(wizardAttack);
-        }else if (hero.creatureIsA.equalsIgnoreCase("Knight")) {
+        } else if (hero.creatureIsA.equalsIgnoreCase("Knight")) {
             music.playMusic(knightAttack);
-        }else{
+        } else {
             music.playMusic(thiefAttack);
         }
     }
