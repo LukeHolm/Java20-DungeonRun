@@ -55,11 +55,11 @@ public class Map {
 
     // Mapping lower case letters to color code strings, index with "(int)(char - 'a')"
     public static final String[] colorLookup = {
-        DD_BLUE/*a*/, BR_BLUE/*b*/, BR_CYAN/*c*/, DD_CYAN/*d*/,
-        BR_BLACK/*e = grey*/, DD_WHITE/*f*/, BR_GREEN/*g*/, D_GREEN/*h*/,
+        D_BLUE/*a*/, BR_BLUE/*b*/, BR_CYAN/*c*/, D_CYAN/*d*/,
+        BR_BLACK/*e = grey*/, D_WHITE/*f*/, BR_GREEN/*g*/, D_GREEN/*h*/,
         BLINK/*i*/, ""/*j*/, BR_BLACK/*k*/, ""/*l*/,
-        BR_MAGENTA/*m*/, DD_MAGENTA/*n*/, ""/*o*/, ""/*p*/,
-        RESET/*q*/, BR_RED/*r*/, DD_RED /*s*/, REVERSE_VIDEO/*t*/,
+        BR_MAGENTA/*m*/, D_MAGENTA/*n*/, ""/*o*/, ""/*p*/,
+        RESET/*q*/, BR_RED/*r*/, D_RED /*s*/, REVERSE_VIDEO/*t*/,
         UNDERLINE/*u*/, BR_WHITE/*v*/, RESET/*w = white*/, DD_WHITE/*x*/,
         BR_YELLOW/*y*/, D_YELLOW/*z*/};
 
