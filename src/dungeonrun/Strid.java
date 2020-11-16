@@ -9,6 +9,7 @@ import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import jdk.nashorn.internal.parser.TokenType;
 
 public class Strid {
 
@@ -192,12 +193,13 @@ public class Strid {
 
     public void playerAtk() {
         boolean thiefSpecial = false;
-
+        
         int playerAtk = diceRoll(hero.attack);
         int monsterDef = diceRoll(monsterObj.agility);
         System.out.println("..............");
         System.out.println("Player attack");
         System.out.println("..............");
+        attackSound();
         System.out.println("You attack for " + playerAtk + " damage!");
         System.out.println("The " + monsterObj.creatureIsA + " defends for " + monsterDef);
 
@@ -274,6 +276,15 @@ public class Strid {
             return true;
         } else {
             return false;
+        }
+    }
+    public void attackSound(){
+        if (hero.creatureIsA.equalsIgnoreCase("Wizard")) {
+            System.out.println("Wizard sound effect");
+        }else if (hero.creatureIsA.equalsIgnoreCase("Knight")) {
+            System.out.println("Knight sound effect");
+        }else{
+            System.out.println("Thief sound effect");
         }
     }
 
