@@ -1,32 +1,17 @@
 package dungeonrun;
-
 import dungeonrun.Characters.Heroes;
-
-import static dungeonrun.Main.listHeroes;
-import static dungeonrun.Main.music;
-
 import dungeonrun.Monsters.Monster;
 import dungeonrun.Treasures.Treasure;
-
-import java.awt.MenuItem;
-import java.util.HashSet;
 import java.util.Scanner;
-import java.util.Set;
-
 public class GameLoop {
 
     static String footstep = "footdoor.wav";
     static String win = "Victory.wav";
     static MusicStuff music = new MusicStuff();
     public static final String RESET = "\u001b[0m";
-    public static final String BR_BLACK = "\u001b[30;1m";
     public static final String BR_RED = "\u001b[31;1m";
     public static final String BR_GREEN = "\u001b[32;1m";
     public static final String BR_YELLOW = "\u001b[33;1m";
-    public static final String BR_BLUE = "\u001b[34;1m";
-    public static final String BR_MAGENTA = "\u001b[35;1m";
-    public static final String BR_CYAN = "\u001b[36;1m";
-
     private final static Scanner SCANNER = new Scanner(System.in);
 
     public enum NavigMenuItem {
@@ -88,10 +73,7 @@ public class GameLoop {
     }
 
     public static void playTheGame(Map map, Heroes hero) {
-        NavigMenuItem navigMenuChoice = null;
-
-        String str;
-        boolean found;
+        NavigMenuItem navigMenuChoice;
 
         //System.out.println("Playing the game...");
         System.out.println("");
@@ -100,7 +82,7 @@ public class GameLoop {
             map.draw(hero);
 
             navigMenuChoice = getNavigMenuChoice("What do you want to do: ", map, hero);
-            found = false;
+
             hero.lastPosY = hero.mapPosY;
             hero.lastPosX = hero.mapPosX;
             switch (navigMenuChoice) {
@@ -162,11 +144,7 @@ public class GameLoop {
             }
 
             if (navigMenuChoice != NavigMenuItem.NAVIG_MENU_EXIT) {
-
                 enteringRoom(map, hero);
-
-                //Unnecessary step, removed by Lucas to add flow to game. 
-                //getStringFromUser(BR_GREEN + "Press <enter> to continue" + RESET);
             }
             System.out.println("");
 
@@ -179,8 +157,6 @@ public class GameLoop {
         String treasureStr = "";
 
         Strid strid = new Strid();
-
-        // Draw a ascii represantation of the room 
         map.rooms[hero.mapPosX][hero.mapPosY].draw(hero);
         
         map.rooms[hero.mapPosX][hero.mapPosY].setVisited(true);
@@ -198,10 +174,9 @@ public class GameLoop {
 
         if (monsterStr.length() == 0 && treasureStr.length() == 0) {
             System.out.println("You have entered an empty room");
-            // getStringFromUser(BR_GREEN + "Press <enter> to continue" + RESET);
 
         } else if (monsterStr.length() != 0) {
-            System.out.println("OH MY GOD, when you enter the room you see: " + monsterStr);
+            System.out.println(RESET + "OH MY GOD, when you enter the room you see: " + monsterStr);
             if (treasureStr.length() != 0) {
                 System.out.println("Behind the monster(s) you see " + treasureStr);
             }
@@ -235,7 +210,7 @@ public class GameLoop {
 
     private static NavigMenuItem getNavigMenuChoice(String prompt, Map map, Heroes hero) {
         String choiceStr;
-        NavigMenuItem goMenuChoice = null;
+        NavigMenuItem goMenuChoice;
 
         System.out.println("Navigation menu:" + BR_YELLOW);
 
@@ -263,7 +238,7 @@ public class GameLoop {
 
             System.out.print(RESET + prompt);
 
-            // Try to read an meny choice integer from the console
+            // Try to read an menu choice integer from the console
             choiceStr = SCANNER.nextLine();
             // Using the first character as the user input
             goMenuChoice = (choiceStr.length() > 0) ? NavigMenuItem.values()[0].getNavigMenuItem(choiceStr.charAt(0)) : null;
@@ -277,15 +252,6 @@ public class GameLoop {
 
         System.out.println("");
         return goMenuChoice;
-    }
-
-    private static String getStringFromUser(String promptText) {
-
-        System.out.print(promptText);
-
-        String userInputString = SCANNER.nextLine();
-
-        return userInputString;
     }
 
 }

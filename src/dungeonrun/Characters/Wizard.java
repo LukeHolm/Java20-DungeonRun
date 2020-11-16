@@ -1,7 +1,5 @@
 package dungeonrun.Characters;
-
 import dungeonrun.Map;
-
 public class Wizard extends Heroes {
 
     public Wizard(String playersName) {
@@ -11,10 +9,6 @@ public class Wizard extends Heroes {
         toughness = 4;
         attack = 9;
         agility = 5;
-    }
-
-    public void specialAbility() {
-        //"Ljussken". Wizard blinds monsters, therefore Wizard always has 80% chance to escape
     }
 
     @Override
@@ -27,52 +21,52 @@ public class Wizard extends Heroes {
         // Characters like '\' and '" 'messes upp the line lengths, since you need to write \\ and \" to get them in a string. 
         // Kan use '£' for '\' and '§' for '"' here, because of the replacement code below.
         String[] ascii = {
-            "               _____        ",
-            "             .'* *.=o.      ",
-            "          __/_*_*(_  ££     ",
-            "         / _______ £  O     ",
-            "        _£_)/___£(_/_       ", // Row 5
-            "       / _((£- -/))_ £      ",
-            "       £ £())(=)(()/ /      ",
-            "        ' £(((()))/ '       ",
-            "       / ' £)).))/ ' £      ",
-            "      / _ £ - | - /_  £     ", // Row 10
-            "     (   ( .;''';. .'  )    ",
-            "     _£§__ /    )£ __§/_    ",
-            "       £/  £   ' /  £/      ",
-            "        .'  '...' ' )       ",
-            "         /  / | £  £        ", // Row 15
-            "        /  .  .  .  £       ",
-            "       /   .     .   £      ",
-            "      /   /   |   £   £     ",
-            "    .'   /    b    '.  '.   ",
-            " _.'   /     db     '.  '._ ", // Row 20
-            "(___rf£____.dBBb._____)____)"};
+                "               _____        ",
+                "             .'* *.=o.      ",
+                "          __/_*_*(_  ££     ",
+                "         / _______ £  O     ",
+                "        _£_)/___£(_/_       ", // Row 5
+                "       / _((£- -/))_ £      ",
+                "       £ £())(=)(()/ /      ",
+                "        ' £(((()))/ '       ",
+                "       / ' £)).))/ ' £      ",
+                "      / _ £ - | - /_  £     ", // Row 10
+                "     (   ( .;''';. .'  )    ",
+                "     _£§__ /    )£ __§/_    ",
+                "       £/  £   ' /  £/      ",
+                "        .'  '...' ' )       ",
+                "         /  / | £  £        ", // Row 15
+                "        /  .  .  .  £       ",
+                "       /   .     .   £      ",
+                "      /   /   |   £   £     ",
+                "    .'   /    b    '.  '.   ",
+                " _.'   /     db     '.  '._ ", // Row 20
+                "(___rf£____.dBBb._____)____)"};
         //   1234567890123456789012345678
         String[] color = {
-            "               _____        ",
-            "             .'y *g=yg      ",
-            "          __/_ygyg_  ££     ",
-            "         / _______ £  y     ",
-            "        _£_)/___£(_/_       ", // Row 5
-            "       / _w(yb byw)g £      ",
-            "       £ £w))(sw(()g /      ",
-            "        ' £w((()))g '       ",
-            "       / ' £w).))g ' £      ",
-            "      / _ £ - | - /_  £     ", // Row 10
-            "     (   ( m;''';. g'  )    ",
-            "     _£§__ m    )£ g_§/_    ",
-            "       £/  m   ' /  g/      ",
-            "        .'  m...' g )       ",
-            "         /  / | £  £        ", // Row 15
-            "        /  .  .  .  £       ",
-            "       /   .     .   £      ",
-            "      /   /   |   £   £     ",
-            "    .'   /    B    '.  '.   ",
-            " _.'   /     DB    '.   '._ ", // Row 20
-            "(___RF£____.DBBB___ __)____)"};
+                "               _____        ",
+                "             .'y *g=yg      ",
+                "          __/_ygyg_  ££     ",
+                "         / _______ £  y     ",
+                "        _£_)/___£(_/_       ", // Row 5
+                "       / _w(yb byw)g £      ",
+                "       £ £w))(sw(()g /      ",
+                "        ' £w((()))g '       ",
+                "       / ' £w).))g ' £      ",
+                "      / _ £ - | - /_  £     ", // Row 10
+                "     (   ( m;''';. g'  )    ",
+                "     _£§__ m    )£ g_§/_    ",
+                "       £/  m   ' /  g/      ",
+                "        .'  m...' g )       ",
+                "         /  / | £  £        ", // Row 15
+                "        /  .  .  .  £       ",
+                "       /   .     .   £      ",
+                "      /   /   |   £   £     ",
+                "    .'   /    B    '.  '.   ",
+                " _.'   /     DB    '.   '._ ", // Row 20
+                "(___RF£____.DBBB___ __)____)"};
         //   1234567890123456789012345678
-        
+
         String str;
         String[] coloredAscii = new String[ascii.length];
         char chr;

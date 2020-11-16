@@ -1,7 +1,4 @@
 package dungeonrun.Monsters;
-
-import dungeonrun.Monsters.Monster;
-
 public class GiantSpider extends Monster {
     
     public GiantSpider(){

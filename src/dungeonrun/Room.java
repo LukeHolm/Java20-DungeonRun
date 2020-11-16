@@ -80,28 +80,6 @@ public class Room {
         }
     }
 
-    // Will be getNextMonster will be removed...
-    public Monster getNextMonster() {
-        Monster firstAliveMonster = null;
-
-        for (Monster monster : monsters) {
-            if (monster.alive) {
-                firstAliveMonster = monster;
-                break;
-            }
-        }
-        return firstAliveMonster;
-    }
-    // defeatedMonster will be removed...
-    public void defeatedMonster(Monster deadMonster) {
-        if (deadMonster == null) {
-            System.out.println("defeatedMonster called with null referense");
-            System.exit(0);
-        } else {
-            deadMonster.alive = false;
-        }
-    }
-
    public void draw(Heroes hero) {
 
         String spaceAfterHero = "    ";

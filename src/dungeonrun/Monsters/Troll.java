@@ -1,7 +1,4 @@
 package dungeonrun.Monsters;
-
-import dungeonrun.Monsters.Monster;
-
 public class Troll extends Monster {
     
     public Troll (){

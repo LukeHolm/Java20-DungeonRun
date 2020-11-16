@@ -38,9 +38,9 @@ public class Main {
 
     public static void mainGame() {
 
-        Heroes theHero = null;
-        Heroes oldHero = null;
-        Map theMap = null;
+        Heroes theHero;
+        Heroes oldHero;
+        Map theMap;
         int choice;
 
         try {
@@ -206,7 +206,8 @@ public class Main {
                         System.out.println("Invalid input, please try again.");
                 }
             } catch (Exception e) {
-
+                System.out.println("Incorrect input");
+                scanner.next();
             }
 
         } while (!validInput);
@@ -329,7 +330,7 @@ public class Main {
             }
             oldHero = loadHero();
 
-        } else if (heroesOfOld.length == 0) {
+        } else {
             System.out.println("\nThere are no heroes of old.");
             System.out.println("Perhaps you will be a hero of legends?");
         }

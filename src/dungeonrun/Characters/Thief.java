@@ -1,7 +1,4 @@
 package dungeonrun.Characters;
-
-;
-
 public class Thief extends Heroes {
 
     public Thief(String playersName) {
@@ -13,9 +10,6 @@ public class Thief extends Heroes {
         agility = 7;
     }
 
-    public void specialAbility() {
-        //"Critical hit". Theif has 25% chance to do double damage every time Thief attacks.
-    }
 
     @Override
     public String toString() {
@@ -27,27 +21,27 @@ public class Thief extends Heroes {
         // Characters like '\' and '" 'messes upp the line lengths, since you need to write \\ and \" to get them in a string. 
         // Kan use '£' for '\' and '§' for '"' here, because of the replacement code below.
         String[] ascii = {
-            "                            ",
-            "      ___                   ",
-            "         /      .--._       ",
-            "        |      '---._)      ",
-            "        |,     Q,Q ,)       ",
-            "        B3      £- /        ", // Row 5
-            "        | |_.---;-'---,._   ",
-            "        |£  '  o-----o   )  ",
-            "        | £   /H  ___H£  /  ",
-            "        |  '-' £§§)£__/  |  ", // Row 10
-            "        £     _|__='-)__/   ",
-            "         £   /  '.    £     ",
-            "            /         /     ",
-            "           |         /      ",
-            "           |___/£|   |      ", // Row 15
-            "            |_|  |   |      ",
-            "           /  )  £   £      ",
-            "          (__/    £___£     ",
-            "                    £_£     ",
-            "                    /  )    ", // Row 20
-            "                   (__/     "};
+                "                            ",
+                "      ___                   ",
+                "         /      .--._       ",
+                "        |      '---._)      ",
+                "        |,     Q,Q ,)       ",
+                "        B3      £- /        ", // Row 5
+                "        | |_.---;-'---,._   ",
+                "        |£  '  o-----o   )  ",
+                "        | £   /H  ___H£  /  ",
+                "        |  '-' £§§)£__/  |  ", // Row 10
+                "        £     _|__='-)__/   ",
+                "         £   /  '.    £     ",
+                "            /         /     ",
+                "           |         /      ",
+                "           |___/£|   |      ", // Row 15
+                "            |_|  |   |      ",
+                "           /  )  £   £      ",
+                "          (__/    £___£     ",
+                "                    £_£     ",
+                "                    /  )    ", // Row 20
+                "                   (__/     "};
         //   1234567890123456789012345678 
 
         // Replace '£' with '\' and replace '§' with '"'
