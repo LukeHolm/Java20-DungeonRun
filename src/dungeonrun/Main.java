@@ -27,7 +27,7 @@ public class Main {
     public static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-       /// // music.PlayRain();// Spelar upp regn 
+       //// // music.PlayRain();// Spelar upp regn 
         Drawings.drawCastle();
         while (true) {
             mainGame();
