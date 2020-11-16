@@ -17,7 +17,6 @@ import java.util.ArrayList;
 
 public class Main {
     //Menu
-    static String dungeonmusic = "dungeonmusic.wav";
     static String beepmenu = "beep.wav";
     //Characters
     static String knightpicked = "Knightpicked.wav";
@@ -27,7 +26,7 @@ public class Main {
     public static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-       //// // music.PlayRain();// Spelar upp regn 
+      
        
         Drawings.drawCastle();
         while (true) {
@@ -43,7 +42,7 @@ public class Main {
         int choice;
 
         try {
-
+            music.PlayRain();// Spelar upp regn 
             System.out.println("\n *** Welcome to Dungeon Run! *** \n");
             System.out.println("1. New game");
             System.out.println("2. Continue with existing hero");
@@ -166,12 +165,11 @@ public class Main {
 
                     case 1:
                         ///  //  music.playMusic(beepmenu);
-                        /// // music.playMusic(dungeonmusic);
                         System.out.println("What is your knights name?");
                         characterName = newHero();
 
 
-                        //////////// music.playMusic(knightpicked);
+                         music.playMusic(knightpicked);
                         hero = new Knight(characterName);
                         // players.add(hero);  From the spec.: "Dungeon Run är ett textbaserat äventyrsspel för en spelare"
 
@@ -181,12 +179,11 @@ public class Main {
                         break;
                     case 2:
                         ///  //  music.playMusic(beepmenu);
-                        /// // music.playMusic(dungeonmusic);
                         System.out.println("\nWhat is your wizards name?");
                         characterName = newHero();
 
 
-                        /////////// music.playMusic(wizardpicked);
+                         music.playMusic(wizardpicked);
                         hero = new Wizard(characterName);
                         saveHero(characterName, hero);
                         System.out.println("\nYou have chosen " + characterName + " the intelligent wizard.");
@@ -194,11 +191,10 @@ public class Main {
                         break;
                     case 3:
                         ///  //  music.playMusic(beepmenu);
-                        /// // music.playMusic(dungeonmusic);
 
                         System.out.println("What is your thiefs name?");
                         characterName = newHero();
-                        //music.playMusic(thiefpicked);
+                        music.playMusic(thiefpicked);
                         hero = new Thief(characterName);
                         saveHero(characterName, hero);
                         System.out.println("\nYou have chosen " + characterName + " the cunning thief.");
@@ -231,6 +227,8 @@ public class Main {
                 switch (intFromUser) {
                     case 1:
                         ///  //  music.playMusic(beepmenu);
+                        music.StopRain();
+                        music.playDungeonmusic();
                         System.out.println("You chose the upper left corner.");
                         hero.mapPosX = 0;
                         hero.mapPosY = 0;
@@ -239,6 +237,8 @@ public class Main {
 
                     case 2:
                         ////  //  music.playMusic(beepmenu);
+                         music.StopRain();
+                        music.playDungeonmusic();
                         System.out.println("You chose the upper right corner.");
                         hero.mapPosX = sizeX - 1;
                         hero.mapPosY = 0;
@@ -247,6 +247,8 @@ public class Main {
 
                     case 3:
                         ///  //  music.playMusic(beepmenu);
+                         music.StopRain();
+                        music.playDungeonmusic();
                         System.out.println("You chose the lower left corner.");
                         hero.mapPosX = 0;
                         hero.mapPosY = sizeY - 1;
@@ -254,6 +256,8 @@ public class Main {
 
                     case 4:
                         ///  //  music.playMusic(beepmenu);
+                         music.StopRain();
+                        music.playDungeonmusic();
                         System.out.println("You chose the lower right corner.");
                         hero.mapPosX = sizeX - 1;
                         hero.mapPosY = sizeY - 1;

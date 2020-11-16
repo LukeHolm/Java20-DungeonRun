@@ -65,6 +65,8 @@ public class Strid {
         }
         System.out.println("Monsters turn order throws: " + orderList.toString());
         System.out.println("Hero turn order throw: " + heroTurn);
+        music.StopDungeonmusic();
+        music.PlayBattleMusic();
         while (insideRoom) {
 
             try {
@@ -117,6 +119,8 @@ public class Strid {
                         System.out.println("Press \"ENTER\" to pick up treasures and continue your adventure...");
                         Scanner scanner = new Scanner(System.in);
                         scanner.nextLine();
+                        music.StopBattle();
+                        music.playDungeonmusic();
                         break;
                     }
 
@@ -289,6 +293,8 @@ public class Strid {
         if (chanceEscape > escChance) {
             System.out.println(GREEN + "You escaped!" + RESET);
             knightBlock = 0;
+            music.StopBattle();
+            music.playDungeonmusic();
 
             return false;
 

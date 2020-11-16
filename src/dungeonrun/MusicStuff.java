@@ -17,7 +17,9 @@ import javax.sound.sampled.Clip;
 public class MusicStuff {
 
     private Clip clip;
-    private Clip StopMusic;
+    private Clip StopRain;
+    private Clip StopBattle;
+    private Clip StopDungeonmusic;
 
     void playMusic(String musicLocation) {
 
@@ -37,27 +39,73 @@ public class MusicStuff {
 
     void stopMusic() {
         clip.stop();
-       
-        
+
     }
-    void  PlayRain(){
-        
+
+    void PlayRain() {
+
         try {
             File musicPath = new File("rainthunder.wav");
 
             AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
-            StopMusic = AudioSystem.getClip();
-            StopMusic.open(audioInput);
-            StopMusic.start();
+            StopRain = AudioSystem.getClip();
+            StopRain.open(audioInput);
+            StopRain.start();
 
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        
     }
-    void StopRain(){
-        StopMusic.stop();
+
+    void StopRain() {
+        StopRain.stop();
+    }
+
+    void PlayBattleMusic() {
+        try {
+            File musicPath = new File("battlemusic.wav");
+
+            AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
+            StopBattle = AudioSystem.getClip();
+            StopBattle.open(audioInput);
+            StopBattle.start();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    void StopBattle() {
+        StopBattle.stop();
+
+    }
+
+    void playDungeonmusic() {
+        try {
+            
+            File musicPath = new File("dungeonmusic.wav");
+
+            AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
+            StopDungeonmusic = AudioSystem.getClip();
+            StopDungeonmusic.open(audioInput);
+            StopDungeonmusic.start();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    void StopDungeonmusic() {
+        try {
+            StopDungeonmusic.stop();
+        } catch (Exception e) {
+          return;
+        }
+
+
     }
 
 }
