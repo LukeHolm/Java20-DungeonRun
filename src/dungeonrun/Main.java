@@ -17,7 +17,6 @@ import java.util.ArrayList;
 
 public class Main {
     //Menu
-    static String gamemenumusic = "rainthunder.wav";
     static String dungeonmusic = "dungeonmusic.wav";
     static String beepmenu = "beep.wav";
     //Characters
@@ -28,8 +27,7 @@ public class Main {
     public static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-
-        // music.playMusic(gamemenumusic); // gamemenumusic
+       //// // music.PlayRain();// Spelar upp regn 
         Drawings.drawCastle();
         while (true) {
             mainGame();
@@ -167,6 +165,7 @@ public class Main {
 
                     case 1:
                         ///  //  music.playMusic(beepmenu);
+                        /// // music.playMusic(dungeonmusic);
                         System.out.println("What is your knights name?");
                         characterName = newHero();
 
@@ -181,6 +180,7 @@ public class Main {
                         break;
                     case 2:
                         ///  //  music.playMusic(beepmenu);
+                        /// // music.playMusic(dungeonmusic);
                         System.out.println("\nWhat is your wizards name?");
                         characterName = newHero();
 
@@ -193,6 +193,7 @@ public class Main {
                         break;
                     case 3:
                         ///  //  music.playMusic(beepmenu);
+                        /// // music.playMusic(dungeonmusic);
 
                         System.out.println("What is your thiefs name?");
                         characterName = newHero();
@@ -236,7 +237,7 @@ public class Main {
                         break;
 
                     case 2:
-                        ///  //  music.playMusic(beepmenu);
+                        ////  //  music.playMusic(beepmenu);
                         System.out.println("You chose the upper right corner.");
                         hero.mapPosX = sizeX - 1;
                         hero.mapPosY = 0;
