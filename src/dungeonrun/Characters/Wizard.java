@@ -27,13 +27,13 @@ public class Wizard extends Heroes {
         // Characters like '\' and '" 'messes upp the line lengths, since you need to write \\ and \" to get them in a string. 
         // Kan use '£' for '\' and '§' for '"' here, because of the replacement code below.
         String[] ascii = {
-            "               _____        ",
-            "             .'* *.=o.      ",
-            "          __/_*_*(_  ££     ",
-            "         / _______ £  O     ",
-            "        _£_)/___£(_/_       ", // Row 5
+            "               _----_       ",
+            "             .'* *.-.£      ",
+            "           _/ * *(   ££     ",
+            "          /*_*_*_*£   O     ",
+            "        _|_//___££_|_       ", // Row 5
             "       / _((£- -/))_ £      ",
-            "       £ £())(=)(()/ /      ",
+            "       £ £())(-)(()/ /      ",
             "        ' £(((()))/ '       ",
             "       / ' £)).))/ ' £      ",
             "      / _ £ - | - /_  £     ", // Row 10
@@ -50,12 +50,12 @@ public class Wizard extends Heroes {
             "(___rf£____.dBBb._____)____)"};
         //   1234567890123456789012345678
         String[] color = {
-            "               _____        ",
-            "             .'y *g=yg      ",
-            "          __/_ygyg_  ££     ",
-            "         / _______ £  y     ",
-            "        _£_)/___£(_/_       ", // Row 5
-            "       / _w(yb byw)g £      ",
+            "               m____        ",
+            "             m'y *m-mm      ",
+            "           mm_ymym_  ££     ",
+            "          mymymymym£  m     ",
+            "        _m_)z___£m_/g       ", // Row 5
+            "       / _w(zy yzw)g £      ",
             "       £ £w))(sw(()g /      ",
             "        ' £w((()))g '       ",
             "       / ' £w).))g ' £      ",
@@ -68,9 +68,9 @@ public class Wizard extends Heroes {
             "        /  .  .  .  £       ",
             "       /   .     .   £      ",
             "      /   /   |   £   £     ",
-            "    .'   /    B    '.  '.   ",
-            " _.'   /     DB    '.   '._ ", // Row 20
-            "(___RF£____.DBBB___ __)____)"};
+            "    .'   /    h  g '.  '.   ",
+            " _.'   /     hB  g '.   '._ ", // Row 20
+            "(___RF£____.hBBBg_____)____)"};
         //   1234567890123456789012345678
         
         String str;
