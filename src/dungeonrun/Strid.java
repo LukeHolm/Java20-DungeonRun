@@ -206,6 +206,7 @@ public class Strid {
                     System.out.println("----------------------------");
                     System.out.println("You died!");
                     System.out.println("----------------------------");
+                    music.StopBattle();
                     music.playMusic(gameover);
                     music.playMusic(humandeath);
                     TimeUnit.SECONDS.sleep(4);
