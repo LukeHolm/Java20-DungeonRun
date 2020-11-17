@@ -214,7 +214,7 @@ public class GameLoop {
             hero.mapPosY = hero.lastPosY;
 
         }
-        System.out.println(GREEN + "Leaving room..." + RESET);
+
         Strid.tryLoot = true;
 
         System.out.println("You have a total of " + hero.totalGold + " gold");
