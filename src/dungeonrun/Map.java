@@ -57,7 +57,7 @@ public class Map {
     public static final String[] colorLookup = {
         D_BLUE/*a*/, BR_BLUE/*b*/, BR_CYAN/*c*/, D_CYAN/*d*/,
         BR_BLACK/*e = grey*/, D_WHITE/*f*/, BR_GREEN/*g*/, D_GREEN/*h*/,
-        BLINK/*i*/, ""/*j*/, BR_BLACK/*k*/, ""/*l*/,
+        BLINK/*i*/, GREEN/*j*/, BR_BLACK/*k*/, ""/*l*/,
         BR_MAGENTA/*m*/, D_MAGENTA/*n*/, ""/*o*/, ""/*p*/,
         RESET/*q*/, BR_RED/*r*/, D_RED /*s*/, REVERSE_VIDEO/*t*/,
         UNDERLINE/*u*/, BR_WHITE/*v*/, RESET/*w = white*/, DD_WHITE/*x*/,

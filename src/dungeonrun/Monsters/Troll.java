@@ -1,7 +1,10 @@
 package dungeonrun.Monsters;
+
+import dungeonrun.Map;
+
 public class Troll extends Monster {
-    
-    public Troll (){
+
+    public Troll() {
         creatureIsA = "Troll";
 
         initiative = 2;
@@ -15,37 +18,81 @@ public class Troll extends Monster {
     public String toString() {
         return "Troll";
     }
-    
+
     @Override
     public String[] displayStrings() {
         // Here you can use "£" instead of "\\" so the rows lines up, and it will be replaced with "\" in the code below 
         String[] ascii = {
-        		"                            ",
-        		"           .                ",
-        		"          ..                ",
-        		"        .:::.               ",
-        		"       .:\\:/:.             ",//row5
-        		"     .:\\:\\:/:/:.          ",
-        		"    :.:\\:\\:/:/:.:         ",
-        		"   :=.' -   - '.=:          ",
-        		"   '=(\\ 9   9 /)='         ",
-        		"      (  (_)  )             ",//row10
-        		"      /`-vvv-'\\            ",
-        		"     /         \\           ",
-        		"    / /|,,,,,|\\ \\         ",
-        		"   /_//  /^\\  \\\\_\\      ",
-        		"   WW(  (   )  )WW          ",//row15
-        		"      \\,,\\ /,,/           ",
-        		"      ||  |||  |            ",
-        		"    __||  |||  |__          ",
-        		"   (_______Y______)         ",
-        		"                            ",//row20
-        		"                            "};
-            //   1234567890123456789012345678
-        // Replace "£" with "\"
-        for (int i = 0; i < ascii.length; i++) {
-            ascii[i] = ascii[i].replace("£", "\\");
+            "          ..                ",
+            "        .:::.               ",
+            "       .:£:/:.              ",
+            "     .:£:£:/:/:.            ",
+            "    ..:£:£:/:/:..           ",//row5
+            "    :.:£:£:/:/:.:           ",
+            "   :=.' -   - '.=:          ",
+            "   '=(£ 9   9 /)='          ",
+            "      (  (_)  )             ",
+            "      /`-vvv-'£             ",//row10
+            "     /         £            ",
+            "    / /|,,,,,|£ £ )  )  )   ",
+            "   /_//       ££_£  (  (    ",
+            "  /_//   /^£   ££_£  )  )   ", 
+            "  WW(   (   )   )WW (  (    ",//row15
+            "   | £,,,£ /,,,/----------, ",
+            "   |  |  | |  |           D ",
+            "   O  |  | |  |           | ",
+            "      |  | |  |           / ",
+            "    __|  | |  |__________/  ",//row20
+            "   (______Y______)=======   "};
+        //   1234567890123456789012345678
+
+        String[] colors= {
+            "          ..                ",
+            "        .:::.               ",
+            "       .:£:/:.              ",
+            "     .:£:£:/:/:.            ",
+            "    ..:£:£:/:/:..           ",//row5
+            "    :.:£:£:/:/:.:           ",
+            "   :=.' -   - '.=:          ",
+            "   '=(£ y   9 r)='          ",
+            "      (  (_)  )             ",
+            "      /`-***-'£             ",//row10
+            "     /         £            ",
+            "    / /|,,,,,|£ £ m  )  )   ",
+            "   /_//       ££_£  m  (    ",
+            "  /_//   /^£   ££_£  m  )   ", 
+            "  WW(   (   )   )WW m  (    ",//row15
+            "   m r,,,£ /,,,/m---------, ",
+            "   m  r  | |  |           m ",
+            "   m  r  | |  |           m ",
+            "      |  | |  |           m ",
+            "    __|  | |  |__m_______/  ",//row20
+            "   (______Y______)y======   "};
+        //   1234567890123456789012345678
+        
+        String str;
+        String[] coloredAscii = new String[ascii.length];
+        char chr;
+        for (int row = 0; row < ascii.length; row++) {
+            // Replace '£' with '\' and replace '§' with '"'
+            ascii[row] = ascii[row].replace("£", "\\");
+            ascii[row] = ascii[row].replace("§", "\"");
+
+            str = "";
+            for (int x = 0; x < ascii[row].length(); x++) {
+
+                // Get the corresponding location in the color strings, and check if it's lower case letter
+                chr = colors[row].charAt(x);
+
+                if (Character.isLowerCase(chr)) {
+                    //  Lookup the corresponding color code, and add it to the output string
+                    str += Map.colorLookup[(int) (chr - 'a')];
+                }
+                // Always add the chracter from the ascii strings
+                str += ascii[row].charAt(x);
+            }
+            coloredAscii[row] = str;
         }
-        return ascii;
+        return coloredAscii;
     }
 }
