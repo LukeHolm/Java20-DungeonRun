@@ -14,6 +14,7 @@ public class GameLoop {
 
     static String footstep = "footdoor.wav";
     static String win = "Victory.wav";
+    static String money = "moneyfound.wav";
     public static final String RESET = "\u001b[0m";
     public static final String BR_RED = "\u001b[31;1m";
     public static final String BR_GREEN = "\u001b[32;1m";
@@ -197,13 +198,15 @@ public class GameLoop {
             strid.stridDice(map, hero);
 
         } else {
+            music.playMusic(money);
             System.out.println("In the room you find " + treasureStr);
         }
         if (Strid.tryLoot) {
             // Picking up the Treasures
             for (Treasure treasure : map.rooms[hero.mapPosX][hero.mapPosY].treasures) {
-
+                
                 System.out.println("You pick up the " + treasure.name + ". It's worth " + treasure.value + " gold");
+                music.playMusic(money);
                 hero.totalGold += treasure.value;
 
             }
