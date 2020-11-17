@@ -149,7 +149,7 @@ public class Main {
         String characterName;
         boolean validInput = false;
 
-        System.out.println("\nCharacters to choose from:");
+        System.out.println("\nHero professions:");
         System.out.println("");
 
         // Draw the characters (Hero types) to choose fraom, including attribute values
@@ -269,7 +269,7 @@ public class Main {
                 System.out.println("Incorrect input");
                 input.next();
             }
-        } // while
+        }
     }
 
     public static String newHero() {
@@ -358,7 +358,7 @@ public class Main {
                 agility = Files.readAllLines(Paths.get("Characters\\" + name)).get(4);
                 treasure = Files.readAllLines(Paths.get("Characters\\" + name)).get(8);
             } catch (IOException e) {
-                System.out.println("Oops");
+                System.out.println("Oops, could not find the hero stats!");
             }
             String hero = heroType + "\n"
                     + "Initiative : " + initiative + "\n"
@@ -378,8 +378,8 @@ public class Main {
 
         //Enter name for hero you want to load
         while (!choice) {
-            System.out.println("Please enter the name the hero you want to revisit:");
-            System.out.println("Or type 'Back' to go back to the menu");
+            System.out.println("Please enter the name the hero you want to revisit,");
+            System.out.println("or type 'Back' to go back to the menu:");
             String heroChoice = scanner.nextLine();
 
             File heroPath = new File("Characters\\" + heroChoice);

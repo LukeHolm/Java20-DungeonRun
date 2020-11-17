@@ -4,13 +4,9 @@ import dungeonrun.Characters.Heroes;
 import static dungeonrun.Main.music;
 import dungeonrun.Monsters.*;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import jdk.nashorn.internal.parser.TokenType;
 
 public class Strid {
 
@@ -174,7 +170,7 @@ public class Strid {
         System.out.println("..............");
         System.out.println("Monster attack ");
         System.out.println("..............");
-        if (knightBlock == 1 && hero.agility == 4) {
+        if (knightBlock == 1 && hero.creatureIsA.equals("Knight")) {
             System.out.println("|`-._/\\_.-`|");
             System.out.println("|    ||    |");
             System.out.println("|___o()o___|");
@@ -235,7 +231,7 @@ public class Strid {
         System.out.println("The " + monsterObj.creatureIsA + " defends for " + monsterDef);
 
         if (playerAtk > monsterDef) {
-            if (hero.agility == 7) {
+            if (hero.creatureIsA.equals("Thief")) {
                 double specialAttack = 0.25;
                 double specialChance = Math.random();
                 if (specialAttack >= specialChance) {
@@ -278,7 +274,7 @@ public class Strid {
 
         double chanceEscape = hero.agility * 0.1;
         double escChance = Math.random();
-        if (hero.agility == 5) {
+        if (hero.creatureIsA.equals("Wizard")) {
             chanceEscape = hero.agility * 0.16;
             System.out.println("  .   . ¨ '  ,  ,");
             System.out.println("       \\  |  //");
@@ -289,7 +285,7 @@ public class Strid {
             System.out.println("¨    ¨   |^|      ¨ ");
             System.out.println("         |<|");
             System.out.println("         |>| ");
-            System.out.println(hero.playersName + BR_BLUE + " The Wizard raises the staff of ____  and fires a big glowing light towards the enemies to blind them, giving it a higher chance to escape!" + RESET);
+            System.out.println(hero.playersName + BR_BLUE + " The Wizard raises the Staff of Light and fires a big glowing light towards the enemies to blind them, giving it a higher chance to escape!" + RESET);
             music.playMusic(wizardspecial);
 
         }
