@@ -29,12 +29,12 @@ public class Chest extends Treasure {
         //   123456789012345678
 
         String[] colors = {
-             "                  ",
+            "                  ",
             "                  ", // 2
             "  ,------------,  ",
             " /______ry____/ £ ", // 4
             " £    w   /   y  )",
-            "  £_wy__yb___wyy.'", // 6
+            "  £_wy__yy___wyy.'", // 6
             " ,----/888£----,| ",
             "|=='==8==='==|' | ", // 8
             "|    rrr     y  | ",
@@ -68,4 +68,3 @@ public class Chest extends Treasure {
         return coloredAscii;
     }
 }
-
