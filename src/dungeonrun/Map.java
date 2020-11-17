@@ -1,8 +1,10 @@
 package dungeonrun;
+
 import dungeonrun.Characters.Heroes;
 import dungeonrun.Monsters.Monster;
 import dungeonrun.Treasures.Treasure;
 import java.util.ArrayList;
+
 public class Map {
 
     public static final String RESET = "\u001b[0m";
@@ -63,7 +65,6 @@ public class Map {
         UNDERLINE/*u*/, BR_WHITE/*v*/, RESET/*w = white*/, DD_WHITE/*x*/,
         BR_YELLOW/*y*/, D_YELLOW/*z*/};
 
-
     public Room[][] rooms;
     public boolean seeAllRooms;
 
@@ -114,7 +115,7 @@ public class Map {
 
         System.out.println("The map with " + BR_RED + "G" + RESET + " = Giant Spider, " + BR_RED + "S" + RESET + " = Skeleton, " + BR_RED + "O" + RESET + " = Orc, " + BR_RED + "T" + RESET + " = Troll:");
         System.out.println("Treasures: " + BR_YELLOW + "L" + RESET + " = Loose coins, " + BR_YELLOW + "M" + RESET + " = Money pouch, " + BR_YELLOW
-                + "J" + RESET + " = Gold Jewlry, " + BR_YELLOW + "G" + RESET + " = Gemstone, " + BR_YELLOW + "C" + RESET + " = Small Chest:");
+                + "J" + RESET + " = Gold Jewlry, " + BR_YELLOW + "G" + RESET + " = Gemstone, " + BR_YELLOW + "C" + RESET + " = Small Chest, " + BR_YELLOW + "." + RESET + " = no treasures left");
 
         for (y = 0; y < rooms[0].length; y++) {
 
@@ -172,6 +173,7 @@ public class Map {
                     if (rooms[x][y].isVisited() || seeAllRooms) {
                         treasures = rooms[x][y].treasures;
 
+                        // Loop over all treasures in the room, and add the right character for the type of Treasure
                         for (Treasure treasure : treasures) {
                             treasureStr += treasure.getClass() == dungeonrun.Treasures.LooseCoins.class ? "L" : "";
                             treasureStr += treasure.getClass() == dungeonrun.Treasures.MoneyPouch.class ? "M" : "";
@@ -179,22 +181,30 @@ public class Map {
                             treasureStr += treasure.getClass() == dungeonrun.Treasures.Gemstone.class ? "G" : "";
                             treasureStr += treasure.getClass() == dungeonrun.Treasures.Chest.class ? "C" : "";
                         }
+                        if (treasureStr.length() == 0) {
+                            treasureStr = ".";  // Add a point indicating that the room is visited, and there are no treasures left.
+                        }
                     }
+
                     System.out.printf("%s %-5.5s%s", BR_YELLOW, treasureStr, RESET);
                 }
             }
             System.out.println(rooms[rooms.length - 1][y].isVisited() ? "|" : BLUE + ":" + RESET);
         } // for x
 
-        // Final row, underneith, example: Example: +-Exit-+······+······+·Exit·+     
+        // Final row, underneith, example: Example: +-Exit-+······+······+·Exit·+   
+        y = rooms[0].length - 1; // Last row
         for (x = 0; x < rooms.length; x++) {
+            System.out.print((rooms[x][y].isVisited() || rooms[alsoCheckX(x - 1, rooms)][y].isVisited()) ? "+" : BLUE + "+" + RESET);
+
             if (isCornerRoom(x, rooms[0].length - 1)) {
-                System.out.print((rooms[x][rooms[0].length - 1].isVisited()) ? "+-Exit-" : BLUE + "+·Exit·" + RESET);
+                System.out.print((rooms[x][y].isVisited()) ? "-Exit-" : BLUE + "·Exit·" + RESET);
 
             } else {
-                System.out.print((rooms[x][rooms[0].length - 1].isVisited()) ? "+------" : BLUE + "+······" + RESET);
+                System.out.print((rooms[x][y].isVisited()) ? "------" : BLUE + "······" + RESET);
             }
         }
+
         System.out.println((rooms[rooms.length - 1][rooms[0].length - 1].isVisited()) ? "+" : BLUE + "+" + RESET);
     }
 
