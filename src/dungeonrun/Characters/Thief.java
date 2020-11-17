@@ -33,7 +33,7 @@ public class Thief extends Heroes {
             "  ___                       ",
             "     /      .--._           ",
             "    |      '---._)          ",
-            "    |       Q,Q,)           ",
+            "    |      `Q,Q,)           ",
             "    |,      £- /  ___       ", // Row 5
             "    B3. .---;-'-/,._  £     ",
             "    |£ £'       B3  £   £   ",
@@ -57,7 +57,7 @@ public class Thief extends Heroes {
             "  m__                       ",
             "     m      g--._           ",
             "    m      g---._)          ",
-            "    m      ddzdzz           ", // Row 5
+            "    m      zdzdzz           ", // Row 5
             "    mz      £r z  b__       ", 
             "    z3. g---;-zgb,.g b£     ",
             "    mg£'        z3. g   b   ",

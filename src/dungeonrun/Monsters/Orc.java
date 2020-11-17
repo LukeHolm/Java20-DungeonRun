@@ -44,7 +44,7 @@ public class Orc extends Monster {
             " ||     (    /   £    )  WW ",
             " ||      £   £   /   /      ",  
             " ||   ,n__£   £ /   /__n.   ", //row 20
-            " ||   `-______) (______-´   "};
+            " ||   £_______) (_______/   "};
 
         String[] colors = {
             "                            ",  
@@ -67,7 +67,7 @@ public class Orc extends Monster {
             " m|     r    /   £    )  hW ",
             " m|      r   £   /   /      ",  
             " m|   r*__£   £ /   /__*.   ", //row 20
-            " m|   r-______) (______-´   "};
+            " m|   r-______) (_______/   "};
         
         String str;
         String[] coloredAscii = new String[ascii.length];
