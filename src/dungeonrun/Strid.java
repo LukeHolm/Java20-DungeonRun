@@ -285,7 +285,7 @@ public class Strid {
             System.out.println("¨    ¨   |^|      ¨ ");
             System.out.println("         |<|");
             System.out.println("         |>| ");
-            System.out.println(hero.playersName + BR_BLUE + " The Wizard raises the Staff of Light and fires a big glowing light towards the enemies to blind them, giving it a higher chance to escape!" + RESET);
+            System.out.println(hero.playersName + BR_BLUE + " The Wizard raises the Staff of Light and fires a big glowing orb towards the enemies to blind them, giving it a higher chance to escape!" + RESET);
             music.playMusic(wizardspecial);
 
         }
