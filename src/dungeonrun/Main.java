@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Main {
 
-    //Menu
+    ///Menu
     static String beepmenu = "beep.wav";
     //Characters
     static String knightpicked = "Knightpicked.wav";
